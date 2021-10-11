@@ -7,7 +7,7 @@ Maybe you don't need or want to sell an entire car. At our website you can also 
 
 # Acceptance criteria
 
-- As a customer I want to be able to find a selection of cars that are ... with what I am looking for without getting lost in a large assortiment of cars. As a seller I want to be able to sell a car or parts. Both customer and seller want to be able to do this in a safe and secure way.
+- As a customer I want to be able to find a selection of cars that are match with what I am looking for without getting lost in a large assortiment of cars. As a seller I want to be able to sell a car or parts. Both customer and seller want to be able to do this in a safe and secure way.
   - User can find best cars for his intrests by filling in a form
   - User can only sell car or parts by filling in all criteria points
 
