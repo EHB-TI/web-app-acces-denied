@@ -23,12 +23,12 @@ Able to help our customers to also take care of their car, we offer the possibil
 Criteria:
 >	Users can find the best cars for their interests, by filling in a form without having any knowledge of cars in the first place
 
->> 	Basic questions will be asked about the customer himself, able to target the best car-category
+>>> 	Basic questions will be asked about the customer himself, able to target the best car-category
 
->>  Basic questions about what the customer would like to have, to be sure it is matching his budget and other criteria.
+>>>  Basic questions about what the customer would like to have, to be sure it is matching his budget and other criteria.
 
 
->>  Picking some random users of different ages and different knowledge about cars and let them use/test our website. Able to         check if our application is giving good         results.
+>>>  Picking some random users of different ages and different knowledge about cars and let them use/test our website. Able to         check if our application is giving good         results.
 
 
 >	Users can only sell cars or parts by filling in all criteria points
