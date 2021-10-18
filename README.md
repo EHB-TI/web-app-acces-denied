@@ -21,10 +21,10 @@ Able to help our customers to also take care of their car, we offer the possibil
 
 # Acceptance criteria
 Criteria:
-•	Users can find the best cars for their interests, by filling in a form without having any knowledge of cars in the first place
-  •	Basic questions will be asked about the customer himself, able to target the best car-category
-  •	Basic questions about what the customer would like to have, to be sure it is matching his budget and other criteria.
-  •	Picking some random users of different ages and different knowledge about cars and let them use/test our website. Able to         check if our application is giving good results.
+>	Users can find the best cars for their interests, by filling in a form without having any knowledge of cars in the first place
+>> 	Basic questions will be asked about the customer himself, able to target the best car-category
+>>  Basic questions about what the customer would like to have, to be sure it is matching his budget and other criteria.
+>>  Picking some random users of different ages and different knowledge about cars and let them use/test our website. Able to         check if our application is giving good         results.
 •	Users can only sell cars or parts by filling in all criteria points
   •	An advertisement must contain specific information, all advertisements will have descriptions, images, and a list of               characteristics.
   •	This will help us improve our recommendation AI and improve our car selection.
