@@ -89,7 +89,7 @@ Modifying data or code whenever it crosses the network.
   
 ### Information Disclosure: Confidentiality
 #### Threat
-Exposing information to someone is not authorized is.
+Exposing information to someone who is not authorized is.
 #### Defence/ Solution | Mitigate
   Using AAA and configure each page where a user must be logged in with an authentication service wrapper, a user won't be able to access other private resources.
   Each of our developers is aware of the dangers of losing or publishing their credentials, this is the only way to modify or erase our application, database, or services.
