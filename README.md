@@ -193,6 +193,10 @@ We have solved this issue by alerting the user via email whenever someone logged
 ##### What if someone made multiple fake accounts?  
 We solved this issue by adding email verification to our website. So, whenever a user registers, he will get an email to the email he put in the registration field. If the user does not click on the link sent to his email, it will not be possible for the user to go to the home page, and even when the user found a way to get to the home page, the Firestore rules will be there to block him. 
  
+ ### Architecture
+To build our architecture we chose to use Irius. Irius is a platform that makes it easier to make and visualize clear architectures. It also helps in analysing which threats exists in the current architecture and gives advice to defend against it. 
+We currently have a basic architecture but plan on working on it as the project progresses 
+![alt text] 
 
 # Deployment
 *minimally, this section contains a public URL of the app. A description of how your software is deployed is a bonus. Do you do this manually, or did you manage to automate? Have you taken into account the security of your deployment process?*
