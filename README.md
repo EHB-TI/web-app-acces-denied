@@ -196,6 +196,7 @@ We solved this issue by adding email verification to our website. So, whenever a
  ### Architecture
 To build our architecture we chose to use Irius. Irius is a platform that makes it easier to make and visualize clear architectures. It also helps in analysing which threats exists in the current architecture and gives advice to defend against it. 
 We currently have a basic architecture but plan on working on it as the project progresses 
+
 ![alt text](https://github.com/EHB-TI/web-app-access-denied/blob/main/MicrosoftTeams-image.png)
 
 # Deployment
