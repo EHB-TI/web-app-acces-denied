@@ -2,7 +2,7 @@
 Our website will be selling used cars (“second-hand”).
 Unlike any other car buying website, we are targeting our customers first. Instead of letting the customer getting lost in a list of choices, this website helps the customer to find the perfect car for him. Are you looking for your first car to learn how to drive? Or maybe you have a large family and need some more space? 
 
-Our website shows what is best for you – after answering a few questions able to select the best options -, we will also keep the users search data stored so we can optimize our customer's interests with A.I. – this is a Proof of Concept: by storing all data from our customers on our website, we will have enough data to populate our own recommendation AI (neural network), but therefore we need data which will be time-expensive -.
+Our website shows what is best for you, after answering a few questions. We will also keep the users search data stored so we can optimize our customer's interests with A.I. – this is a Proof of Concept: by storing all data from our customers on our website, we will have enough data to populate our own recommendation AI (neural network), but therefore we need data which will be time-expensive -.
  
 Our goal is to make our application user-friendly and focus on clients who have no knowledge about cars or car pieces. 
 A customer will be able to find a selection of cars that match what he is looking for, without getting lost in a large assortment of cars.
