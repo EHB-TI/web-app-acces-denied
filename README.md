@@ -82,6 +82,7 @@ Also, you can invest money to get your advertisement in the top rank whenever a 
 # Threat model
 
 ![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/Auth.png)
+![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/Auth%20(1).png)
 
 ## STRIDE
 ### Spoofing: Authentication
