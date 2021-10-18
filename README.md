@@ -25,26 +25,26 @@ Criteria:
 >> 	Basic questions will be asked about the customer himself, able to target the best car-category
 >>  Basic questions about what the customer would like to have, to be sure it is matching his budget and other criteria.
 >>  Picking some random users of different ages and different knowledge about cars and let them use/test our website. Able to         check if our application is giving good         results.
-•	Users can only sell cars or parts by filling in all criteria points
-  •	An advertisement must contain specific information, all advertisements will have descriptions, images, and a list of               characteristics.
-  •	This will help us improve our recommendation AI and improve our car selection.
-  •	This way we will be able to display the same amount of information for each advertisement placed on our website.
-•	Users can log in safely to make use of the website and contact product owners
-  •	A system will be created to securely send messages using our website.
-•	Users can make use of our website independently without having trouble doing so
-  •	Mobile devices: smartphones and tablets, independent of the OS should be able to see a decent version of our website.
-    •	Mobile compatibility test ( using Google bot engines we can easily find out if our website is completely compatible with           mobile devices)
-  •	The desktop version of the application will be irreproachable 
-    •	Performance tests, devices tests, form and dataflow testing
-•	Both customer and seller have to be able to make use of the website in a safe and secure way without getting lost in a large assortment of questions and criteria.
-  •	A user will be to easily create an advertisement, able to create the best advertisement and have descent information about the     vehicles and car-parts we will be asking a lot of information and images. 
-      •	We will create a clean and interactive design able to keep our users interested and don not borrow them with exhausting           questions
-    •	We will also provide questions with prefilled in answers or examples able to help our customers creating an advertisement of       quality without losing too much time
-•	Adding logging and monitoring will help us improve our application and detect bugs much faster.
-  •	Adding Crashlytics will helps us discover whenever a user has a problem using our application and detect in code what the         error is.
-  •	Adding Analytics will help users improve the usability
-  •	Access to search data, time user spent on the website, amount of clicks …
-  •	Adding Google Search (Google indexation) will improve our website in the long term and provide more data, also search data,       timestamp, location …
+>	Users can only sell cars or parts by filling in all criteria points
+>> •	An advertisement must contain specific information, all advertisements will have descriptions, images, and a list of               characteristics.
+>>  	This will help us improve our recommendation AI and improve our car selection.
+>>  	This way we will be able to display the same amount of information for each advertisement placed on our website.
+>	Users can log in safely to make use of the website and contact product owners
+>>	A system will be created to securely send messages using our website.
+>	Users can make use of our website independently without having trouble doing so
+>>	Mobile devices: smartphones and tablets, independent of the OS should be able to see a decent version of our website.
+>>>  Mobile compatibility test ( using Google bot engines we can easily find out if our website is completely compatible with           mobile devices)
+>> The desktop version of the application will be irreproachable 
+>>>	Performance tests, devices tests, form and dataflow testing
+>	Both customer and seller have to be able to make use of the website in a safe and secure way without getting lost in a large assortment of questions and criteria.
+>> A user will be to easily create an advertisement, able to create the best advertisement and have descent information about the     vehicles and car-parts we will be asking a lot of information and images. 
+>>>	We will create a clean and interactive design able to keep our users interested and don not borrow them with exhausting           questions
+>>> We will also provide questions with prefilled in answers or examples able to help our customers creating an advertisement of       quality without losing too much time
+>	Adding logging and monitoring will help us improve our application and detect bugs much faster.
+>>  	Adding Crashlytics will helps us discover whenever a user has a problem using our application and detect in code what the         error is.
+>>  	Adding Analytics will help users improve the usability
+>>  	Access to search data, time user spent on the website, amount of clicks …
+>>  	Adding Google Search (Google indexation) will improve our website in the long term and provide more data, also search data,       timestamp, location …
 
 ## Busniness Model
 After a user bought a car, he will be able to keep all information about his car stored on our website. This way if one day he needs to sell it, he will have a complete history of the car (description, reparations, images, damages…).
