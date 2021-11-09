@@ -1,25 +1,30 @@
-# Getting Started with Create React App
+# New React APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started with React 
 
-## Available Scripts
+This project was bootstrapped using react-bootstrap and bootstrap
 
-In the project directory, you can run:
+### Available Scripts
 
-### `npm start`
+To run a React project use:
 
-Runs the app in the development mode.\
+> `npm start`
+
+This will run the app in the ``development mode``.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+To test for any errors, you can use:
 
-Launches the test runner in the interactive watch mode.\
+> `npm test`
+
+This launches the test runner in the ``interactive watch mode``.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+
+To build your project use:
+
+> `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
