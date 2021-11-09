@@ -1,19 +1,18 @@
-.navlink{
+.navbar
+{
+    background-color: #dfc15e;
+}
+.navlink
+{
     margin-left:15px;
-    margin-right:15px;
-    
-    
+    margin-right:15px;   
 }
 
-
-
-#collasible-nav-dropdown{
+#collasible-nav-dropdown
+{
     padding: 20;
 }
 
-.navbar{
-    background-color: #dfc15e;
-}
 .bg-warning{
     margin: 0;
 }

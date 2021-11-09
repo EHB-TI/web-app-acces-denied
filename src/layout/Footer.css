@@ -5,31 +5,31 @@
     color:white;
 }
 
-.footer-bottom{
+.footer .footer-bottom{
     color:black;
     font-weight: bold;
 }
 
-.footer-link{
+.footer .footer-link{
     text-decoration: none;
     color: white;
     font-weight: bolder;
 }
 
-.footer-link:hover{
+.footer .footer-link:hover{
     color: black;
     text-decoration: underline;
 }
 
-Link{
+.footer Link{
     text-decoration:none;
 }
 
-h5 {
+.footer h5 {
     color:black;
     font-weight: bolder;
 }
-.col-md-3 {
+.footer .col-md-3 {
     margin-bottom : 20px;
 }
 
