@@ -32,3 +32,17 @@ This builds the app for production to the `build` folder.
 The build is minified and the filenames include the hashes.
 
 <hr>
+
+
+
+## After git clone
+
+After a git clone, you need to run: `npm install`. 
+This will install all packages required for this project, available in the ``package.json`` file.
+
+
+
+
+## React bootstrap 
+
+You can access bootstrap inside React using: `react-boostrap`
