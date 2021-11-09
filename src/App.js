@@ -21,8 +21,7 @@ function App() {
     return (
       <Router>
         <NavBar/>
-        <Switch>
-          
+        <Switch>          
             <Route exact path="/reset" component={Reset} />
             <Route exact path="/dashboard" component={Dashboard} />      
 
@@ -38,7 +37,6 @@ function App() {
     <Router>
       <NavBar/>
       <Switch>
-
           <Route exact path="/register" component={Register} />
           <Route exact path="/reset" component={Reset} /> 
 
