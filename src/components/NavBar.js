@@ -7,11 +7,11 @@ import "../layout/NavBar.css";
 function NavBar() 
 {
    return (
-    <Navbar collapseOnSelect expand="xl" class="navbar" variant="dark">
+    <Navbar collapseOnSelect expand="xl" className="navbar" variant="dark">
       <Container>
         <Navbar.Brand as={Link} to={"/"}>
           <img
-              src="/logo192.png"
+              src="/images/carApp.png"
               width="30"
               height="30"
             
@@ -50,7 +50,7 @@ function NavBar()
     </Navbar>     
     );
    }
-   
+
 export default NavBar;
 
 

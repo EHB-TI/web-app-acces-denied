@@ -5,7 +5,7 @@ import "../layout/Dashboard.css";
 import { auth, db, logout } from "../firebase/firebase.js";
 
 function Dashboard() {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const history = useHistory();
 
@@ -28,7 +28,7 @@ function Dashboard() {
     if (!user) return history.replace("/");
 
     fetchUserName();
-  }, [user, loading]);
+  }, [user, loading, history]);
 
   return (
     <div className="dashboard">
