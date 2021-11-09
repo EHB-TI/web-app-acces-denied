@@ -22,12 +22,13 @@ function App() {
       <Router>
         <NavBar/>
         <Switch>
+          
             <Route exact path="/reset" component={Reset} />
             <Route exact path="/dashboard" component={Dashboard} />      
-            
+
             <Route path="/" component={Dashboard} />
         </Switch>
-
+ 
         <Footer/>     
       </Router>
     );
