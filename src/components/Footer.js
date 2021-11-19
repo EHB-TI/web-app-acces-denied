@@ -26,7 +26,6 @@ function Footer() {
                            <li><Link to="/about" className="footer-link">Hulp en informatie</Link></li>
                            <li><Link to="/about" className="footer-link">About</Link></li>
                            <li><Link to="/about" className="footer-link">About</Link></li>
-                           <li><Link to="/about" className="footer-link">About</Link></li>
                        </ul>
                    </div>
 
@@ -44,7 +43,6 @@ function Footer() {
                    <div className="col-md-3 col-sm-6">
                        <h5>Lorem ipsum</h5>
                        <ul className="list-unstyled">
-                           <li><Link to="/about" className="footer-link">About</Link></li>
                            <li><Link to="/about" className="footer-link">About</Link></li>
                            <li><Link to="/about" className="footer-link">About</Link></li>
                            <li><Link to="/about" className="footer-link">About</Link></li>

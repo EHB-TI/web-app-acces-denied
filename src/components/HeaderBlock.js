@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Button} from 'react-bootstrap';
-import '../HeaderBlock.css'
+import '../layout/HeaderBlock.css'
+import { auth, db, logout } from "../firebase/firebase.js";
 
 function HeaderBlock() {
     return (
@@ -14,7 +15,7 @@ function HeaderBlock() {
                 </h4>
                 </div>
                 <div className="headerBlock_actions">
-                    <button className="headerBlock_buttonPrimary">Custom order</button>
+                    <button className="headerBlock_buttonPrimary" onClick={logout}>Custom order</button>
                     <button className="headerBlock_buttonSecondary">
                         Existing inventory</button>
                 </div>
