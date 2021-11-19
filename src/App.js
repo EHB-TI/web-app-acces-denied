@@ -8,6 +8,7 @@ import Register from './pages/authentication/Register';
 import Reset from './pages/authentication/Reset';
 import Dashboard from './pages/Dashboard';
 import {auth} from './firebase/firebase';
+import SearchCar from './pages/SearchCar';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -18,6 +19,7 @@ function App() {
   }, [])
 
   if(user != null)
+ 
     return (
       <Router>
         <NavBar bool={true}/>
@@ -25,14 +27,16 @@ function App() {
             <Route exact path="/reset" component={Reset} />
             <Route exact path="/dashboard" component={Dashboard} />      
 
+            <Route path="/buy" component={SearchCar} />
             <Route path="/" component={Dashboard} />
+            
         </Switch>
  
         <Footer/>     
       </Router>
     );
 
-  else 
+  
   return (
     <Router>
       <NavBar bool={false}/>
@@ -40,7 +44,9 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/reset" component={Reset} /> 
 
+          <Route path="/buy" component={SearchCar} />
           <Route path="/" component={Login} />
+          
       </Switch>
       <Footer/>
     </Router>

@@ -1,0 +1,41 @@
+#TitelKoop{
+    text-align: center;
+    margin-top: 20px;
+}
+#KoopSection{
+    background-color: #dfc15e;
+    margin: 30px;
+    margin-left:   380px;
+    margin-top: 70px;
+    margin-bottom: 200px;
+    width: 770px;
+    height: 280px;
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 30px;
+    
+}
+
+#KoopSection select{
+    width: 190px;
+    margin: 20px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+#KoopSection button{
+    float: right;
+    margin-right: 40px;
+    width: 170px;
+    height: 33px;
+    margin-top: 10px;
+    border: 2px solid black;
+    border-radius: 3px;
+    background-color: black;
+    color: white;
+}
+
+#KoopSection button:hover{
+    background-color: #1c1c1c;
+    
+}

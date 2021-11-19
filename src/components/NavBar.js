@@ -26,11 +26,7 @@ function NavBar(props)
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <NavDropdown className="navlink" title="Buy" id="collasible-nav-dropdown">
-                <NavDropdown.Item className="navlink-Item" as={Link} to={"/buy/cars"}>Cars</NavDropdown.Item>
-                <NavDropdown.Item className="navlink-Item" bg="info" as={Link} to={"/buy/motorbikes"}>Motorbikes</NavDropdown.Item>
-                <NavDropdown.Item className="navlink-Item" as={Link} to={"/buy/vans"}>Vans</NavDropdown.Item>
-              </NavDropdown>
+            <Nav.Link className="navlink" as={Link} to={"/buy"}>Buy</Nav.Link>
 
               <NavDropdown className="navlink" title="Sell" >
                 <NavDropdown.Item className="navlink-Item" as={Link} to={"/sell"}>Publish your car</NavDropdown.Item>
