@@ -3,6 +3,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useHistory } from "react-router";
 import "../layout/Dashboard.css";
 import { auth, db, logout } from "../firebase/firebase.js";
+import Home from '../components/Home';
+
 
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
@@ -33,12 +35,7 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <div className="dashboard__container">
-        Logged in as
-        <div>{name}</div>
-        <div>{user?.email}</div>
-        <button className="dashboard__btn" onClick={logout}>
-          Logout
-        </button>
+      <Home></Home>
       </div>
     </div>
   );

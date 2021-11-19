@@ -8,7 +8,7 @@ function NavBar()
 {
    return (
     <Navbar collapseOnSelect expand="xl" className="navbar" variant="dark">
-      <Container>
+      <Container fluid>
         <Navbar.Brand as={Link} to={"/"}>
           <img
               src="/images/carApp.png"

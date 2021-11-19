@@ -8,6 +8,8 @@ import Register from './pages/authentication/Register';
 import Reset from './pages/authentication/Reset';
 import Dashboard from './pages/Dashboard';
 import {auth} from './firebase/firebase';
+import Home from './components/Home';
+
 
 function App() {
   const [user, setUser] = useState(null);
