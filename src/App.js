@@ -9,6 +9,7 @@ import Reset from './pages/authentication/Reset';
 import Dashboard from './pages/Dashboard';
 import {auth} from './firebase/firebase';
 import SearchCar from './pages/SearchCar';
+import Contact from './pages/Contact';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/dashboard" component={Dashboard} />      
 
             <Route path="/buy" component={SearchCar} />
+            <Route path="/contact-us" component={Contact} />
             <Route path="/" component={Dashboard} />
             
         </Switch>
@@ -45,6 +47,7 @@ function App() {
           <Route exact path="/reset" component={Reset} /> 
 
           <Route path="/buy" component={SearchCar} />
+          <Route path="/contact-us" component={Contact} />
           <Route path="/" component={Login} />
           
       </Switch>
