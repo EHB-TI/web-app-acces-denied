@@ -3,36 +3,45 @@ import "../layout/PublishCar.css";
 
 function PublishCar() {
     return (
-        <div classNameName="PublishCar">
-            <section id="VerkoopSection">
+        <div className="PublishCar">
+            <section>
                 <h1>Plaats zoekertje</h1>
-
                 <form action="/verkoop" method="POST" enctype="multipart/form-data">
                     { /*   @csrf */ }
                      {/* BRAND */}
-                     <select name="brand" id="SearchBrand">
-                        <option value="">Brand</option>
-                        <optgroup label="Brand" id="optionSearchBrand"/>                        
-                    </select>
+                     <div className="form-group">
+                         <label for="PublishBrand">Brand</label>
+                        <select className="form-control" name="brand" id="PublishBrand">
+                            <option value="">Choose ...</option>
+                            <optgroup label="Brand" id="optionPublishBrand"/>                        
+                        </select>
+                    </div>
                     {/* MODEL */}
-                    <select name="model" id="SearchModel">
-                        <option value="">Model</option>
-                        <optgroup label="Model" id="optionSearchModel"/> 
-                    </select>
-                    {/* FUEL */}
-                    <select name="fuel" id="SearchFuel">
-                        <option value="">Fuel</option>
-                        <optgroup label="Fuel">
-                                <option value="Gasoline">Gasoline</option>
-                                <option value="Diesel">Diesel</option>
-                                <option value="Electric">Electric</option>
-                                <option value="Hybrid">Hybrid</option>
-                                <option value="LPG">LPG</option>
-                        </optgroup>
-                    </select>     
-                    
                     <div className="form-group">
-                        <select name="constructionYear" id="SearchConstructionYear">
+                        <label for="PublishModel">Model</label>
+                        <select className="form-control" name="model" id="PublishModel">
+                            <option value="">Model</option>
+                            <optgroup label="Model" id="optionPublishModel"/> 
+                        </select>
+                    </div>
+                    {/* FUEL */}
+                    <div className="form-group">
+                        <label for="PublishFuel">Fuel</label>
+                        <select className="form-control" name="fuel" id="PublishFuel">
+                            <option value="">Fuel</option>
+                            <optgroup label="Fuel">
+                                    <option value="Gasoline"></option>
+                                    <option value="Diesel">Diesel</option>
+                                    <option value="Electric">Electric</option>
+                                    <option value="Hybrid">Hybrid</option>
+                                    <option value="LPG">LPG</option>
+                            </optgroup>
+                        </select>     
+                    </div>
+                    {/* FUEL */}
+                    <div className="form-group">
+                        <label for="PublishConstructionYear">Construction year</label>
+                        <select className="form-control" name="constructionYear" id="PublishConstructionYear">
                             <option value="">Contruction Year</option>
                             <option value="2000">2000</option>
                             <option value="2001">2001</option>
@@ -62,101 +71,101 @@ function PublishCar() {
                     
                     {/* BODY */}
                     <div className="form-group">
-                    <select name="body" id="SearchBody">
-                        <option value="">Body</option>
-                        <optgroup label="Body">
-                            <option value="Monospace">Monospace</option>
-                            <option value="Break">Break</option>
-                            <option value="Berline">Berline</option>
-                            <option value="CityCar">City car</option>
-                            <option value="Monovolume">Monovolume</option>
-                            <option value="Cabriolet">Cabriolet</option>
-                            <option value="Coupé">Coupé</option>
-                            <option value="Compact">Compact</option>
-                            <option value="SUVorOffRoad">SUV or off road cars</option>
-                        </optgroup>
-                    </select>
-                </div>
+                        <label for="PublishBody">Body</label>
+                        <select className="form-control" name="body" id="PublishBody">
+                            <option value="">Body</option>
+                            <optgroup label="Body">
+                                <option value="Monospace">Monospace</option>
+                                <option value="Break">Break</option>
+                                <option value="Berline">Berline</option>
+                                <option value="CityCar">City car</option>
+                                <option value="Monovolume">Monovolume</option>
+                                <option value="Cabriolet">Cabriolet</option>
+                                <option value="Coupé">Coupé</option>
+                                <option value="Compact">Compact</option>
+                                <option value="SUVorOffRoad">SUV or off road cars</option>
+                            </optgroup>
+                        </select>
+                    </div>
 
-                <div className="form-group">
-                    <label for="aantalDeuren">Aantal Deuren</label>
-                    <br/>
-                    <select name="aantalDeuren" className="form-control @error('aantalDeuren') is-invalid @enderror"
-                        value="{{ old('aantalDeuren') }}" id="">
-                        <option value="">Kies...</option>
-                        <optgroup label="Aantal deuren">
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                        </optgroup>
-                    </select>
-                    { /* @error   */ } 
-                </div>
+                    <div className="form-group">
+                        <label for="aantalDeuren">Aantal Deuren</label>
+                        <br/>
+                        <select name="aantalDeuren" className="form-control" id="PublishDoors">
+                            <option value="">Kies...</option>
+                            <optgroup label="Aantal deuren">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </optgroup>
+                        </select>
+                        { /* @error   */ } 
+                    </div>
 
-                <div className="form-group">
-                    <label for="Transmissie">Transmissie</label>
-                    <br/>
-                    <select name="transmissie" className="form-control @error('transmissie') is-invalid @enderror"
-                        value="{{ old('transmissie') }}" id="">
-                        <option value="">Kies...</option>
-                        <optgroup label="Transmissie">
-                            <option value="Automaat">Automaat</option>
-                            <option value="Handgeschakeld">Handgeschakeld</option>
-                        </optgroup>
-                    </select>
-                    { /* @error   */ } 
-                </div>
+                    <div className="form-group">
+                        <label for="Transmissie">Transmissie</label>
+                        <br/>
+                        <select name="transmissie" className="form-control"
+                            id="PublishTransmission">
+                            <option value="">Kies...</option>
+                            <optgroup label="Transmissie">
+                                <option value="Automaat">Automaat</option>
+                                <option value="Handgeschakeld">Handgeschakeld</option>
+                            </optgroup>
+                        </select>
+                        { /* @error   */ } 
+                    </div>
 
-                <div className="form-group">
-                    <label for="Kleur">Kleur</label>
-                    <br/>
-                    <select name="kleur" className="form-control @error('kleur') is-invalid @enderror"
-                        value="{{ old('kleur') }}" id="">
-                        <option value="">Kies...</option>
-                        <optgroup label="Kleur">
-                            <option  value="Rood">Rood</option>
-                            <option  value="Beige">Beige</option>
-                            <option  value="Paars">Paars</option>
-                            <option  value="Blauw">Blauw</option>
-                            <option  value="Zilver">Zilver</option>
-                            <option  value="Groen">Groen</option>
-                            <option  value="Bruin">Bruin</option>
-                            <option  value="Wit">Wit</option>
-                            <option  value="Zwart">Zwart</option>
-                            <option  value="Overrige kleuren">Overrige kleuren</option>
+                    <div className="form-group">
+                        <label for="Kleur">Kleur</label>
+                        <br/>
+                        <select name="kleur" className="form-control "
+                            id="PublishColor">
+                            <option value="">Kies...</option>
+                            <optgroup label="Kleur">
+                                <option  value="Rood">Rood</option>
+                                <option  value="Beige">Beige</option>
+                                <option  value="Paars">Paars</option>
+                                <option  value="Blauw">Blauw</option>
+                                <option  value="Zilver">Zilver</option>
+                                <option  value="Groen">Groen</option>
+                                <option  value="Bruin">Bruin</option>
+                                <option  value="Wit">Wit</option>
+                                <option  value="Zwart">Zwart</option>
+                                <option  value="Overrige kleuren">Overrige kleuren</option>
 
-                        </optgroup>
-                    </select>
+                            </optgroup>
+                        </select>
 
-                    { /* @error   */ } 
-                </div>
+                        { /* @error   */ } 
+                    </div>
 
-                <div className="form-group">
-                    <label for="KleurInterieur">Kleur Interieur</label>
-                    <br/>
-                    <select name="kleurInterieur" className="form-control @error('kleurInterieur') is-invalid @enderror"
-                        value="{{ old('kleurInterieur') }}" id="">
-                        <option value="">Kies...</option>
-                        <optgroup label="Kleur interieur">
-                            <option value="Zwart">Zwart</option>
-                            <option  value="Rood">Rood</option>
-                            <option  value="Beige">Beige</option>
-                            <option value="Bruin">Bruin</option>
-                            <option  value="Wit">Wit</option>
-                            <option  value="Overrige kleuren">Overrige kleuren</option>
+                    <div className="form-group">
+                        <label for="KleurInterieur">Kleur Interieur</label>
+                        <br/>
+                        <select name="kleurInterieur" className="form-control"
+                            id="PublishInteriorColor">
+                            <option value="">Kies...</option>
+                            <optgroup label="Kleur interieur">
+                                <option value="Zwart">Zwart</option>
+                                <option  value="Rood">Rood</option>
+                                <option  value="Beige">Beige</option>
+                                <option value="Bruin">Bruin</option>
+                                <option  value="Wit">Wit</option>
+                                <option  value="Overrige kleuren">Overrige kleuren</option>
 
-                        </optgroup>
-                    </select>
+                            </optgroup>
+                        </select>
 
-                    { /* @error   */ } 
-                </div>
+                        { /* @error   */ } 
+                    </div>
 
-                <div className="form-group">
+                    <div className="form-group">
                         <label for="AantalZetels">Aantal Zetels</label>
                         <br/>
-                        <input type="number" className="form-control @error('aantalZetels') is-invalid @enderror"
+                        <input type="number" className="form-control"
                              name="aantalZetels"/>
                         { /* @error   */ } 
                     </div>
@@ -165,7 +174,7 @@ function PublishCar() {
                     <div className="form-group">
                         <label for="KilometerStand">Kilometerstand(km)</label>
                         <br/>
-                        <input type="number" className="form-control @error('kilometerstand') is-invalid @enderror"
+                        <input type="number" className="form-control"
                             name="kilometerstand"/>
 
                       
@@ -176,7 +185,7 @@ function PublishCar() {
                     <div className="form-group">
                         <label for="CO2">CO₂(g/km)</label>
                         <br/>
-                        <input type="number" className="form-control @error('co2') is-invalid @enderror" 
+                        <input type="number" className="form-control" 
                             name="co2"/>
 
                        
@@ -188,7 +197,7 @@ function PublishCar() {
                     <div className="form-group">
                         <label for="Vermogen">Vermogen(pk)</label>
                         <br/>
-                        <input type="number" className="form-control @error('vermogen') is-invalid @enderror" value="{{ old('vermogen') }}" name="vermogen"/>
+                        <input type="number" className="form-control"  name="vermogen"/>
 
                    
 
@@ -199,7 +208,7 @@ function PublishCar() {
                     <div className="form-group">
                         <label for="MotorInhoud">Motor Inhoud(cc)</label>
                         <br/>
-                        <input type="number" className="form-control @error('motorInhoud') is-invalid @enderror"
+                        <input type="number" className="form-control"
                              name="motorInhoud"/>
 
                 
@@ -335,12 +344,11 @@ function PublishCar() {
                             <input type="checkbox" value="Stoelventilatie" name="opties[]"
                             />
                             <br/>
-
-                            <input type="checkbox" value="Zetelverwarming" name="opties[]"
-                            />
+                            <label for="CheckZetelverwarming">Zetelverwarming</label>
+                            <input type="checkbox" id="Zetelverwarming"/>
                             <br/>
-                            <input type="checkbox" value="Stuurwielverwarming" name="opties[]"
-                            />
+                            <label for="CheckStuurWielVerwarming">Stuurwielverwarming</label>
+                            <input type="checkbox" id="CheckStuurWielVerwarming"/>
 
                         </div>
                         <div>
@@ -414,8 +422,8 @@ function PublishCar() {
                     <div id="prijsMethode">
                         <label for="Prijs">Prijs</label>
                         <br/>
-                        <input type="number" className="form-control @error('prijs') is-invalid @enderror"
-                            value="{{ old('prijs') }}" placeholder="0,00 &#8364; " name="prijs" id="Prijs"></input>
+                        <input type="number" className="form-control "
+                             placeholder="0,00 &#8364; " name="prijs" id="Prijs"></input>
                     </div>
 
                     <br/>
