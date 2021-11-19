@@ -1,3 +1,9 @@
+.ContactUs {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .contactForm{
     padding-right: 200px;
     padding-left: 200px;

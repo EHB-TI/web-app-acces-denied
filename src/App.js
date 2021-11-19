@@ -1,62 +1,48 @@
 import './App.css';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
-import { useState, useEffect } from 'react';
 import NavBar from './components/NavBar.js'
 import Footer from './components/Footer';
-import Login from './pages/authentication/Login';
-import Register from './pages/authentication/Register';
-import Reset from './pages/authentication/Reset';
-import Dashboard from './pages/Dashboard';
-import {auth} from './firebase/firebase';
+import { AuthProvider } from './firebase/context';
+import ForgotPassword from './components/ForgotPassword';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import UpdateProfile from './components/UpdateProfile';
+import Dashboard from './components/Dashboard';
+import PrivateRoute from './components/PrivateRoute';
 import SearchCar from './pages/SearchCar';
-import Contact from './pages/Contact';
+
 import PublishCar from './pages/PublishCar';
+import Contact from './pages/Contact';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      setUser(user);
-    })
-  }, [])
+    return (      
+        <Router>
+          <AuthProvider>
+            <NavBar/>
+            <Switch>
+              <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute path="/update-profile" component={UpdateProfile} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/contact-us" component={Contact}  />
 
-  if(user != null)
- 
-    return (
-      <Router>
-        <NavBar bool={true}/>
-        <Switch>          
-            <Route exact path="/reset" component={Reset} />
-            <Route exact path="/dashboard" component={Dashboard} />      
+              <Route path="/buy" component={SearchCar}  />
+              <PrivateRoute path="/sell" component={PublishCar} />
 
-            
-            <Route path="/buy" component={SearchCar} />
-            <Route path="/sell" component={PublishCar} />
-            <Route path="/contact-us" component={Contact} />
-            <Route path="/" component={Dashboard} />
-            
-        </Switch>
- 
-        <Footer/>     
-      </Router>
+              { /* Default route -> 404  */ }
+              <Route path="/" component={PageNotFound}  />
+              
+            </Switch>
+            <Footer/>
+          </AuthProvider>
+        </Router>
+      
+    
     );
 
-  
-  return (
-    <Router>
-      <NavBar bool={false}/>
-      <Switch>
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/reset" component={Reset} /> 
-
-          <Route path="/buy" component={SearchCar} />
-          <Route path="/contact-us" component={Contact} />
-          <Route path="/" component={Login} />
-          
-      </Switch>
-      <Footer/>
-    </Router>
-  );
 }
+
 
 export default App;
