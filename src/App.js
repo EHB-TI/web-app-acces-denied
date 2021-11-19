@@ -20,7 +20,7 @@ function App() {
   if(user != null)
     return (
       <Router>
-        <NavBar/>
+        <NavBar bool={true}/>
         <Switch>          
             <Route exact path="/reset" component={Reset} />
             <Route exact path="/dashboard" component={Dashboard} />      
@@ -35,13 +35,14 @@ function App() {
   else 
   return (
     <Router>
-      <NavBar/>
+      <NavBar bool={false}/>
       <Switch>
           <Route exact path="/register" component={Register} />
           <Route exact path="/reset" component={Reset} /> 
 
           <Route path="/" component={Login} />
       </Switch>
+      <Footer/>
     </Router>
   );
 }
