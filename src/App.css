@@ -1,25 +1,86 @@
-.App {
+/* ----- GLOBAL CLASS .APP ----- */
+.App 
+{
   text-align: center;
 }
-.App{
+.App
+{
   height: 98vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
-.App .login-card,.App .signup-card, .App .dashbaord-card, .App .updateprofile-card,.App .forgotpassword-card{  
-  max-width: 450px;
-  width: 96%;  
+/* ----- GLOBAL CLASS .APP STYLES ----- */
+.border-r{
+  border-radius: 2em !important;
+  padding: 0.5em 2em;
 }
 
-.App #email,.App #password,.App #password-confirm{
-  text-align: start;
-  padding-top: 0.5em;
-  font-style: italic;
+.tab-container{
+  max-width: 600px;
+  width: 100%;
+}
+.App .text-label{
+  margin-left: 0.5em;  
+  font-size: 1.2em;
+}
+
+/* ----- APP BANNERS ----- */
+#login-banner
+{
+  height: 100vh;
+  background: url('https://www.itl.cat/pngfile/big/162-1629942_blur-background-with-car.jpg') no-repeat
+  center center fixed;
+  background-size: cover;
+}
+#home-banner
+{
+  height: 100vh;
+  max-width: 1400px;
+  width: 100%;
+  margin: auto;
+  background: url('/src/images/home-banner.png') no-repeat
+  center center ;
+  background-size: contain;
+}
+
+/* ----- APP CARDS ----- */
+.App .login-card,.App .signup-card, .App .dashbaord-card, .App .updateprofile-card,.App .forgotpassword-card
+{  
+  max-width: 450px;
+  border-radius: 2em;
+  width: 96%;  
+  padding: 1em;
+  background-color: rgba(128, 128, 128, 0.76);
 }
 .App .forgotpassword-card p {
   text-align: start;
 }
 
+/* ----- APP INPUT FIELDS ----- */
+.App #email,.App #password,.App #password-confirm{
+  text-align: start;
+  padding-top: 1em;
+  font-style: italic;
+}
+
+/* ----- APP BUTTON ----- */
+.App .app-button{
+  width: 100%;
+  margin-top: 1.5em;
+  font-size: 1.2em;
+}
+
+/* ----- APP LINKS ----- */
+.App .app-link{
+  padding: 0.5em 0;
+}
+.App .app-link a{
+  color: white;
+  letter-spacing: 1px;
+  font-size: 1.1em;
+}
+.App .app-link.blue a {
+  color: lightblue ;
+}

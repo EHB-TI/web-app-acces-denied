@@ -27,32 +27,34 @@ export default function Login() {
   }
 
   return (
-    <div className="App">
+    <div className="App" id="login-banner">
       <Card className="login-card">
         <Card.Body>
           <h2 className="text-center mb-4">Log in</h2>
+          <hr/>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required placeholder="example@gmail.com"/>
+              <Form.Label className="text-label">Email</Form.Label>
+              <Form.Control className="border-r" type="email" ref={emailRef} required placeholder="example@gmail.com"/>
             </Form.Group>
             <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" ref={passwordRef} required placeholder="P@ssw0rd"/>
+              <Form.Label className="text-label">Password</Form.Label>
+              <Form.Control className="border-r"  type="password" ref={passwordRef} required placeholder="P@ssw0rd"/>
             </Form.Group>
-            <Button disabled={loading} className="w-100 mt-3" type="submit" >
+            <Button disabled={loading} className="app-button border-r" type="submit" >
               Log in
             </Button>
           </Form>
-          <div className="w-100 text-center mt-3">
+        </Card.Body>
+          <div className="app-link">
             <Link to="/forgot-password">Forgot your password?</Link>
           </div>
-        </Card.Body>
+          <div className="app-link blue">
+            <Link to="/signup">Need an account? Sign Up</Link>
+          </div>
       </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
+ 
     </div>
   )
 }

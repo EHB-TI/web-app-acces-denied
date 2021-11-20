@@ -1,13 +1,29 @@
-import React from 'react';
-import {Navbar,Nav,NavDropdown,Container} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import {Navbar,Nav,NavDropdown,Container, Alert, Button} from 'react-bootstrap';
+import { Link, useHistory } from "react-router-dom"
 import "../layout/NavBar.css";
 
+import { useAuth } from "../firebase/context"
 
 
 
-function NavBar(props) 
+
+function NavBar() 
 {
+  const [error, setError] = useState("")
+  const { currentUser, logout } = useAuth()
+  const history = useHistory()
+
+  async function handleLogout() {
+    setError("")
+
+    try {
+      await logout()
+      history.push("/login")
+    } catch {
+      setError("Failed to log out")
+    }
+  }
   
   
    return (
@@ -41,7 +57,7 @@ function NavBar(props)
               <Nav.Link className="navlink" as={Link} to={"/about"}>About</Nav.Link>
         
             </Nav>
-            {!props.bool ?
+            {currentUser == null ?
             <Nav> 
             
             
@@ -52,8 +68,8 @@ function NavBar(props)
             </Nav> : 
             <Nav> 
             
-            
-            <Nav.Link className="navlink" as={Link} to={"/logout"}>Logout</Nav.Link>
+            <Nav.Link className="navlink" as={Link} to={"/profile"}>Profile</Nav.Link>
+            <Button className="btn btn-primary border-r" onClick={handleLogout}>Logout</Button>
             
           
           
@@ -62,6 +78,7 @@ function NavBar(props)
 
           </Navbar.Collapse>
       </Container>
+      {error && <Alert variant="danger">{error}</Alert>}
     </Navbar>     
     );
    }

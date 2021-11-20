@@ -27,7 +27,7 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div className="App">
+    <div className="App" id="login-banner">
       <Card className="forgotpassword-card">
         <Card.Body>
           <h2 className="text-center mb-4">Password Reset</h2>
@@ -36,21 +36,21 @@ export default function ForgotPassword() {
           {message && <Alert variant="success">{message}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required placeholder="your@email.com"/>
+              <Form.Label className="text-label">Email</Form.Label>
+              <Form.Control className="border-r" type="email" ref={emailRef} required placeholder="your@email.com"/>
             </Form.Group>
-            <Button disabled={loading} className="w-100 mt-3" type="submit">
-              Reset Password
+            <Button disabled={loading} className="app-button border-r" type="submit">
+              Reset password
             </Button>
           </Form>
-          <div className="w-100 text-center mt-3">
+        </Card.Body>
+          <div className="app-link">
             <Link to="/login">Login</Link>
           </div>
-        </Card.Body>
+          <div className="app-link blue">
+            <Link to="/signup">Need an account? Sign up</Link>
+          </div>
       </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
     </div>
   )
 }

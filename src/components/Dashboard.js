@@ -1,43 +1,17 @@
 import React, { useState } from "react"
-import { Card, Button, Alert } from "react-bootstrap"
+import { Card, Button, Alert, ListGroup } from "react-bootstrap"
 import { useAuth } from "../firebase/context"
 import { Link, useHistory } from "react-router-dom"
+import NavTabHome from "./NavTabHome"
 
 export default function Dashboard() {
-  const [error, setError] = useState("")
-  const { currentUser, logout } = useAuth()
-  const history = useHistory()
-
-  async function handleLogout() {
-    setError("")
-
-    try {
-      await logout()
-      history.push("/login")
-    } catch {
-      setError("Failed to log out")
-    }
-  }
 
   return (
-    <div className="App">
-      <Card className="dashbaord-card">
-        <Card.Body>
-          <h2 className="text-center mb-4">Profile</h2>
-          <hr/>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <strong>Email:</strong> {currentUser.email}
-          <br/>
-          <Link to="/update-profile" className="btn btn-primary w-50 mt-3">
-            Update Profile
-          </Link>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        <Button variant="link" onClick={handleLogout}>
-          Log Out
-        </Button>
-      </div>
+    <div className="App" id="home-banner">
+      <NavTabHome/>
+
+
+
     </div>
   )
 }

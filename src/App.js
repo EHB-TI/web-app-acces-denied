@@ -14,6 +14,7 @@ import SearchCar from './pages/SearchCar';
 import PublishCar from './pages/PublishCar';
 import Contact from './pages/Contact';
 import PageNotFound from './components/PageNotFound';
+import Profile from './pages/Profile';
 
 function App() {
     return (      
@@ -22,6 +23,7 @@ function App() {
             <NavBar/>
             <Switch>
               <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />

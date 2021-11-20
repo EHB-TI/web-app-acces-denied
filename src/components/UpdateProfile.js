@@ -61,6 +61,7 @@ export default function UpdateProfile() {
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                className="border-r"
                 type="password"
                 ref={passwordRef}
                 placeholder="Leave blank to keep the same"
@@ -69,19 +70,20 @@ export default function UpdateProfile() {
             <Form.Group id="password-confirm">
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control
+                className="border-r"
                 type="password"
                 ref={passwordConfirmRef}
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
-            <Button disabled={loading} className="w-100 mt-3" type="submit">
+            <Button disabled={loading} className="app-button border-r" type="submit">
               Update
             </Button>
           </Form>
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        <Link to="/">Cancel</Link>
+        <Link to="/profile">Cancel</Link>
       </div>
     </div>
   )
