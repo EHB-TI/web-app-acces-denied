@@ -43,9 +43,10 @@ export default function UpdateProfile() {
 
   return (
     <div className="App">
-      <Card>
+      <Card className="updateprofile-card">
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
+          <hr/>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
@@ -73,7 +74,7 @@ export default function UpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <Button disabled={loading} className="w-100 mt-3" type="submit">
               Update
             </Button>
           </Form>

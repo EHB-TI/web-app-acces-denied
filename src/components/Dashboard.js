@@ -21,12 +21,14 @@ export default function Dashboard() {
 
   return (
     <div className="App">
-      <Card>
+      <Card className="dashbaord-card">
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
+          <hr/>
           {error && <Alert variant="danger">{error}</Alert>}
           <strong>Email:</strong> {currentUser.email}
-          <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
+          <br/>
+          <Link to="/update-profile" className="btn btn-primary w-50 mt-3">
             Update Profile
           </Link>
         </Card.Body>

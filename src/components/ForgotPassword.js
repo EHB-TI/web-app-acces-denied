@@ -28,17 +28,18 @@ export default function ForgotPassword() {
 
   return (
     <div className="App">
-      <Card>
+      <Card className="forgotpassword-card">
         <Card.Body>
           <h2 className="text-center mb-4">Password Reset</h2>
+          <p className="mb-2">You can reset your password below by providing your email address.</p>
           {error && <Alert variant="danger">{error}</Alert>}
           {message && <Alert variant="success">{message}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Control type="email" ref={emailRef} required placeholder="your@email.com"/>
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <Button disabled={loading} className="w-100 mt-3" type="submit">
               Reset Password
             </Button>
           </Form>
