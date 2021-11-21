@@ -36,6 +36,42 @@ class CarModel{
         this.color = color;
         this.mileage = mileage;
     }
+    toMap(){
+        return{
+            brand: this.brand,
+            model: this.model,
+            constructionYear: this.constructionYear,
+            fuel: this.fuel,
+            engine: this.engine ,
+            emissionNorm: this.emissionNorm,
+            gearboxe: this.gearboxe,
+            transmission: this.transmission,
+            emptyWeight: this.emptyWeight,
+            consumption: this.consumption,
+            bodywork: this.bodywork,
+            numberOfPlace: this.numberOfPlace,
+            color: this.color,
+            mileage: this.mileage,
+        }
+    }
+    fromMap(map){
+        return CarModel(
+            map['brand'],
+            map['model'],
+            map['constructionYear'],
+            map['fuel'],
+            map['engine'],
+            map['emissionNorm'],
+            map['gearboxe'],
+            map['transmission'],
+            map['emptyWeight'],
+            map['consumption'],
+            map['bodywork'],
+            map['numberOfPlace'],
+            map['color'],
+            map['mileage']
+        )
+    }
 }
 
 //not finished
@@ -116,34 +152,38 @@ function PublishCar() {
         e.preventDefault()
 
         console.log("brand: " + brand.current.value)
-        //not finished
-        /*let Announcement = new AnnouncementModel(
+
+        let Car = new CarModel(
+            brand.current.value,
+            model.current.value,
+            constructionYear.current.value,
+            fuel.current.value,
+            engine.current.value,
+            emissionNorm.current.value,
+            gearboxe.current.value,
+            transmission.current.value,
+            emptyWeight.current.value,
+            consumption.current.value,
+            bodywork.current.value,
+            numberOfPlace.current.value,
+            color.current.value,
+            mileage.current.value
+        )
+
+        let Announcement = new AnnouncementModel(
             description.current.value,
             delivery.current.value,
             priceOption.current.value,
             price.current.value
-        )
-        //not finished   
+        )  
         try {
-            await db.collection("cars").doc().set(Announcement)
+            await db.collection("cars").doc().set(Car.toMap())
+            await db.collection("announcement").doc().set(Announcement.toMap())
         } catch (err) {
             console.log("error publishcar")
             console.error(err)
-        }*/
+        }
         /*
-        console.log("model: " + model.current.value)
-        console.log("constructionYear: " + constructionYear.current.value)
-        console.log("fuel: " + fuel.current.value)
-        console.log("engine: " + engine.current.value)
-        console.log("emissionNorm: " + emissionNorm.current.value)
-        console.log("gearboxe: " + gearboxe.current.value)
-        console.log("transmission: " + transmission.current.value)
-        console.log("emptyWeight: " + emptyWeight.current.value)
-        console.log("consumption: " + consumption.current.value)
-        console.log("bodywork: " + bodywork.current.value)
-        console.log("numberOfPlace: " + numberOfPlace.current.value)
-        console.log("color: " + color.current.value)
-        console.log("mileage: " + mileage.current.value)
         console.log("mileagePicture: " + mileagePicture.current.value)
         */
         //console.log("carOption: " + carOption.current.value)
@@ -152,10 +192,6 @@ function PublishCar() {
         console.log("backEnd: " + backEnd.current.value)
         console.log("leftSide: " + leftSide.current.value)
         console.log("rightSide: " + rightSide.current.value)
-        console.log("description: " + description.current.value)
-        console.log("delivery: " + delivery.current.value)
-        console.log("priceOption: " + priceOption.current.value)
-        console.log("price: " + price.current.value)
         */
     }
   
