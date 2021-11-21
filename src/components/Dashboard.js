@@ -7,8 +7,9 @@ import NavTabHome from "./NavTabHome"
 export default function Dashboard() {
 
   return (
-    <div className="App" id="home-banner">
+    <div className="App" >
       <NavTabHome/>
+      <div id="home-banner"></div>
 
 
 
