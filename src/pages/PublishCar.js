@@ -1,111 +1,13 @@
-import {React, useRef} from 'react';
+import {React, useRef, useState} from 'react';
 import {Form,Button, Row, Col, Alert} from 'react-bootstrap';
 import "../layout/PublishCar.css";
-import { db } from "../firebase/firebase.js";
-
-//not finished
-class CarModel{
-    constructor(
-        brand, 
-        model, 
-        constructionYear, 
-        fuel, 
-        engine, 
-        emissionNorm, 
-        gearboxe, 
-        transmission, 
-        emptyWeight, 
-        consumption,
-        bodywork,
-        numberOfPlace,
-        color,
-        mileage
-    ){
-        this.brand = brand;
-        this.model = model;
-        this.constructionYear = constructionYear;
-        this.fuel = fuel;
-        this.engine = engine;
-        this.emissionNorm = emissionNorm;
-        this.gearboxe = gearboxe;
-        this.transmission = transmission;
-        this.emptyWeight = emptyWeight;
-        this.consumption = consumption;
-        this.bodywork = bodywork;
-        this.numberOfPlace = numberOfPlace;
-        this.color = color;
-        this.mileage = mileage;
-    }
-    toMap(){
-        return{
-            brand: this.brand,
-            model: this.model,
-            constructionYear: this.constructionYear,
-            fuel: this.fuel,
-            engine: this.engine ,
-            emissionNorm: this.emissionNorm,
-            gearboxe: this.gearboxe,
-            transmission: this.transmission,
-            emptyWeight: this.emptyWeight,
-            consumption: this.consumption,
-            bodywork: this.bodywork,
-            numberOfPlace: this.numberOfPlace,
-            color: this.color,
-            mileage: this.mileage,
-        }
-    }
-    fromMap(map){
-        return CarModel(
-            map['brand'],
-            map['model'],
-            map['constructionYear'],
-            map['fuel'],
-            map['engine'],
-            map['emissionNorm'],
-            map['gearboxe'],
-            map['transmission'],
-            map['emptyWeight'],
-            map['consumption'],
-            map['bodywork'],
-            map['numberOfPlace'],
-            map['color'],
-            map['mileage']
-        )
-    }
-}
-
-//not finished
-class AnnouncementModel{
-    constructor(
-        description,
-        delivery,
-        priceOption,
-        price
-    ){
-        this.description = description;
-        this.delivery = delivery;
-        this.priceOption = priceOption;
-        this.price = price;
-    }
-    toMap(){
-        return{
-            description: this.description,
-            delivery: this.delivery,
-            priceOption: this.priceOption,
-            price: this.price
-        }
-    }
-    fromMap(map){
-        return AnnouncementModel(
-            map['description'],
-            map['delivery'],
-            map['priceOption'],
-            map['price']
-        )
-    }
-}
+import { db, store } from "../firebase/firebase.js";
+import CarModel from '../model/CarModel';
+import AnnouncementModel from '../model/AnnouncementModel';
 
 function PublishCar() {
+    const [error, setError] = useState("")
+
     {/* Data Lists */}
     const brands = ['TVR','Mclaren','Mercedes', 'Ferrari', 'Ford']
     const models = ['TVR Speed 12','Mclaren F1','Mercedes W124 E500', 'Ferrari F40', 'Ford GT40']
@@ -171,14 +73,17 @@ function PublishCar() {
         )
 
         let Announcement = new AnnouncementModel(
+            "None",
             description.current.value,
             delivery.current.value,
             priceOption.current.value,
             price.current.value
         )  
         try {
-            await db.collection("cars").doc().set(Car.toMap())
-            await db.collection("announcement").doc().set(Announcement.toMap())
+            //setError("")
+            //await db.collection("cars").doc().set(Car.toMap())
+            //await db.collection("announcement").doc('test').set(Announcement.toMap())
+            //await store.ref('announcements', 'announcements')
         } catch (err) {
             console.log("error publishcar")
             console.error(err)
@@ -356,6 +261,7 @@ function PublishCar() {
                         <Form.Group as={Col} className="mb-3">
                             <Form.Label>Mileage(in km)*</Form.Label>
                             <Form.Control ref={mileage} type="number" placeholder="example 200000" required />
+                            {error && <Alert variant="danger">{error}</Alert>}
                         </Form.Group>
                         {/* PICTUREP */}
                         <Form.Group as={Col} controlId="formFile" className="mb-3">
