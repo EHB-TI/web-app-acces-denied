@@ -1,0 +1,68 @@
+.PublishCar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.PublishCar section {
+    background-color: darkgray;
+    margin: 30px;
+    margin-top: 40px;
+    width: 80%;
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 30px;
+}
+
+
+
+.PublishCar input,
+.PublishCar select,
+#DetailsVerkoop input,
+#PrijsVerkoop input,
+#PrijsVerkoop select,
+#LeveringVerkoop select {
+    width: 100%;
+    border-radius: 3px;    
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.PublishCar select {
+    background-color: #F8F8FF;
+}
+
+.PublishCar,
+
+#DetailsVerkoop,
+#PrijsVerkoop,
+#LeveringVerkoop {
+    margin-left: 23px;
+    margin-top: 40px;
+}
+
+
+
+#Opties div {
+    display: inline-block;
+    margin: 10px;
+    vertical-align: top;
+}
+
+#Opties input {
+    margin-right: 7px;
+}
+
+#DetailsVerkoop textarea {
+    border-radius: 3px;
+    margin-top: 3px;
+
+}
+
+#VerkoopSection h1 {
+    text-align: center;
+
+
+}

@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import {auth} from './firebase/firebase';
 import SearchCar from './pages/SearchCar';
 import Contact from './pages/Contact';
+import PublishCar from './pages/PublishCar';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,7 +29,9 @@ function App() {
             <Route exact path="/reset" component={Reset} />
             <Route exact path="/dashboard" component={Dashboard} />      
 
+            
             <Route path="/buy" component={SearchCar} />
+            <Route path="/sell" component={PublishCar} />
             <Route path="/contact-us" component={Contact} />
             <Route path="/" component={Dashboard} />
             

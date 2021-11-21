@@ -1,5 +1,15 @@
 # New React APP
 
+## Install Node requirements 
+
+Using npm install command:
+
+``npm i``
+
+> If any error with 'chokidar' please install `chokidar@2`.<br>
+ `nmp i chokidar@2`
+
+
 ## Getting Started with React 
 
 This project was bootstrapped using react-bootstrap and bootstrap
@@ -35,6 +45,7 @@ The build is minified and the filenames include the hashes.
 
 
 
+
 ## After git clone
 
 After a git clone, you need to run: `npm install`. 
@@ -46,3 +57,6 @@ This will install all packages required for this project, available in the ``pac
 ## React bootstrap 
 
 You can access bootstrap inside React using: `react-boostrap`
+
+> Package `"react-bootstrap": "^2.0.2"` is required.
+

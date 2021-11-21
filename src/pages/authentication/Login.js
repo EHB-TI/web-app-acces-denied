@@ -12,7 +12,7 @@ function Login() {
 
   useEffect(() => {
     if (loading) {
-      // maybe trigger a loading screen
+      // Trigger loading screen
       return;
     }
     if (user) history.replace("/dashboard");
