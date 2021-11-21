@@ -55,6 +55,9 @@ In twee woorden:
 
 ## Beveiliging van onze toepassing. 
 
+![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/AuthWithProvider/src/FlowFirbase.png)
+
+> Ref to FlowFirebase.png
 
 ### Prioritaire risico's
 
