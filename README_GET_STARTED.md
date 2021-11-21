@@ -53,18 +53,3 @@ This will install all packages required for this project, available in the ``pac
 
 
 
-
-## React bootstrap 
-We will use Bootstrap and React-bootstrap
-
-You can access bootstrap inside React using: `react-boostrap`
-
-> install boostrap: `npm i boostrap`.
-
-> install react-boostrap: `npm i react-boostrap`.
-
-## Protection agaonst Version Control
-
-Enable a malafide user to get access to our API keys and credentials, by isolating this variables into a ``.env.local`` files.
-
-
