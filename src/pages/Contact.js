@@ -1,13 +1,11 @@
 import {React,useState} from 'react';
 import {Card,Form,Button,Alert} from 'react-bootstrap';
-import { useHistory } from "react-router";
 import emailjs from 'emailjs-com';
 import "../layout/Contact.css";
 
 function Contact() {
-  const history = useHistory()
-  const [succes, setSucces] = useState("")
-  const [error, setError] = useState("")
+  const [succes, setSucces] = useState("");
+  const [error, setError] = useState("");
   
   const SendEmail = (e) => {
     e.preventDefault();  

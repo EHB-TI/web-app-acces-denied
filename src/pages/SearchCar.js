@@ -1,13 +1,39 @@
 import React from 'react';
 import "../layout/SearchCar.css";
+import { db } from "../firebase/firebase.js";
+import { useHistory } from "react-router";
 
 function SearchCar() {
+    const history = useHistory()
+
+    const searchAnnouncement = async (e) =>
+    {
+        e.preventDefault();
+        try {
+            const data = await db
+              .collection("announcement")
+              .get();
+            
+            history.push(
+                {
+                    pathname: '/announcements',
+                    state: data.toString() // your data array of objects
+                }
+            )
+          } catch (err) {
+            //LOGGING HIERONDER 
+            console.error(err);
+            alert("CODE VOOR LOGGING");
+          
+        };
+    }
+
     return (
         <div className="SearchCar">            
             <section>
                 <h1>Search for your dreamcar</h1>
                 {/* TODO: FORM REQUEST POST ?? */}
-                <form action="/search" method="POST">
+                <form action="/search" method="POST" onSubmit={searchAnnouncement}>
                     {/* BRAND */}
                     <select name="brand" id="SearchBrand">
                         <option value="">Brand</option>
