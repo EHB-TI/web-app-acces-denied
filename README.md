@@ -258,6 +258,9 @@ If we set up correctly our Security rules, it wont matter if a user tries to inj
 ## Extra: Security analysis 
 
 ### Firebase as backend 
+
+![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/FlowFirebase.png)
+
 <hr>
 
 For our project, we will use Firebase as back-end service.
@@ -395,7 +398,9 @@ To build our architecture we chose to use IriusRisk.
 IriusRisk is a platform that makes it easier to make and visualize clear architectures. It also helps in analysing which threats exists in the current architecture and gives advice to defend against it. 
 We currently have a basic architecture but plan on working on it as the project progresses 
 
-![alt text](https://github.com/EHB-TI/web-app-access-denied/blob/main/iriusrisk.png)
+
+![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/iriusrisk.png)
+
 
 # Deployment
 
