@@ -1,33 +1,74 @@
-import React from 'react';
-import {Form,Button} from 'react-bootstrap';
+import {React,useState} from 'react';
+import {Card,Form,Button,Alert} from 'react-bootstrap';
+import { useHistory } from "react-router";
+import emailjs from 'emailjs-com';
 import "../layout/Contact.css";
 
+
 function Contact() {
+  const history = useHistory();
+  const [succes, setSucces] = useState("")
+  
+ 
+
+
+
+  const SendEmail = (e) => {
+    e.preventDefault();
+    
+
+    
+
+    emailjs.sendForm('service_tyhl9gw', 'template_pmk3zdm', e.target, 'user_GfFYdwckCKTcz5nj46W9F')
+      .then((result) => {
+        
+          setSucces("Email sent with succes")
+          console.log(result.text);
+
+          
+          
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
     return (
         <div>
-            <Form className="contactForm">
+          <Card className="containerContact">
+            <Card.Body>
+            <Form className="contactForm" onSubmit={SendEmail}>
                 <h1 id="titleContact">Contact us</h1>
-  <Form.Group className="mb-3">
-    <Form.Label>Full name</Form.Label>
-    <Form.Control type="text" placeholder="Full name..." required/>
-  </Form.Group>
 
-  <Form.Group className="mb-3" >
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Email..." required />
-  </Form.Group>
+                {succes && <Alert variant="success">{succes}</Alert>}
 
-  <Form.Group className="mb-3" >
-    <Form.Label>Phone Number</Form.Label>
-    <Form.Control type="tel" placeholder="Phone..." required />
-  </Form.Group>
 
-  <Form.Group className="mb-3">
-    <Form.Label>Message</Form.Label>
-    <Form.Control as="textarea" placeholder="Message..." rows={8} required/>
-  </Form.Group>
-  <Button variant="dark" id="btnContact" type="submit">Send</Button>
-</Form>
+           <Form.Group className="mb-3">
+              <Form.Label>Subject</Form.Label>
+              <Form.Control type="text"  placeholder="Subject..." name="subject" required/>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Full name</Form.Label>
+              <Form.Control type="text"  placeholder="Full name..." name="full_name" required/>
+            </Form.Group>
+
+            <Form.Group className="mb-3" >
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email"  name="email_customer" placeholder="Email..." required />
+            </Form.Group>
+
+            <Form.Group className="mb-3" >
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control type="tel"  placeholder="Phone..." name="phone_number" required />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Message</Form.Label>
+              <Form.Control as="textarea"  placeholder="Message..." name="message" rows={8} required/>
+            </Form.Group>
+            <Button variant="dark" id="btnContact" type="submit">Send</Button>
+          </Form>
+          </Card.Body>
+                  </Card>
         </div>
     )
 }
