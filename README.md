@@ -1,70 +1,13 @@
-# New React APP
+# Demo 1 webtoepassing - Access Denied
 
-## Install Node requirements 
+## Hoe start je dit project op?
 
-Using npm install command:
+Je kan een uitgebreid stappenplan terugvinden in de `README_GET_STARTED.md` file.
+In twee woorden: open een terminal en voer `npm i` uit, als er geen prblemen zijn bij het invoeren van dit commando dan kan je meteen het project opstarten door `npm start` uit te voeren in je terminal. Indien er zich een probleem voordoet gelieve de `README_GET_STARTED.md` file te lezen.
 
-``npm i``
+Bij evaluatie van deze opdracht wordt gelet op:
 
-> If any error with 'chokidar' please install `chokidar@2`.<br>
- `nmp i chokidar@2`
-
-
-## Getting Started with React 
-
-This project was bootstrapped using react-bootstrap and bootstrap
-
-### Available Scripts
-
-To run a React project use:
-
-> `npm start`
-
-This will run the app in the ``development mode``.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-<hr>
-
-To test for any errors, you can use:
-
-> `npm test`
-
-This launches the test runner in the ``interactive watch mode``.
-
-<hr>
-
-To build your project, for deployment, use:
-
-> `npm run build`
-
-This builds the app for production to the `build` folder.
-
-The build is minified and the filenames include the hashes.
-
-<hr>
-
-
-
-
-## After git clone
-
-After a git clone, you need to run: `npm install`. 
-This will install all packages required for this project, available in the ``package.json`` file.
-
-
-
-
-## React bootstrap 
-We will use Bootstrap and React-bootstrap
-
-You can access bootstrap inside React using: `react-boostrap`
-
-> install boostrap: `npm i boostrap`.
-
-> install react-boostrap: `npm i react-boostrap`.
-
-## Protection agaonst Version Control
-
-Enable a malafide user to get access to our API keys and credentials, by isolating this variables into a ``.env.local`` files.
-
-
+zijn de grote lijnen van de vooropgestelde functionaliteit aanwezig? De gewichtsfactor waarover sprake in je Beschrijving toepassing kan hierdoor worden aangepast.
+beveiliging van je toepassing. Ook als die nog niet volledig in orde is kan je nog een perfecte score halen. Er zal vooral aandacht worden besteed aan de mate en de manier waarop je de risico's die je had geïdentificeerd in je threat model hebt aangepakt. Hierbij wordt verwacht dat je de grootste risico's prioritair behandelt. Demonstreren hoe je bedreigingen aanpakt in je ontwikkelproces kan zeer overtuigend zijn. Worden bedreigingen bijvoorbeeld geëncodeerd als taken op een kanban bord? Of maak je er issues van in een bug tracking systeem? User/abuser stories? ...
+is je threat model in sync met je huidige inzichten? Misschien heb je een aantal threats kunnen opgevangen door wijzigingen in de architectuur. Heb je hier bijvoorbeeld bijkomende componenten voor ingeschakeld? Heb je zicht gekregen op andere bedreigingen?
+de acceptatiecriteria ivm HTTPS.
