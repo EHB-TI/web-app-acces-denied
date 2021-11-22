@@ -17,7 +17,7 @@ function Dashboard(){
           </video>
           <div className="video-overlay header-text">
             <div className="caption">
-              <h6>Lorem ipsum dolor sit amet</h6>
+              <h6>Anas Benather</h6>
               <h2>Best <em>car dealer</em> in town!</h2>
               <div className="main-button">
                 <a href="contact-us">Contact Us</a>
@@ -46,7 +46,7 @@ function Dashboard(){
                   </div>
                   <div className="down-content">
                     <span>
-                      <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                      <del><sup>€</sup>11999 </del> &nbsp; <sup>€</sup>11779
                     </span>
                     <h4>Lorem ipsum dolor sit amet, consectetur</h4>
                     <p>
@@ -67,7 +67,7 @@ function Dashboard(){
                   </div>
                   <div className="down-content">
                     <span>
-                      <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                      <del><sup>€</sup>11999 </del> &nbsp; <sup>€</sup>11779
                     </span>
                     <h4>Lorem ipsum dolor sit amet, consectetur</h4>
                     <p>
@@ -88,7 +88,7 @@ function Dashboard(){
                   </div>
                   <div className="down-content">
                     <span>
-                      <del><sup>$</sup>11999 </del> &nbsp; <sup>$</sup>11779
+                      <del><sup>€</sup>11999 </del> &nbsp; <sup>€</sup>11779
                     </span>
                     <h4>Lorem ipsum dolor sit amet, consectetur</h4>
                     <p>
@@ -105,7 +105,7 @@ function Dashboard(){
             </div>
             <br />
             <div className="main-button text-center">
-              <a href="cars.html">View Cars</a>
+              <a href="/announcements">View Cars</a>
             </div>
           </div>
         </section>
@@ -117,15 +117,17 @@ function Dashboard(){
                 <div className="section-heading dark-bg">
                   <h2>Read <em>About Us</em></h2>
                   <img src="assets/images/line-dec.png" alt="" />
-                  <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
+                  <p>Our website will be selling used cars (“second-hand”). Unlike any other car buying website, we are targeting our customers first. Instead of letting the customer getting lost in a list of choices, this website helps the customer to find the perfect car for him. Are you looking for your first car to learn how to drive? Or maybe you have a large family and need some more space?
+
+                  </p>
                 </div>
               </div>
             </div>
             <div className="row">
               <div className="col-lg-12">
                 <div className="cta-content text-center">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore deleniti voluptas enim! Provident consectetur id earum ducimus facilis, aspernatur hic, alias, harum rerum velit voluptas, voluptate enim! Eos, sunt, quidem.</p>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto nulla quo cum officia laboriosam. Amet tempore, aliquid quia eius commodi, doloremque omnis delectus laudantium dolor reiciendis non nulla! Doloremque maxime quo eum in culpa mollitia similique eius doloribus voluptatem facilis! Voluptatibus, eligendi, illum. Distinctio, non!</p>
+                  <p>Our website shows what is best for you, after answering a few questions. We will also keep the user's search data stored so we can optimize our customer's interests with A.I.</p>
+                  <p>Our goal is to make our application user-friendly and focus on clients who do not know cars, or car pieces. A customer will be able to find a selection of cars that match what he is looking for, without getting lost in a large assortment of cars. A seller will be able to sell a car or car parts and pieces.</p>
                 </div>
               </div>
             </div>
@@ -194,7 +196,7 @@ function Dashboard(){
               <div className="col-lg-10 offset-lg-1">
                 <div className="cta-content">
                   <h2>Send us a <em>message</em></h2>
-                  <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula, sit amet dapibus odio augue eget libero. Morbi tempus mauris a nisi luctus imperdiet.</p>
+                  <p>If you have any question about our services, do not hesitate to send us</p>
                   <div className="main-button">
                     <a href="contact-us">Contact us</a>
                   </div>
