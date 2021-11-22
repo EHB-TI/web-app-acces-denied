@@ -81,12 +81,12 @@ function Announcements(props) {
             <Card className="cardAnnouncement" style={{backgroundColor:'#dfc15e',borderColor:'black'}} >
             <Card.Body>
             <div className="col">
-            <img src={announcement.picture} style={{  float:"left"   }} />
+            <img src={announcement.picture} style={{  float:"left",width:"200px",height:"200px"   }} />
             
             
             </div>
             <div className="col" id="col2">
-            <Card.Title>{announcement.brand}{announcement.model}</Card.Title>
+            <Card.Title>{announcement.brand} - {announcement.model}</Card.Title>
             <Card.Text  >
             {announcement.description}
             </Card.Text >
