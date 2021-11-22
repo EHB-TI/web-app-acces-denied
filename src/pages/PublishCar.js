@@ -6,6 +6,7 @@ import AnnouncementModel from '../model/AnnouncementModel';
 import { v4 as uuid } from 'uuid';
 
 function PublishCar() {
+    const [success, setSuccess] = useState("")
     const [error, setError] = useState("")
 
     {/* Data Lists */}
@@ -94,9 +95,12 @@ function PublishCar() {
         )  
 
         try {
+            setSuccess("Email successfully sent")
             setError("")
             await db.collection("announcement").doc(id).set(Announcement.toMap())
         } catch (err) {
+            setSuccess("")
+            setError("Failed to publish try again")
             console.error(err)
         }
     }
@@ -312,6 +316,8 @@ function PublishCar() {
                     <Button variant="primary" type="submit" >
                         Publish
                     </Button>
+                    {success && <Alert variant="success">{success}</Alert>}
+                    {error && <Alert variant="danger">{error}</Alert>}
                 </Form>
             </section>
         </div>
