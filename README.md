@@ -2,7 +2,7 @@
 
 ## Hoe start je dit project op?
 
-Je kan een uitgebreid stappenplan terugvinden in de `README_GET_STARTED.md` file.
+Je kan een uitgebreid stappenplan terugvinden in de `README_GET_STARTED.md` file, te vinden in de ``documentatie`` folder.
 
 In twee woorden: 
 1. Open een terminal en voer `npm i` uit.
@@ -55,7 +55,7 @@ In twee woorden:
 
 ## Beveiliging van onze toepassing. 
 
-![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/AuthWithProvider/src/FlowFirbase.png)
+![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/AuthWithProvider/documentation/FlowFirbase.png)
 
 > Ref to FlowFirebase.png
 
