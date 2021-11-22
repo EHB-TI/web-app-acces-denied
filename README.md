@@ -116,11 +116,11 @@ Basic flow of administration access to our webapplication.
 <br> 
 *A hacker can gain access to our application pretending to be another user.
 Or a hacker can pretend to be our application.*
+
 #### Defence/ Solution | Mitigate
 <hr>
 
 Firebase Cloud Services
-<hr>
 
   We will use Firebase SDK, which is a open-source library.
   
@@ -131,12 +131,12 @@ Firebase Cloud Services
   We will initialiaze this application using our Firebase Configuration, which contains an API key. This API key is not private. 
   > Which means it is not a thread that everyone can have access to thsi API key. 
   
-    But we deside to put this variables into a `.env` file.
-    This way it will protect use against a user that obtain illegal access to our version control platform - github.
+  > But we deside to put this variables into a `.env` file.
+  This way it will protect use against a user that obtain illegal access to our version control platform - github.
 
   Once our Firebase App is intialized we can start using Firebase Serverless Services like Authentication and Cloud Firestore database.
 
-    Using an authentication provider, combined with an authentication wrapper, we will be able to distinguish authenticated users from non autheticated users.
+  > Using an authentication provider, combined with an authentication wrapper, we will be able to distinguish authenticated users from non autheticated users.
   
   From the Firebase Authentication we can access the `authStateChanged() or onIdStateChanged()` which provides all information about the authentication state.
 
@@ -167,11 +167,11 @@ Mitigation:
 
 
 ### Tampering: Integrity
-
-#### Threat
 <hr>
 
-    Modifying data or code whenever it crosses the network.
+> Threat
+<br> 
+*Modifying data or code whenever it crosses the network.*
 
 #### Defence/ Solution | Mitigate
 <hr>
@@ -185,11 +185,14 @@ Our website will be manually hosted, using Firebase Hosting. The only way to cha
 <hr>
 
 ### Repudiation: Non-repudiation
-#### Threat
+<hr>
 
-    Modifying data or code whenever it crosses the network.
+> Threat
+<br> 
+*Modifying data or code whenever it crosses the network.*
 
 #### Defence/ Solution | Mitigate
+<hr>
 
 1. Monitoring and logging whenever a user is commiting a sensible action is part of our job.
 
@@ -197,41 +200,43 @@ Our website will be manually hosted, using Firebase Hosting. The only way to cha
     > Actions will be database interaction or sensible actions like changing email address or password.
 
     Beside the fact of logging actions we can also log device and ip-information. This way we can put actions in place whenever a user is logging in on other devices or from a different network.
+<hr>
 
 2. Before doing/submitting important information/action the user will need to confirm these actions. This way repudiation will be avoided.
 
     Whenever a user visits our website he will need to accept our conditions and cookie policies. It will be popped up, this way a user needs to accept or to decline it. 
     > This way a user wont be able to then say “I certainly didn’t visit that website”, because he accepted or declided or policies, he made an action to enforce access to our website.
 <hr>
-<br>
 
 ### Information Disclosure: Confidentiality
-#### Threat
 <hr>
 
-    Exposing information to someone who is not authorized is.
+>Threat
+<br>
+*Exposing information to someone who is not authorized is.*
+
 #### Defence/ Solution | Mitigate
 <hr>
 Using AAA and configure each page where a user must be logged in with an authentication service wrapper, a user won't be able to access other private resources.
 Each of our developers is aware of the dangers of losing or publishing their credentials, this is the only way to modify or erase our application, database, or services.
 <hr>
-<br>
 
 ### Denial of Service: Availability 
-#### Threat
 <hr>
 
-    Deny or degrade service to users
+>Threat
+<br>
+*Deny or degrade service to users*
 
 #### Defence/ Solution | Mitigate
 <hr>
 Setting up logging and monitoring will help us know whenever a DOS attack is happening.
 
-> Monitoring and logging abusive traffic 
+* Monitoring and logging abusive traffic 
 
-> Set up Alerts depending of this logs
+* Set up Alerts depending of this logs
 
-> Set up actions whenever a specific maximum traffic is reached. This actions will have effect on the back-end of the Firebase Services.
+* Set up actions whenever a specific maximum traffic is reached. This actions will have effect on the back-end of the Firebase Services.
 
 In addition Firebase itself is providing a form of DOS protection. This is for the Cloud Firestore Database and Authentication.
 Whenever a certain abusive traffic is reached and API restriction will be triggered and have effect on the back-end. This is an action that is automatically triggered when using Firebase services. 
@@ -241,10 +246,9 @@ Whenever a certain abusive traffic is reached and API restriction will be trigge
 ### Elevation of Privilege: Authorization
 <hr>
 
-#### Threat
-<hr>
+> Threat
+<br>*Gain capabilities without proper Oauth2*
 
-    Gain capabilities without proper Oauth2
 #### Defence/ Solution | Mitigate
 <hr>
 
@@ -264,15 +268,15 @@ By specifing a standard ``deny all`` we restrict any user to make a modification
 
 If we set up correctly our Security rules, it wont matter if a user tries to inject code, or modify code related to our Cloud Firestore functionalities. 
 
-    We are building a website, so clicking F12 will always display all the content, scripts, links … We will isolate functions and logic, to avoid making it realy easy for anyone to make changes but of course we can't and we dont care that anyone tries to make any changes, like mentioned before.
+>We are building a website, so clicking F12 will always display all the content, scripts, links … We will isolate functions and logic, to avoid making it realy easy for anyone to make changes but of course we can't and we dont care that anyone tries to make any changes, like mentioned before.
   
 ## Extra: Security analysis 
 
 ### Firebase as backend 
+<hr>
 
 ![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/BasicFlowFirebase.png)
 
-<hr>
 
 For our project, we will use Firebase as back-end service.
 
@@ -377,10 +381,10 @@ However, it is possible to make it harder for an attacker to extract data from t
 
         hash_config {
           algorithm: SCRYPT,
-          base64_signer_key: 9l+S1DuMqC ... tazpA==,
-          base64_salt_separator: Bw==,
-          rounds: 8,
-          mem_cost: 14,
+          base64_signer_key: 9l+S1 ... A==,
+          base64_salt_separator: .. ,
+          rounds: .. , // >5
+          mem_cost: .. , // >8
         }
 <hr>  
 
