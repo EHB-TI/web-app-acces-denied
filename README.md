@@ -224,9 +224,7 @@ Each of our developers is aware of the dangers of losing or publishing their cre
 ### Denial of Service: Availability 
 <hr>
 
->Threat
-<br>
-*Deny or degrade service to users*
+>Threat: *Deny or degrade service to users*
 
 #### Defence/ Solution | Mitigate
 <hr>
@@ -247,7 +245,8 @@ Whenever a certain abusive traffic is reached and API restriction will be trigge
 <hr>
 
 > Threat
-<br>*Gain capabilities without proper Oauth2*
+<br>
+*Gain capabilities without proper Oauth2*
 
 #### Defence/ Solution | Mitigate
 <hr>
@@ -270,6 +269,17 @@ If we set up correctly our Security rules, it wont matter if a user tries to inj
 
 >We are building a website, so clicking F12 will always display all the content, scripts, links … We will isolate functions and logic, to avoid making it realy easy for anyone to make changes but of course we can't and we dont care that anyone tries to make any changes, like mentioned before.
   
+## Front-end Security: Threads and countermeasures
+
+Threads:
+Cross Site Scripting
+
+Countermeasures:
+
+
+How Do You Prevent Cross Site Scripting in React?
+
+As a rule of thumb, avoid properties that are completely user-controllable. If you do allow user input as a value of certain properties, make sure that attackers can’t insert any script code. This includes properties such as src, href, srcdoc, and possibly others. Where React really shines is when the only user-controllable input is the child parameter – then it automatically applies sanitization without any action or thought required by the programmer.
 ## Extra: Security analysis 
 
 ### Firebase as backend 
