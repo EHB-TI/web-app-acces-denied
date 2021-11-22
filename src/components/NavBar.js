@@ -19,7 +19,8 @@ function NavBar()
 
     try {
       await logout()
-      history.push("/login")
+      history.replace("/")
+
     } catch {
       setError("Failed to log out")
     }
@@ -52,16 +53,16 @@ function NavBar()
                 <NavDropdown.Item className="navlink-Item" as={Link} to={"/evaluate"}>Evaluate your car</NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link className="navlink" as={Link} to={"/"}>Pricing</Nav.Link>
+              <Nav.Link className="navlink" as={Link} to={"/blog"}>Blog</Nav.Link>
               <Nav.Link className="navlink" as={Link} to={"/contact-us"}>Contact Us</Nav.Link>
-              <Nav.Link className="navlink" as={Link} to={"/about"}>About</Nav.Link>
+              <Nav.Link className="navlink" as={Link} to={"/about-us"}>About</Nav.Link>
         
             </Nav>
             {currentUser == null ?
             <Nav> 
             
             
-              <Nav.Link className="navlink" as={Link} to={"/register"}>Register</Nav.Link>
+              <Nav.Link className="navlink" as={Link} to={"/signup"}>Register</Nav.Link>
               <Nav.Link className="navlink" as={Link} to={"/login"}>Login</Nav.Link>
             
             

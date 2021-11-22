@@ -16,6 +16,9 @@ import Contact from './pages/Contact';
 import PageNotFound from './components/PageNotFound';
 import Profile from './pages/Profile';
 import EvaluateCar from './components/EvaluateCar';
+import AboutUs from './components/AboutUs';
+import Blog from './components/Blog';
+import MyAnnouncements from './pages/MyAnnouncements';
 import Announcements from './pages/Announcements';
 
 function App() {
@@ -24,17 +27,20 @@ function App() {
           <AuthProvider>
             <NavBar/>
             <Switch>
-              <PrivateRoute exact path="/" component={Dashboard} />
+              <Route exact path="/" component={Dashboard} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/blog" component={Blog}  />
               <Route path="/contact-us" component={Contact}  />
+              <Route path="/about-us" component={AboutUs}  />
 
               <Route path="/buy" component={SearchCar}  />
               <Route path="/evaluate" component={EvaluateCar}  />
               <PrivateRoute path="/sell" component={PublishCar} />
+              <Route path="/my-announcements" component={MyAnnouncements} />
               <Route path="/announcements" component={Announcements} />
 
               { /* Default route -> 404  */ }

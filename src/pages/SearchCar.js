@@ -135,7 +135,9 @@ function SearchCar() {
                   
                     <br/>
                     {/* SUBMIT BUTTON */}
+                    <div className="row">
                     <button type="submit" className="btn btn-success d-flex justify-content-center">Search</button>
+                    </div>
                 </form>
             </section>            
         </div>

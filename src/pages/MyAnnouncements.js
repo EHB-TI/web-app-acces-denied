@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
-import {auth,  db } from '../firebase/firebase';
-import '../layout/Announcements.css'
+import {React,useEffect,useState} from 'react';
+import {Card,Button} from 'react-bootstrap';
+import "../layout/Announcements.css";
+import { auth, db } from "../firebase/firebase.js";
 
 
-export default function Announcement() {
-    const [announcements,setAnnouncements] = useState([]);
+function MyAnnouncements(props) {
+console.log(auth.currentUser.uid)
+    const [announcements, setAnnouncements] = useState([]);
 
     const fetchCars = async () => {
-        let queryAnnouncements = await db
-            .collection("announcement");
-
-            queryAnnouncements.where("uid", "==", auth.currentUser.uid);
+        let queryAnnouncements = db
+            .collection("announcement").where("uid", "==", auth.currentUser.uid);           
             
-        let array = [];
-            
+    let array = [];
            
-        await queryAnnouncements.get().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                array.push(doc.data());
-            });
+    await queryAnnouncements.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            array.push(doc.data());
+        });
 
-            setAnnouncements(array);
-            
-        });        
-        
+        setAnnouncements(array);
+    })
     }
+    
     useEffect(()=> {
-        fetchCars();  
+        const unsub = fetchCars();  
+    return unsub
     },[])
+        
 
     return (
         <div>
@@ -37,7 +37,7 @@ export default function Announcement() {
                 <div className="row">
                     <div className="col-lg-6 offset-lg-3">
                         <div className="section-heading">
-                            <h2>Featured <em>Cars</em></h2>
+                            <h2>My <em>Announcements</em></h2>
                             <img src="assets/images/line-dec.png" alt="" />
                             <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
                         </div>
@@ -65,7 +65,7 @@ export default function Announcement() {
                                         <i className="fa fa-cog" /> Manual &nbsp;&nbsp;&nbsp;
                                         </p>
                                         <ul className="social-icons">
-                                        <li><a href="car-details.html">+ View Car</a></li>
+                                        <li><a href="car-details.html">+ View my announcement</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -76,12 +76,12 @@ export default function Announcement() {
                 
                 </div>
                 <br />
-                <div className="main-button text-center">
-                <a href="/announcements">View Cars</a>
-                </div>
+          
             </div>
             </section>
             
         </div>
     )
 }
+
+export default MyAnnouncements;

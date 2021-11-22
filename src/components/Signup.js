@@ -28,8 +28,8 @@ export default function Signup() {
       console.log(usernameRef.current.value)
       await signupData(emailRef.current.value, usernameRef.current.value);
       history.push("/")
-    } catch {
-      setError("Failed to create an account")
+    } catch (err){
+      setError(`Failed to create an account, ${err}`)
     }
 
     setLoading(false)
