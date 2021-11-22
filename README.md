@@ -2,7 +2,9 @@
 Our website will be selling used cars (“second-hand”).
 Unlike any other car buying website, we are targeting our customers first. Instead of letting the customer getting lost in a list of choices, this website helps the customer to find the perfect car for him. Are you looking for your first car to learn how to drive? Or maybe you have a large family and need some more space? 
 
-Our website shows what is best for you, after answering a few questions. We will also keep the users search data stored so we can optimize our customer's interests with A.I. – this is a Proof of Concept: by storing all data from our customers on our website, we will have enough data to populate our own recommendation AI (neural network), but therefore we need data which will be time-expensive -.
+Our website shows what is best for you, after answering a few questions. We will also keep the users search data stored so we can optimize our customer's interests with A.I. 
+>This is a Proof of Concept: 
+<br>By storing all data from our customers on our website, we will have enough data to populate our own recommendation AI (neural network), but therefore we need data which will be time-expensive -.
  
 Our goal is to make our application user-friendly and focus on clients who have no knowledge about cars or car pieces. 
 A customer will be able to find a selection of cars that match what he is looking for, without getting lost in a large assortment of cars.
@@ -92,11 +94,16 @@ Also, you can invest money to get your advertisement in the top rank whenever a 
 
 # Threat model
 
-Flow of Front-end and Back-end, communication between our users, webapplication and Firebase Services.
+## Flow of our webapplication
+
+Flow of the Front-end and the Back-end.
+>The communication between our users, webapplication and Firebase Services.
 
 ![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/Frontend-Backend.png)
 
-Basic flow of administration access to our webapplication, as well as the Security Rules that garantee access to our services, and the set up of privileges for access control.
+Basic flow of administration access to our webapplication.
+> Additionally:
+<br>The Security Rules that garantee access to our services, and the set up of privileges for access control.
 
 ![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/AdminAccess.png)
 
@@ -105,12 +112,10 @@ Basic flow of administration access to our webapplication, as well as the Securi
 <hr>
 
 ### Spoofing: Authentication
-
-#### Threat
-<hr>
-
-    A hacker can gain access to our application pretending to be another user.
-    Or a hacker can pretend to be our application.
+> Threat
+<br> 
+*A hacker can gain access to our application pretending to be another user.
+Or a hacker can pretend to be our application.*
 #### Defence/ Solution | Mitigate
 <hr>
 
