@@ -18,6 +18,12 @@ function Profile() {
             .collection("users")
             .where("uid", "==", user?.uid)
             .get();
+
+            const announcementsQuery = await db
+            .collection("announcement")
+            .where("uid", "==", user?.uid)
+            .get();
+            
           const data = await query.docs[0].data();
           setName(data.name);
         } catch (err) {
