@@ -92,8 +92,14 @@ Also, you can invest money to get your advertisement in the top rank whenever a 
 
 # Threat model
 
-![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/Auth.png)
-![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/Auth%20(1).png)
+Flow of Front-end and Back-end, communication between our users, webapplication and Firebase Services.
+
+![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/Frontend-Backend.png)
+
+Basic flow of administration access to our webapplication, as well as the Security Rules that garantee access to our services, and the set up of privileges for access control.
+
+![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/AdminAccess.png)
+
 
 ## STRIDE
 <hr>
@@ -259,7 +265,7 @@ If we set up correctly our Security rules, it wont matter if a user tries to inj
 
 ### Firebase as backend 
 
-![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/FlowFirebase.png)
+![alt text](https://github.com/EHB-TI/web-app-acces-denied/blob/main/BasicFlowFirebase.png)
 
 <hr>
 
