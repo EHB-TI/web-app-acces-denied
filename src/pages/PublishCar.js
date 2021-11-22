@@ -2,7 +2,6 @@ import {React, useRef, useState} from 'react';
 import {Form,Button, Row, Col, Alert} from 'react-bootstrap';
 import "../layout/PublishCar.css";
 import { auth, db, store } from "../firebase/firebase.js";
-import CarModel from '../model/CarModel';
 import AnnouncementModel from '../model/AnnouncementModel';
 import { v4 as uuid } from 'uuid';
 
@@ -63,14 +62,14 @@ function PublishCar() {
           });
       });
     }
+    
 
     async function handleSubmit(e) {
         e.preventDefault()
         handleUpload(e)
-        const carid = uuid();
-
-        let Car = new CarModel(
-            carid,
+        const id = uuid();
+        let Announcement = new AnnouncementModel(
+            id,
             brand.current.value,
             model.current.value,
             constructionYear.current.value,
@@ -84,12 +83,8 @@ function PublishCar() {
             bodywork.current.value,
             numberOfPlace.current.value,
             color.current.value,
-            mileage.current.value
-        )
-
-        let Announcement = new AnnouncementModel(
+            mileage.current.value,
             auth.currentUser.uid,
-            carid,
             url,
             description.current.value,
             delivery.current.value,
@@ -99,8 +94,7 @@ function PublishCar() {
 
         try {
             setError("")
-            await db.collection("cars").doc(carid).set(Car.toMap())
-            await db.collection("announcement").doc().set(Announcement.toMap())
+            await db.collection("announcement").doc(id).set(Announcement.toMap())
         } catch (err) {
             console.error(err)
         }
@@ -275,7 +269,7 @@ function PublishCar() {
                     <h2>Add Picture</h2>
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Picture</Form.Label>
+                            <Form.Label>Picture*</Form.Label>
                             <Form.Control onChange={handleChange} type="file" required/>
                         </Form.Group>
                     </Row>
