@@ -16,6 +16,7 @@ import Contact from './pages/Contact';
 import PageNotFound from './components/PageNotFound';
 import Profile from './pages/Profile';
 import EvaluateCar from './components/EvaluateCar';
+import Announcements from './pages/Announcements';
 
 function App() {
     return (      
@@ -34,6 +35,7 @@ function App() {
               <Route path="/buy" component={SearchCar}  />
               <Route path="/evaluate" component={EvaluateCar}  />
               <PrivateRoute path="/sell" component={PublishCar} />
+              <Route path="/announcements" component={Announcements} />
 
               { /* Default route -> 404  */ }
               <Route path="/" component={PageNotFound}  />

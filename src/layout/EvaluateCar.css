@@ -13,7 +13,7 @@
     margin-top: 60px;
     margin-bottom: 60px;
     border: none !important;
-    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
 }
 
 .form{
@@ -22,24 +22,20 @@
     justify-content: center;
     align-items: center;
     background: url("https://wallpaperaccess.com/full/1786208.jpg") center no-repeat;
-
     background-size: cover;
     height: 98vh;
-    
-    
 }
 
 .blue-text {
-    color: #00BCD4
+    color: #00BCD4;
 }
 
 .form-control-label {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 button{
     background-color: rgb(130, 190, 229);
-    margin: 1rem 1rem 1rem 0.5px !important;
 }
 
 input,
@@ -51,7 +47,7 @@ button {
     box-sizing: border-box;
     border: 1px solid rgb(130, 190, 229);
     font-size: 18px !important;
-    font-weight: 300
+    font-weight: 300;
 }
 
 input:focus,

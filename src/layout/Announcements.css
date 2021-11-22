@@ -1,0 +1,15 @@
+.cardAnnouncement{
+    margin-left: 280px;
+    margin-right: 280px;
+}
+
+.col{
+    display: inline-block;
+    vertical-align: top;
+    
+}
+
+#col2{
+    margin-left: 80px;
+    margin-top: 20px;
+}

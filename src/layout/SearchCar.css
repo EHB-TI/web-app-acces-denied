@@ -26,18 +26,10 @@
     height: 30px;
     border-radius: 3px;
 }
-.SearchCar button{
-    float: right;
-    margin-right: 40px;
-    width: 170px;
-    height: 33px;
-    margin-top: 10px;
-    border: 2px solid black;
-    border-radius: 3px;
-    background-color: black;
-    color: white;
-}
-.SearchCar button:hover{
-    background-color: #1c1c1c;
-    
+
+.SearchCar .center-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
