@@ -112,9 +112,7 @@ Basic flow of administration access to our webapplication.
 <hr>
 
 ### Spoofing: Authentication
-> Threat
-<br> 
-*A hacker can gain access to our application pretending to be another user.
+> Threat: *A hacker can gain access to our application pretending to be another user.
 Or a hacker can pretend to be our application.*
 
 #### Defence/ Solution | Mitigate
@@ -169,9 +167,7 @@ Mitigation:
 ### Tampering: Integrity
 <hr>
 
-> Threat
-<br> 
-*Modifying data or code whenever it crosses the network.*
+> Threat: *Modifying data or code whenever it crosses the network.*
 
 #### Defence/ Solution | Mitigate
 <hr>
@@ -187,9 +183,7 @@ Our website will be manually hosted, using Firebase Hosting. The only way to cha
 ### Repudiation: Non-repudiation
 <hr>
 
-> Threat
-<br> 
-*Modifying data or code whenever it crosses the network.*
+> Threat: *Modifying data or code whenever it crosses the network.*
 
 #### Defence/ Solution | Mitigate
 <hr>
@@ -211,9 +205,7 @@ Our website will be manually hosted, using Firebase Hosting. The only way to cha
 ### Information Disclosure: Confidentiality
 <hr>
 
->Threat
-<br>
-*Exposing information to someone who is not authorized is.*
+>Threat: *Exposing information to someone who is not authorized is.*
 
 #### Defence/ Solution | Mitigate
 <hr>
@@ -244,9 +236,7 @@ Whenever a certain abusive traffic is reached and API restriction will be trigge
 ### Elevation of Privilege: Authorization
 <hr>
 
-> Threat
-<br>
-*Gain capabilities without proper Oauth2*
+> Threat: *Gain capabilities without proper Oauth2*
 
 #### Defence/ Solution | Mitigate
 <hr>
@@ -272,14 +262,24 @@ If we set up correctly our Security rules, it wont matter if a user tries to inj
 ## Front-end Security: Threads and countermeasures
 
 Threads:
-Cross Site Scripting
+
+* Cross Site Scripting
 
 Countermeasures:
 
 
-How Do You Prevent Cross Site Scripting in React?
+How do we prevent Cross Site Scripting in React?
 
-As a rule of thumb, avoid properties that are completely user-controllable. If you do allow user input as a value of certain properties, make sure that attackers can’t insert any script code. This includes properties such as src, href, srcdoc, and possibly others. Where React really shines is when the only user-controllable input is the child parameter – then it automatically applies sanitization without any action or thought required by the programmer.
+* Avoid properties that are completely user-controllable. 
+
+>If you do allow user input as a value of certain properties, make sure that attackers can’t insert any script code. 
+
+* This includes properties such as src, href, srcdoc, and possibly others. 
+
+>Where React really shines is when the only user-controllable input is the child parameter – then it automatically applies sanitization without any action or thought required by the programmer.
+
+<hr>
+
 ## Extra: Security analysis 
 
 ### Firebase as backend 
@@ -415,7 +415,7 @@ By realizing this feature, we needed something unique in every device. The first
 <hr>
 We solved this issue by adding email verification to our website. So, whenever a user registers, he will get an email to the email he put in the registration field. If the user does not click on the link sent to his email, it will not be possible for the user to go to the home page, and even when the user found a way to get to the home page, the Firestore rules will be there to block him. 
 <hr>
-<br>
+
 
 ### Architecture
  <hr>
