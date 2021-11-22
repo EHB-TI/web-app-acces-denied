@@ -1,13 +1,17 @@
 //not finished
 class AnnouncementModel{
     constructor(
-        imgUrl,
+        uid,
+        carid,
+        picture,
         description,
         delivery,
         priceOption,
         price
     ){
-        this.imgUrl = imgUrl;
+        this.uid = uid;
+        this.carid = carid;
+        this.picture = picture;
         this.description = description;
         this.delivery = delivery;
         this.priceOption = priceOption;
@@ -15,7 +19,9 @@ class AnnouncementModel{
     }
     toMap(){
         return{
-            imgUrl: this.imgUrl,
+            uid: this.uid,
+            carid: this.carid,
+            picture: this.picture,
             description: this.description,
             delivery: this.delivery,
             priceOption: this.priceOption,
@@ -24,7 +30,9 @@ class AnnouncementModel{
     }
     fromMap(map){
         return AnnouncementModel(
-            map['imgUrl'],
+            map['uid'],
+            map['carid'],
+            map['picture'],
             map['description'],
             map['delivery'],
             map['priceOption'],
@@ -32,3 +40,5 @@ class AnnouncementModel{
         )
     }
 }
+
+export default AnnouncementModel;

@@ -1,5 +1,6 @@
 class CarModel{
     constructor(
+        id,
         brand, 
         model, 
         constructionYear, 
@@ -14,7 +15,8 @@ class CarModel{
         numberOfPlace,
         color,
         mileage
-    ){
+    ){ 
+        this.id = id;
         this.brand = brand;
         this.model = model;
         this.constructionYear = constructionYear;
@@ -28,10 +30,11 @@ class CarModel{
         this.bodywork = bodywork;
         this.numberOfPlace = numberOfPlace;
         this.color = color;
-        this.mileage = mileage;
+        this.mileage = mileage
     }
     toMap(){
         return{
+            id: this.id,
             brand: this.brand,
             model: this.model,
             constructionYear: this.constructionYear,
@@ -45,11 +48,12 @@ class CarModel{
             bodywork: this.bodywork,
             numberOfPlace: this.numberOfPlace,
             color: this.color,
-            mileage: this.mileage,
+            mileage: this.mileage
         }
     }
     fromMap(map){
         return CarModel(
+            map['id'],
             map['brand'],
             map['model'],
             map['constructionYear'],
@@ -67,3 +71,5 @@ class CarModel{
         )
     }
 }
+
+export default CarModel;

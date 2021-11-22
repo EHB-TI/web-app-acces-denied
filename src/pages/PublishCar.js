@@ -1,9 +1,10 @@
 import {React, useRef, useState} from 'react';
 import {Form,Button, Row, Col, Alert} from 'react-bootstrap';
 import "../layout/PublishCar.css";
-import { db, store } from "../firebase/firebase.js";
+import { auth, db, store } from "../firebase/firebase.js";
 import CarModel from '../model/CarModel';
 import AnnouncementModel from '../model/AnnouncementModel';
+import { v4 as uuid } from 'uuid';
 
 function PublishCar() {
     const [error, setError] = useState("")
@@ -20,7 +21,6 @@ function PublishCar() {
     const bodyworks = ['Monospace','Break','Berline','City car','Monovolume','Cabriolet','Coupé','Compact','SUV or off road cars']
     const numberOfPlaces = ['2','3','4','5','6']
     const colors = ['Red','Beige','Purple','Blue','Silver','Green','Brown','White','Black']
-    const carOptions = ['ABS', 'Airbags', 'Air conditioning', 'Bluetooth', 'Adaptive lights']
     const deliveries = ['pick up','send']
     const priceOptions = ['Asking price','Offer','Exchange','Free']
 
@@ -39,23 +39,38 @@ function PublishCar() {
     const numberOfPlace = useRef();
     const color = useRef();
     const mileage = useRef();
-    const mileagePicture = useRef();
-    const carOption = useRef(); /* Car OPTIONS */
-    const frontEnd = useRef();
-    const backEnd = useRef();
-    const leftSide = useRef();
-    const rightSide = useRef();
+    
     const description = useRef();
     const delivery = useRef();
     const priceOption = useRef();
     const price = useRef();
 
+    const [file, setFile] = useState(null);
+    const [url, setURL] = useState("");
+
+    function handleChange(e) {
+      setFile(e.target.files[0]);
+    }
+    function handleUpload(e) {
+      e.preventDefault();
+      const ref = store.ref(`/images/${file.name}`);
+      const uploadTask = ref.put(file);
+      uploadTask.on("state_changed", console.log, console.error, () => {
+        ref
+          .getDownloadURL()
+          .then((url) => {
+              setURL(url);
+          });
+      });
+    }
+
     async function handleSubmit(e) {
         e.preventDefault()
-
-        console.log("brand: " + brand.current.value)
+        handleUpload(e)
+        const carid = uuid();
 
         let Car = new CarModel(
+            carid,
             brand.current.value,
             model.current.value,
             constructionYear.current.value,
@@ -73,31 +88,22 @@ function PublishCar() {
         )
 
         let Announcement = new AnnouncementModel(
-            "None",
+            auth.currentUser.uid,
+            carid,
+            url,
             description.current.value,
             delivery.current.value,
             priceOption.current.value,
             price.current.value
         )  
+
         try {
-            //setError("")
-            //await db.collection("cars").doc().set(Car.toMap())
-            //await db.collection("announcement").doc('test').set(Announcement.toMap())
-            //await store.ref('announcements', 'announcements')
+            setError("")
+            await db.collection("cars").doc(carid).set(Car.toMap())
+            await db.collection("announcement").doc().set(Announcement.toMap())
         } catch (err) {
-            console.log("error publishcar")
             console.error(err)
         }
-        /*
-        console.log("mileagePicture: " + mileagePicture.current.value)
-        */
-        //console.log("carOption: " + carOption.current.value)
-        /*
-        console.log("frontEnd: " + frontEnd.current.value)
-        console.log("backEnd: " + backEnd.current.value)
-        console.log("leftSide: " + leftSide.current.value)
-        console.log("rightSide: " + rightSide.current.value)
-        */
     }
   
     return (
@@ -261,72 +267,18 @@ function PublishCar() {
                         <Form.Group as={Col} className="mb-3">
                             <Form.Label>Mileage(in km)*</Form.Label>
                             <Form.Control ref={mileage} type="number" placeholder="example 200000" required />
-                            {error && <Alert variant="danger">{error}</Alert>}
-                        </Form.Group>
-                        {/* PICTUREP */}
-                        <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Mileage Picture</Form.Label>
-                            <Form.Control ref={mileagePicture} type="file" />
                         </Form.Group>
                     </Row>
                     
-
-                    {/* Car Options */}
-                    {/* OPTIONS */}
-                    {/*
+                    {/* Add Picture */}
                     <br/><hr/>
-                    <h2>Car Options</h2>
+                    <h2>Add Picture</h2>
                     <Row className="mb-3">
-                        
-                        {
-                        <Form.Group className="mb-3" id="formGridCheckbox">
-                            {
-                                
-                                carOptions.map((el) =>
-                                <Form.Check type="checkbox" label={el} value={el} />)
-                                
-                            }
-                        </Form.Group>
-                        }
-                        <div id="Opties" ref={carOption}>
-                            {
-                                carOptions.map((el) =>
-                                <div>
-                                    <input type="checkbox"name={"options" + el} value={el}/>
-                                    <label for={"options" + el} >{el}</label>
-                                </div>
-                                )
-                            }
-                        </div>
-                    </Row>
-                    */}
-
-                    {/* Add Pictures */}
-                    <br/><hr/>
-                    <h2>Add Pictures</h2>
-                    <Row className="mb-3">
-                        {/* Front End */}
                         <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Front End</Form.Label>
-                            <Form.Control ref={frontEnd} type="file" />
-                        </Form.Group>
-                        {/* Back End */}
-                        <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Back End</Form.Label>
-                            <Form.Control ref={backEnd} type="file" />
-                        </Form.Group>
-                        {/* Left Side */}
-                        <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Left Side</Form.Label>
-                            <Form.Control ref={leftSide} type="file" />
-                        </Form.Group>
-                        {/* Right Side */}
-                        <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Right Side</Form.Label>
-                            <Form.Control ref={rightSide} type="file" />
+                            <Form.Label>Picture</Form.Label>
+                            <Form.Control onChange={handleChange} type="file" required/>
                         </Form.Group>
                     </Row>
-                    
                     {/* Announcement */}
                     <br/><hr/>
                     <h2>Announcement</h2>
@@ -363,7 +315,7 @@ function PublishCar() {
                         </Form.Group>
                     </Row>
                     <Button variant="primary" type="submit" >
-                        Submit
+                        Publish
                     </Button>
                 </Form>
             </section>
