@@ -95,4 +95,9 @@ To handle whenever a user needs to be logged in or not, we use a component we cr
 This component returns a Route depending on the currentUser, that we can access using our `AuthProvider`. If the user is currently logged in, he can access a PrivateRouter otherwise he will be redirected to the login page.
 
 
+## Hosting 
+
+Firebase Hosting 
+
+
 

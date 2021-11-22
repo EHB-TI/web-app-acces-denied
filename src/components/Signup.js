@@ -7,7 +7,9 @@ export default function Signup() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
+  const usernameRef = useRef()
   const { signup } = useAuth()
+  const { signupData } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
@@ -23,6 +25,8 @@ export default function Signup() {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
+      console.log(usernameRef.current.value)
+      await signupData(emailRef.current.value, usernameRef.current.value);
       history.push("/")
     } catch {
       setError("Failed to create an account")
@@ -42,6 +46,10 @@ export default function Signup() {
             <Form.Group id="email">
               <Form.Label className="text-label">Email</Form.Label>
               <Form.Control  className="border-r" type="email" ref={emailRef} required placeholder="example@gmail.com"/>
+            </Form.Group>
+            <Form.Group id="name">
+              <Form.Label className="text-label">Username</Form.Label>
+              <Form.Control  className="border-r" type="name" ref={usernameRef} required placeholder="username"/>
             </Form.Group>
             <Form.Group id="password">
               <Form.Label className="text-label">Password</Form.Label>
