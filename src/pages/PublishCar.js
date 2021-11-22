@@ -1,111 +1,17 @@
-import {React, useRef} from 'react';
+import {React, useRef, useState} from 'react';
+import { useHistory } from 'react-router';
 import {Form,Button, Row, Col, Alert} from 'react-bootstrap';
 import "../layout/PublishCar.css";
-import { db } from "../firebase/firebase.js";
-
-//not finished
-class CarModel{
-    constructor(
-        brand, 
-        model, 
-        constructionYear, 
-        fuel, 
-        engine, 
-        emissionNorm, 
-        gearboxe, 
-        transmission, 
-        emptyWeight, 
-        consumption,
-        bodywork,
-        numberOfPlace,
-        color,
-        mileage
-    ){
-        this.brand = brand;
-        this.model = model;
-        this.constructionYear = constructionYear;
-        this.fuel = fuel;
-        this.engine = engine;
-        this.emissionNorm = emissionNorm;
-        this.gearboxe = gearboxe;
-        this.transmission = transmission;
-        this.emptyWeight = emptyWeight;
-        this.consumption = consumption;
-        this.bodywork = bodywork;
-        this.numberOfPlace = numberOfPlace;
-        this.color = color;
-        this.mileage = mileage;
-    }
-    toMap(){
-        return{
-            brand: this.brand,
-            model: this.model,
-            constructionYear: this.constructionYear,
-            fuel: this.fuel,
-            engine: this.engine ,
-            emissionNorm: this.emissionNorm,
-            gearboxe: this.gearboxe,
-            transmission: this.transmission,
-            emptyWeight: this.emptyWeight,
-            consumption: this.consumption,
-            bodywork: this.bodywork,
-            numberOfPlace: this.numberOfPlace,
-            color: this.color,
-            mileage: this.mileage,
-        }
-    }
-    fromMap(map){
-        return CarModel(
-            map['brand'],
-            map['model'],
-            map['constructionYear'],
-            map['fuel'],
-            map['engine'],
-            map['emissionNorm'],
-            map['gearboxe'],
-            map['transmission'],
-            map['emptyWeight'],
-            map['consumption'],
-            map['bodywork'],
-            map['numberOfPlace'],
-            map['color'],
-            map['mileage']
-        )
-    }
-}
-
-//not finished
-class AnnouncementModel{
-    constructor(
-        description,
-        delivery,
-        priceOption,
-        price
-    ){
-        this.description = description;
-        this.delivery = delivery;
-        this.priceOption = priceOption;
-        this.price = price;
-    }
-    toMap(){
-        return{
-            description: this.description,
-            delivery: this.delivery,
-            priceOption: this.priceOption,
-            price: this.price
-        }
-    }
-    fromMap(map){
-        return AnnouncementModel(
-            map['description'],
-            map['delivery'],
-            map['priceOption'],
-            map['price']
-        )
-    }
-}
+import { auth, db, store } from "../firebase/firebase.js";
+import AnnouncementModel from '../model/AnnouncementModel';
+import { v4 as uuid } from 'uuid';
 
 function PublishCar() {
+    const history = useHistory()
+
+    const [success, setSuccess] = useState("")
+    const [error, setError] = useState("")
+
     {/* Data Lists */}
     const brands = ['TVR','Mclaren','Mercedes', 'Ferrari', 'Ford']
     const models = ['TVR Speed 12','Mclaren F1','Mercedes W124 E500', 'Ferrari F40', 'Ford GT40']
@@ -118,7 +24,6 @@ function PublishCar() {
     const bodyworks = ['Monospace','Break','Berline','City car','Monovolume','Cabriolet','Coupé','Compact','SUV or off road cars']
     const numberOfPlaces = ['2','3','4','5','6']
     const colors = ['Red','Beige','Purple','Blue','Silver','Green','Brown','White','Black']
-    const carOptions = ['ABS', 'Airbags', 'Air conditioning', 'Bluetooth', 'Adaptive lights']
     const deliveries = ['pick up','send']
     const priceOptions = ['Asking price','Offer','Exchange','Free']
 
@@ -137,23 +42,41 @@ function PublishCar() {
     const numberOfPlace = useRef();
     const color = useRef();
     const mileage = useRef();
-    const mileagePicture = useRef();
-    const carOption = useRef(); /* Car OPTIONS */
-    const frontEnd = useRef();
-    const backEnd = useRef();
-    const leftSide = useRef();
-    const rightSide = useRef();
+    
     const description = useRef();
     const delivery = useRef();
     const priceOption = useRef();
     const price = useRef();
 
+    const [file, setFile] = useState(null);
+    const [url, setURL] = useState("");
+
+    function handleChange(e) {
+        setFile(e.target.files[0]);
+    }
+    function handleUpload(e, id) {
+      e.preventDefault();
+      const ref = store.ref(`/images/${id}/${file.name}`);
+      const uploadTask = ref.put(file);
+      uploadTask.on("state_changed", console.log, console.error, () => {
+        ref
+          .getDownloadURL()
+          .then((url) => {
+              setURL(url);
+          });
+      });
+    }
+    
+
     async function handleSubmit(e) {
+        const id = uuid();
         e.preventDefault()
+        handleUpload(e, id)
 
-        console.log("brand: " + brand.current.value)
 
-        let Car = new CarModel(
+        
+        let Announcement = new AnnouncementModel(
+            id,
             brand.current.value,
             model.current.value,
             constructionYear.current.value,
@@ -167,32 +90,30 @@ function PublishCar() {
             bodywork.current.value,
             numberOfPlace.current.value,
             color.current.value,
-            mileage.current.value
-        )
-
-        let Announcement = new AnnouncementModel(
+            mileage.current.value,
+            auth.currentUser.uid,
+            url,
             description.current.value,
             delivery.current.value,
             priceOption.current.value,
             price.current.value
         )  
+
         try {
-            await db.collection("cars").doc().set(Car.toMap())
-            await db.collection("announcement").doc().set(Announcement.toMap())
+            if(Announcement.picture == ""){
+                setSuccess("")
+                setError("Failed to publish try again")
+            }else{
+                setSuccess("Thanks, your announcement has been successfully sent ")
+                setError("")
+                await db.collection("announcement").doc(id).set(Announcement.toMap())
+                history.push('/')
+            }
         } catch (err) {
-            console.log("error publishcar")
+            setSuccess("")
+            setError("Failed to publish try again")
             console.error(err)
         }
-        /*
-        console.log("mileagePicture: " + mileagePicture.current.value)
-        */
-        //console.log("carOption: " + carOption.current.value)
-        /*
-        console.log("frontEnd: " + frontEnd.current.value)
-        console.log("backEnd: " + backEnd.current.value)
-        console.log("leftSide: " + leftSide.current.value)
-        console.log("rightSide: " + rightSide.current.value)
-        */
     }
   
     return (
@@ -357,70 +278,17 @@ function PublishCar() {
                             <Form.Label>Mileage(in km)*</Form.Label>
                             <Form.Control ref={mileage} type="number" placeholder="example 200000" required />
                         </Form.Group>
-                        {/* PICTUREP */}
-                        <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Mileage Picture</Form.Label>
-                            <Form.Control ref={mileagePicture} type="file" />
-                        </Form.Group>
                     </Row>
                     
-
-                    {/* Car Options */}
-                    {/* OPTIONS */}
-                    {/*
+                    {/* Add Picture */}
                     <br/><hr/>
-                    <h2>Car Options</h2>
+                    <h2>Add Picture</h2>
                     <Row className="mb-3">
-                        
-                        {
-                        <Form.Group className="mb-3" id="formGridCheckbox">
-                            {
-                                
-                                carOptions.map((el) =>
-                                <Form.Check type="checkbox" label={el} value={el} />)
-                                
-                            }
-                        </Form.Group>
-                        }
-                        <div id="Opties" ref={carOption}>
-                            {
-                                carOptions.map((el) =>
-                                <div>
-                                    <input type="checkbox"name={"options" + el} value={el}/>
-                                    <label for={"options" + el} >{el}</label>
-                                </div>
-                                )
-                            }
-                        </div>
-                    </Row>
-                    */}
-
-                    {/* Add Pictures */}
-                    <br/><hr/>
-                    <h2>Add Pictures</h2>
-                    <Row className="mb-3">
-                        {/* Front End */}
                         <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Front End</Form.Label>
-                            <Form.Control ref={frontEnd} type="file" />
-                        </Form.Group>
-                        {/* Back End */}
-                        <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Back End</Form.Label>
-                            <Form.Control ref={backEnd} type="file" />
-                        </Form.Group>
-                        {/* Left Side */}
-                        <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Left Side</Form.Label>
-                            <Form.Control ref={leftSide} type="file" />
-                        </Form.Group>
-                        {/* Right Side */}
-                        <Form.Group as={Col} controlId="formFile" className="mb-3">
-                            <Form.Label>Right Side</Form.Label>
-                            <Form.Control ref={rightSide} type="file" />
+                            <Form.Label>Picture*</Form.Label>
+                            <Form.Control onChange={handleChange} type="file" required/>
                         </Form.Group>
                     </Row>
-                    
                     {/* Announcement */}
                     <br/><hr/>
                     <h2>Announcement</h2>
@@ -457,8 +325,10 @@ function PublishCar() {
                         </Form.Group>
                     </Row>
                     <Button variant="primary" type="submit" >
-                        Submit
+                        Publish
                     </Button>
+                    {success && <Alert variant="success">{success}</Alert>}
+                    {error && <Alert variant="danger">{error}</Alert>}
                 </Form>
             </section>
         </div>

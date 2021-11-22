@@ -10,12 +10,12 @@ function PageNotFound() {
                 <h2 className="text-center mb-4">404 - Page not found</h2>
               
                 <div className="w-100 text-center mt-3">
-                    <Link to="/forgot-password">Are you searching for something specific? Do you need help?</Link>
+                    <Link to="/contact-us">Are you searching for something specific? Do you need help?</Link>
                 </div>
                 </Card.Body>
             </Card>
             <div className="w-100 text-center mt-2">
-               <Link to="/signup">Go back to the homepage.</Link>
+               <Link to="/">Go back to the homepage.</Link>
             </div>
         </div>
     )

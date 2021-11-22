@@ -1,6 +1,5 @@
 import {React,useRef} from 'react';
 import "../layout/SearchCar.css";
-import { db } from "../firebase/firebase.js";
 import { useHistory } from "react-router";
 
 function SearchCar() {
@@ -136,7 +135,7 @@ function SearchCar() {
                   
                     <br/>
                     {/* SUBMIT BUTTON */}
-                    <button type="submit">Search</button>
+                    <button type="submit" className="btn btn-success d-flex justify-content-center">Search</button>
                 </form>
             </section>            
         </div>

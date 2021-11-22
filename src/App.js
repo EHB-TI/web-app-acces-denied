@@ -15,6 +15,7 @@ import PublishCar from './pages/PublishCar';
 import Contact from './pages/Contact';
 import PageNotFound from './components/PageNotFound';
 import Profile from './pages/Profile';
+import EvaluateCar from './components/EvaluateCar';
 import Announcements from './pages/Announcements';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
               <Route path="/contact-us" component={Contact}  />
 
               <Route path="/buy" component={SearchCar}  />
+              <Route path="/evaluate" component={EvaluateCar}  />
               <PrivateRoute path="/sell" component={PublishCar} />
               <Route path="/announcements" component={Announcements} />
 
