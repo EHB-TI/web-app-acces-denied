@@ -1,32 +1,40 @@
-import React from 'react';
+import {React,useRef} from 'react';
 import "../layout/SearchCar.css";
 import { db } from "../firebase/firebase.js";
 import { useHistory } from "react-router";
 
 function SearchCar() {
+    const brand = useRef()
+    const model = useRef()
+    const fuel = useRef()
+    const bodywork = useRef()
+    const price = useRef()
+    const constructionYear = useRef()
     const history = useHistory()
+
+    
 
     const searchAnnouncement = async (e) =>
     {
         e.preventDefault();
-        try {
-            const data = await db
-              .collection("announcement")
-              .get();
-            
-            history.push(
-                {
+
+
+        let objData = {
+            brand: brand.current.value,
+            model: model.current.value,
+            fuel: fuel.current.value,
+            bodywork: bodywork.current.value,
+            price: price.current.value,
+            constructionYear: constructionYear.current.value
+        }
+
+        history.push({
                     pathname: '/announcements',
-                    state: data.toString() // your data array of objects
-                }
-            )
-          } catch (err) {
-            //LOGGING HIERONDER 
-            console.error(err);
-            alert("CODE VOOR LOGGING");
-          
-        };
+                    state: {object:objData}
+        })
+            
     }
+
 
     return (
         <div className="SearchCar">            
@@ -35,17 +43,17 @@ function SearchCar() {
                 {/* TODO: FORM REQUEST POST ?? */}
                 <form action="/search" method="POST" onSubmit={searchAnnouncement}>
                     {/* BRAND */}
-                    <select name="brand" id="SearchBrand">
+                    <select name="brand" ref={brand} id="SearchBrand">
                         <option value="">Brand</option>
                         <optgroup label="Brand" id="optionSearchBrand"/>                        
                     </select>
                     {/* MODEL */}
-                    <select name="model" id="SearchModel">
+                    <select name="model" ref={model} id="SearchModel">
                         <option value="">Model</option>
                         <optgroup label="Model" id="optionSearchModel"/> 
                     </select>
                     {/* FUEL */}
-                    <select name="fuel" id="SearchFuel">
+                    <select name="fuel" ref={fuel} id="SearchFuel">
                         <option value="">Fuel</option>
                         <optgroup label="Fuel">
                                 <option value="Gasoline">Gasoline</option>
@@ -57,7 +65,7 @@ function SearchCar() {
                     </select>                
                   <br/>
                     {/* PRICE */}
-                    <select name="price" id="SearchPrice">
+                    <select name="price" ref={price} id="SearchPrice">
                         <option value="">Price</option>
                         <optgroup label="Price">
                             <option value="500">To 500 &euro;</option>
@@ -84,7 +92,7 @@ function SearchCar() {
                         </optgroup>
                     </select>
                     {/* BODY */}
-                    <select name="body" id="SearchBody">
+                    <select name="body" ref={bodywork} id="SearchBody">
                         <option value="">Body</option>
                         <optgroup label="Body">
                             <option value="Monospace">Monospace</option>
@@ -99,7 +107,7 @@ function SearchCar() {
                         </optgroup>
                     </select>
                 {/* CONSTRUCTION YEAR */}
-                    <select name="constructionYear" id="SearchConstructionYear">
+                    <select name="constructionYear" ref={constructionYear} id="SearchConstructionYear">
                         <option value="">Contruction Year</option>
                         <option value="2000">2000</option>
                         <option value="2001">2001</option>
