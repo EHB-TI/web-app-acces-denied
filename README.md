@@ -341,7 +341,7 @@ To be able to exploit code issues is a difficult task. The attacker will typical
 #### Reverse engineering 
 <hr>
 
-    By looking at the source code of a website you can understand how a website is made, which is called reverse engineering.  
+>*By looking at the source code of a website you can understand how a website is made, which is called reverse engineering.*
 
 The technical Impacts of this attack are quite moderate. An attacker may exploit reverse engineering to achieve any of the following:  
 
@@ -359,7 +359,8 @@ However, it is possible to make it harder for an attacker to extract data from t
 
 * Obfuscation: 
 
-      Modifying a website’s binary to make it harder for humans to read.
+    >*Modifying a website’s binary to make it harder for humans to read.*
+
     Obfuscation hides function and class names in your code, making it difficult for an attacker to reverse engineer your proprietary website.  
     
 * .Env file
@@ -369,7 +370,7 @@ However, it is possible to make it harder for an attacker to extract data from t
  #### Data encryption 
  <hr>
 
-    Converting plain text into unintelligible text and vice-versa. 
+> *Converting plain text into unintelligible text and vice-versa.*
   
   Firebase services also encrypt data in transit using HTTPS and logically isolate customer data. 
 
