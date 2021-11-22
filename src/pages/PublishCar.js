@@ -54,11 +54,11 @@ function PublishCar() {
     function handleChange(e) {
         setFile(e.target.files[0]);
     }
-    function handleUpload(e, id) {
+     function handleUpload(e, id) {
       e.preventDefault();
       const ref = store.ref(`/images/${id}/${file.name}`);
-      const uploadTask = ref.put(file);
-      uploadTask.on("state_changed", console.log, console.error, () => {
+      const uploadTask =  ref.put(file);
+      uploadTask.on("state_changed", console.log, console.error,  () =>  {
         ref
           .getDownloadURL()
           .then((url) => {
@@ -100,18 +100,17 @@ function PublishCar() {
         )  
 
         try {
-            if(Announcement.picture == ""){
-                setSuccess("")
-                setError("Failed to publish try again")
-            }else{
-                setSuccess("Thanks, your announcement has been successfully sent ")
-                setError("")
+               if (Announcement.picture == "")
+                setError("We are loading the image, please click submit again.") 
+                else{ 
+                setSuccess("Thanks, your announcement has been successfully sent")
+             
                 await db.collection("announcement").doc(id).set(Announcement.toMap())
-                history.push('/')
-            }
+                history.push('/profile')}
+           
         } catch (err) {
-            setSuccess("")
-            setError("Failed to publish try again")
+
+            setError(`Failed to publish try again: ${err}`)
             console.error(err)
         }
     }
