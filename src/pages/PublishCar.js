@@ -1,4 +1,5 @@
 import {React, useRef, useState} from 'react';
+import { useHistory } from 'react-router';
 import {Form,Button, Row, Col, Alert} from 'react-bootstrap';
 import "../layout/PublishCar.css";
 import { auth, db, store } from "../firebase/firebase.js";
@@ -6,6 +7,8 @@ import AnnouncementModel from '../model/AnnouncementModel';
 import { v4 as uuid } from 'uuid';
 
 function PublishCar() {
+    const history = useHistory()
+
     const [success, setSuccess] = useState("")
     const [error, setError] = useState("")
 
@@ -49,7 +52,7 @@ function PublishCar() {
     const [url, setURL] = useState("");
 
     function handleChange(e) {
-      setFile(e.target.files[0]);
+        setFile(e.target.files[0]);
     }
     function handleUpload(e, id) {
       e.preventDefault();
@@ -69,6 +72,8 @@ function PublishCar() {
         const id = uuid();
         e.preventDefault()
         handleUpload(e, id)
+
+
         
         let Announcement = new AnnouncementModel(
             id,
@@ -95,9 +100,15 @@ function PublishCar() {
         )  
 
         try {
-            setSuccess("Thanks, your announcement has been successfully sent ")
-            setError("")
-            await db.collection("announcement").doc(id).set(Announcement.toMap())
+            if(Announcement.picture == ""){
+                setSuccess("")
+                setError("Failed to publish try again")
+            }else{
+                setSuccess("Thanks, your announcement has been successfully sent ")
+                setError("")
+                await db.collection("announcement").doc(id).set(Announcement.toMap())
+                history.push('/')
+            }
         } catch (err) {
             setSuccess("")
             setError("Failed to publish try again")
