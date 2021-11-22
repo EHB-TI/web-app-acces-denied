@@ -1,15 +1,11 @@
 .cardAnnouncement{
-    margin-left: 280px;
-    margin-right: 280px;
+    margin: 10%;
 }
 
-.col{
-    display: inline-block;
-    vertical-align: top;
-    
-}
-
-#col2{
-    margin-left: 80px;
-    margin-top: 20px;
+.center-col 
+{
+    display: flex;
+    flex-direction: col;
+    justify-content: center;
+    align-content: center;
 }
