@@ -50,9 +50,9 @@ function PublishCar() {
     function handleChange(e) {
       setFile(e.target.files[0]);
     }
-    function handleUpload(e) {
+    function handleUpload(e, id) {
       e.preventDefault();
-      const ref = store.ref(`/images/${file.name}`);
+      const ref = store.ref(`/images/${id}/${file.name}`);
       const uploadTask = ref.put(file);
       uploadTask.on("state_changed", console.log, console.error, () => {
         ref
@@ -65,9 +65,10 @@ function PublishCar() {
     
 
     async function handleSubmit(e) {
-        e.preventDefault()
-        handleUpload(e)
         const id = uuid();
+        e.preventDefault()
+        handleUpload(e, id)
+        
         let Announcement = new AnnouncementModel(
             id,
             brand.current.value,
