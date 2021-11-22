@@ -1,25 +1,49 @@
 import React, { useEffect, useState } from "react";
 import '../layout/Profile.css';
+import '../layout/Announcements.css';
 import "firebase/auth";
 import { useHistory } from "react-router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase/firebase.js";
 import { Link } from "react-router-dom";
+import {Card,Button} from 'react-bootstrap';
 
 function Profile() {
 
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
+    const [announcements,setAnnouncements] = useState([]);
     const history = useHistory();
 
-    const fetchUserName = async () => {
+    const fetchCars = async () => {
+        let queryAnnouncements = await db
+            .collection("announcement");
+
+            queryAnnouncements.where("uid", "==", user?.uid);
+            
+        let array = [];
+            
+           
+        await queryAnnouncements.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                array.push(doc.data());
+            });
+
+            setAnnouncements(array);
+        })
+
+    }
+
+    const fetchUsername = async () => {
         try {
           const query = await db
             .collection("users")
             .where("uid", "==", user?.uid)
             .get();
-          const data = query.docs[0].data();
+
+        const data = query.docs[0].data();
           setName(data.name);
+ 
         } catch (err) {
           //LOGGING HIERONDER 
           console.error(err);
@@ -31,7 +55,8 @@ function Profile() {
         if (loading) return;
         if (!user) return history.replace("/");
     
-        fetchUserName();
+        fetchUsername();
+        fetchCars();
       }, [user, loading]);
 
 
@@ -90,32 +115,29 @@ function Profile() {
             <div className="col-xl-6 col-md-12">
                 <h1>Advertisements</h1>
        
-                <div className="card-deck">
-                    <div className="card">
-                        <img className="card-img-top" src="..." alt="Card image cap"/>
-                        <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                {
+            announcements.map(announcement =>
+                <Card className="cardAnnouncement" style={{backgroundColor:'#dfc15e',borderColor:'black'}} >
+                    <Card.Body>
+                        <div className="row">
+                        <div className="col-sm-3">
+                            <img className="img-fluid" src={announcement.picture} />
                         </div>
-                    </div>
-                    <div className="card">
-                    <img className="card-img-top" src="..." alt="Card image cap"/>
-                        <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                        <div className="col-sm-9" id="col2">
+                            <Card.Title>{announcement.brand}{announcement.model}</Card.Title>
+                            <Card.Text  >
+                            {announcement.description}
+                            </Card.Text >
+
+                            <Card.Text  >
+                            {announcement.price} $
+                            </Card.Text >
                         </div>
-                    </div>
-                    <div className="card">
-                    <img className="card-img-top" src="..." alt="Card image cap"/>
-                        <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                         </div>
-                    </div>
-                </div>
+                        <Button style={{ verticalAlign:"bottom",marginLeft:"40px" }} variant="dark">Show Details</Button>
+                    </Card.Body>
+                </Card>
+                )};
             </div>
         </div>  
    </div>
