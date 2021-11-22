@@ -95,7 +95,7 @@ function PublishCar() {
         )  
 
         try {
-            setSuccess("Email successfully sent")
+            setSuccess("Thanks, your announcement has been successfully sent ")
             setError("")
             await db.collection("announcement").doc(id).set(Announcement.toMap())
         } catch (err) {
