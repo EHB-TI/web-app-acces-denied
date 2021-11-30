@@ -16,10 +16,10 @@ function Profile() {
     const fetchUserName = async () => {
         try {
           const query = await db
-            .collection("users")
-            .where("uid", "==", user?.uid)
-            .get();
-          const data = query.docs[0].data();
+            .collection("users").doc(auth.currentUser.uid)
+            .get()            
+            
+          const data = query.data();
           setName(data.name);
         } catch (err) {
           //LOGGING HIERONDER 

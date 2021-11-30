@@ -20,6 +20,9 @@ import AboutUs from './components/AboutUs';
 import Blog from './components/Blog';
 import MyAnnouncements from './pages/MyAnnouncements';
 import Announcements from './pages/Announcements';
+import AdminRoute from './components/AdminRoute';
+import AdminHome from './components/AdminHome';
+import AdminWrapper from './logic/AdminWrapper';
 
 function App() {
     return (      
@@ -42,6 +45,8 @@ function App() {
               <PrivateRoute path="/sell" component={PublishCar} />
               <Route path="/my-announcements" component={MyAnnouncements} />
               <Route path="/announcements" component={Announcements} />
+
+              <Route path="/admin" component={AdminWrapper} />
 
               { /* Default route -> 404  */ }
               <Route path="/" component={PageNotFound}  />

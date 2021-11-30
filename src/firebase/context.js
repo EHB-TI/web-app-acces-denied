@@ -10,6 +10,7 @@ export function useAuth(){
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
+
     const [loading, setLoading] = useState(true)
     
 
@@ -23,9 +24,9 @@ export function AuthProvider({ children }) {
         const data = {
             email: email,
             name: name,
-            uid : auth.currentUser.uid
+            createdAt: new Date,            
         };    
-        const res = db.collection('users').doc().set(data);
+        const res = db.collection('users').doc(auth.currentUser.uid,).set(data);
         return res
     }
 
@@ -49,6 +50,8 @@ export function AuthProvider({ children }) {
     return currentUser.updatePassword(password)
     }
 
+
+
     // in useEffect, only run when we mount our component !
     useEffect(()=>{
         // Whenever the user has been set in Firebase the onAuthStateChanged will catch that change
@@ -63,7 +66,7 @@ export function AuthProvider({ children }) {
   
 
     const value = {
-        currentUser,
+        currentUser, 
         login,
         signup,
         signupData,
