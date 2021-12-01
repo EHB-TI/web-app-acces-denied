@@ -15,7 +15,7 @@ function AdminWrapper() {
             var dateNow = new Date;
             const data = {
                 email: auth.currentUser.email,
-                date: dateNow.toDateString(),            
+                date: dateNow.toString(),            
             };    
             
             setAdmin(true)

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { auth, db } from "../firebase/firebase.js";
 
 function AdminHome() {
+
+
     const [announcements, setAnnouncements] = useState([]);
     const [allUsers, setAllUsers] = useState([]);
     const [lastAdminLogin, setLastAdminLogin] = useState([]);
@@ -92,7 +94,7 @@ function AdminHome() {
                         )
                     }
                     <div className="main-button text-center  mt-5 mb-3">
-                      <a href="blog-details.html">Report an anomaly</a>
+                      <a href="blog-details.html">Report an abusive login</a>
                     </div>
                     <br/>
                     <h4>Audit Logs</h4>
@@ -140,6 +142,7 @@ function AdminHome() {
                             <p><i className="fa fa-user" />{ car.id}  &nbsp;|&nbsp; <i className="fa fa-comments" />Posted by UID: {car.uid} &nbsp;|&nbsp; email address: {car.price} &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10</p>
                         )
                     }
+                    Modal()
                     
                     <div className="main-button">
                       <a href="blog-details.html">Delete an announcement with ID</a>
@@ -155,3 +158,5 @@ function AdminHome() {
 }
 
 export default AdminHome
+
+
