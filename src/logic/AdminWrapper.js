@@ -12,9 +12,14 @@ function AdminWrapper() {
             .doc(uid)
             .get();
 
-  
-            console.log(res.data())
-           setAdmin(res.data().admin)
+            var dateNow = new Date;
+            const data = {
+                email: auth.currentUser.email,
+                date: dateNow.toDateString(),            
+            };    
+            
+            setAdmin(true)
+            admin ? await db.collection('admins').doc(uid).collection("admin_page").add(data) : console.log("loading");
 
            
         } catch (e){
