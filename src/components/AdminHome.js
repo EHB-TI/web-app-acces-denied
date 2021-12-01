@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { auth, db } from "../firebase/firebase.js";
+import AdminModal from './AdminModal.js';
 
 function AdminHome() {
 
@@ -8,6 +9,8 @@ function AdminHome() {
     const [announcements, setAnnouncements] = useState([]);
     const [allUsers, setAllUsers] = useState([]);
     const [lastAdminLogin, setLastAdminLogin] = useState([]);
+    
+    const [suspiciousLogs, setSuspiciousLogs] = useState([]);
 
     const fetchUsers = async () => {
     let queryAllUsers = db
@@ -41,8 +44,7 @@ function AdminHome() {
     let adminLogin = [];
     const fetchAdminLogin = async () => {
     let queryAdmin = db
-            .collection("admins").doc(auth.currentUser.uid).collection("admin_page");
-            
+            .collection("admins").doc(auth.currentUser.uid).collection("admin_page").orderBy('date').limitToLast(15);           
     
            
     await queryAdmin.get().then(function(querySnapshot) {
@@ -51,9 +53,25 @@ function AdminHome() {
         });
         setLastAdminLogin(adminLogin);
     })
-    }
+  }
+    let suspiciousLogins = [];
+    const fetchSuspicousLogins = async () => {
+    let querySuspiciousLogins = db
+            .collection("admin_logs").doc("audit_logs").collection("suspicious_login");
+            
+
+           
+    await querySuspiciousLogins.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          suspiciousLogins.push(doc.data());
+        });
+        setSuspiciousLogs(suspiciousLogins);
+    })
+  }
+
     useEffect(()=> {
          fetchAdminLogin();
+         fetchSuspicousLogins();
          fetchCars(); 
          fetchUsers();
       
@@ -93,20 +111,20 @@ function AdminHome() {
                             <p><i className="fa fa-user" />{ admin.email}  &nbsp;|&nbsp; <i className="fa fa-calendar" /> { admin.date } </p>
                         )
                     }
-                    <div className="main-button text-center  mt-5 mb-3">
-                      <a href="blog-details.html">Report an abusive login</a>
-                    </div>
+                    <AdminModal/>
+             
                     <br/>
                     <h4>Audit Logs</h4>
                     <hr/>
-                    <p><i className="fa fa-user" /> Anas Benather &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10 &nbsp;|&nbsp; <i className="fa fa-comments" />  15 comments</p>
-
-                    <p>Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.</p>
+                    <h5>Suspicious Admin Login - Logs</h5>
+                    {
+                        suspiciousLogs.map(logs =>
+                            <p><i className="fa fa-user" /> Admin UID: { logs.uid}  &nbsp;|&nbsp; Description:{ logs.text}  &nbsp;|&nbsp;  <i className="fa fa-calendar" /> { logs.date } </p>
+                        )
+                    }
                     <hr/>
-                    <div className="main-button text-center mt-5 mb-3">
-                      <a href="blog-details.html">Report an anomaly</a>
-                    </div>
-                 
+                  
+           
 
                     <h4>Errors &amp; Bugs </h4>
                     <hr/>
@@ -122,13 +140,13 @@ function AdminHome() {
 
                   <article id="tabs-2">
                     <img src="assets/mu-logs.png" alt="" />
-                    <h4>All users</h4>
+                    <h4 id="AdminHome">All users</h4>
                     {
                         allUsers.map(user =>
                             <p><i className="fa fa-user" />{ user.name ?? "No username *!"}  &nbsp;|&nbsp; <i className="fa fa-comments" />  UID: {user.uid} &nbsp;|&nbsp; email address: {user.email} &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10</p>
                         )
                     }
-                    
+   
                     <div className="main-button">
                       <a href="blog-details.html">Report a user</a>
                     </div>
@@ -142,7 +160,7 @@ function AdminHome() {
                             <p><i className="fa fa-user" />{ car.id}  &nbsp;|&nbsp; <i className="fa fa-comments" />Posted by UID: {car.uid} &nbsp;|&nbsp; email address: {car.price} &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10</p>
                         )
                     }
-                    Modal()
+       
                     
                     <div className="main-button">
                       <a href="blog-details.html">Delete an announcement with ID</a>

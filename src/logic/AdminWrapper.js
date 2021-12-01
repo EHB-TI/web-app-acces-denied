@@ -7,7 +7,7 @@ function AdminWrapper() {
     
     async function isAdmin(uid) {
         try{
-            var res = await db
+            await db
             .collection("admins")
             .doc(uid)
             .get();
