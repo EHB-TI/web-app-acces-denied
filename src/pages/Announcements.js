@@ -1,4 +1,5 @@
 import {React,useEffect,useState} from 'react';
+import { Link } from 'react-router-dom';
 import {Card,Button} from 'react-bootstrap';
 import "../layout/Announcements.css";
 import { db } from "../firebase/firebase.js";
@@ -41,9 +42,9 @@ function Announcements(props) {
                 <div className="row">
                     <div className="col-lg-6 offset-lg-3">
                         <div className="section-heading">
-                            <h2>Featured <em>Cars</em></h2>
+                            <h2>Find Your <em> Dream Car</em></h2>
                             <img src="assets/images/line-dec.png" alt="" />
-                            <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
+                            <p>Below you can find an overview of all the announcements posted on our website.</p>
                         </div>
                     </div>
                 </div>
@@ -69,7 +70,7 @@ function Announcements(props) {
                                         <i className="fa fa-cog" /> Manual &nbsp;&nbsp;&nbsp;
                                         </p>
                                         <ul className="social-icons">
-                                        <li><a href="car-details.html">+ View Car</a></li>
+                                        <li><Link to={{ pathname: "/announcement/details/" + announcement.id}}>+ View Car</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -81,7 +82,7 @@ function Announcements(props) {
                 </div>
                 <br />
                 <div className="main-button text-center">
-                <a href="/announcements">View Cars</a>
+                <a href="#">View More Cars</a>
                 </div>
             </div>
             </section>

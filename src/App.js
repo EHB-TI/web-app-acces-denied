@@ -24,6 +24,7 @@ import AdminWrapper from './logic/AdminWrapper';
 import Form from './components/sell_parts/Form';
 import CarParts from './pages/CarsParts';
 import CarPart from './pages/CarPart';
+import CarDetails from './components/CarDetails';
 
 function App() {
     return (      
@@ -47,6 +48,7 @@ function App() {
               <PrivateRoute path="/sell-parts" component={Form} />
               
               <Route path="/announcements" component={Announcements} />
+              <Route path="/announcement/details/:id" component={CarDetails} />
               <Route path="/my-announcements" component={MyAnnouncements} />
               <Route path="/car-parts" component={CarParts} />
               <PrivateRoute path="/car-part" component={CarPart} />
