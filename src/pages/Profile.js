@@ -35,7 +35,6 @@ function Profile() {
         fetchUserName();
       }, [user, loading]);
 
-
     return (
     <div id='all'>
     <div className="padding">

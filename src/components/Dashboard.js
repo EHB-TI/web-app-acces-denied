@@ -3,9 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../layout/Dashboard.css'
 import AboutUs from "./AboutUs"
 import Blog from "./Blog"
-import MyAnnouncements from "../pages/MyAnnouncements"
 import Announcements from "../pages/Announcements";
-
 
 function Dashboard(){
     return (

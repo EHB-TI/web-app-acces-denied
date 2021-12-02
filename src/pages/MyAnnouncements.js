@@ -1,10 +1,8 @@
 import {React,useEffect,useState} from 'react';
-import {Card,Button} from 'react-bootstrap';
 import "../layout/Announcements.css";
 import { auth, db } from "../firebase/firebase.js";
 
-
-function MyAnnouncements(props) {
+function MyAnnouncements() {
 console.log(auth.currentUser.uid)
     const [announcements, setAnnouncements] = useState([]);
 
@@ -28,7 +26,6 @@ console.log(auth.currentUser.uid)
     return unsub
     },[])
         
-
     return (
         <div>
         {/* ***** Cars Starts ***** */}
@@ -39,7 +36,7 @@ console.log(auth.currentUser.uid)
                         <div className="section-heading">
                             <h2>My <em>Announcements</em></h2>
                             <img src="assets/images/line-dec.png" alt="" />
-                            <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
+                            <p>Find an overview of your posted announcements.</p>
                         </div>
                     </div>
                 </div>

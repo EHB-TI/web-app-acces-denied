@@ -11,12 +11,9 @@ function SearchCar() {
     const constructionYear = useRef()
     const history = useHistory()
 
-    
-
     const searchAnnouncement = async (e) =>
     {
         e.preventDefault();
-
 
         let objData = {
             brand: brand.current.value,
@@ -28,12 +25,10 @@ function SearchCar() {
         }
 
         history.push({
-                    pathname: '/announcements',
-                    state: {object:objData}
-        })
-            
+            pathname: '/announcements',
+            state: {object:objData}
+        }) 
     }
-
 
     return (
         <div className="SearchCar">            

@@ -20,8 +20,6 @@ import AboutUs from './components/AboutUs';
 import Blog from './components/Blog';
 import MyAnnouncements from './pages/MyAnnouncements';
 import Announcements from './pages/Announcements';
-import AdminRoute from './components/AdminRoute';
-import AdminHome from './components/AdminHome';
 import AdminWrapper from './logic/AdminWrapper';
 
 function App() {
@@ -50,16 +48,10 @@ function App() {
 
               { /* Default route -> 404  */ }
               <Route path="/" component={PageNotFound}  />
-              
             </Switch>
             <Footer/>
           </AuthProvider>
-        </Router>
-      
-    
+        </Router>  
     );
-
 }
-
-
 export default App;
