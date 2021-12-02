@@ -1,24 +1,24 @@
+
 import React , {useRef} from 'react'
 import Modal from 'react-modal';
 import { auth, db } from '../firebase/firebase';
 import { Form, Button, Alert } from "react-bootstrap"
+
 const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-
-
-function AdminModal() {
+function AdminModalAnnouncements() {
   let subtitle;
   const textRef = useRef()
+  const aidRef = useRef()
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [error, setError] = React.useState("");
   const [message, setMessage] = React.useState("");
@@ -35,6 +35,8 @@ function AdminModal() {
 
   function closeModal() {
     setIsOpen(false);
+    setLoading(false)
+    setMessage("") 
   }
   
   function handleSubmit(e) {
@@ -47,15 +49,29 @@ function AdminModal() {
 
   async function reportSuspciousLogin() {
       try{
+
+           var refAnnouncement = await db
+            .collection("announcement").doc(aidRef.current.value)
+            .get();
+            var announcementData = refAnnouncement.data();
+            console.log(announcementData);
+            
+            setMessage("Loading .... waiting for updates")
+            await db
+            .collection("announcement").doc(aidRef.current.value)
+            .delete()
+
             const date = new Date;
             const data = {
-            uid: auth.currentUser.uid,
+            uidAdmin: auth.currentUser.uid,
+            aidUser: aidRef.current.value,
             text: textRef.current.value,          
             date: date.toString(),  
+            data: announcementData,
             };  
             await db
             .collection("admin_logs").doc("audit_logs")
-            .collection("suspicious_login").doc()
+            .collection("deleted_announcements").doc()
             .set(data);
             setMessage("Succesfully sent!")
 
@@ -68,32 +84,42 @@ function AdminModal() {
  
   return (
     <div>
-      <button onClick={openModal} className="btn btn-danger mt-5 mb-3 mx-5">Report a suspicious login</button>
+      <button onClick={openModal} className="btn btn-danger mt-5 mb-3 mx-5">Report a suspicious announcement</button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Report a suspicious login"
+        contentLabel="Report a suspicious announcement"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Report a suspicious login</h2>
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Report a suspicious announcement</h2>
        
-        <p className="mt-4">Please fill in below why and when you suspect a suspicious login.</p>
-        <p>Also, make sure you change your password after reporting this incident.</p>
+        <p className="mt-4">Please fill in below why you suspect an announcement to be suspicious.</p>
+        <p>Also, make sure you provide some pieces of evidence and arguments when deleting an announcement.</p>
+        <p>You need the announcement ID to be able to delete an announcement, this action can not be undone.</p>
         {message && <Alert variant="success">{message}</Alert>}
         {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
-              <Form.Label>Description</Form.Label>
+            <Form.Group>
+              <Form.Label>Announcemnt ID </Form.Label>
+              <Form.Control
+                type="text"
+                ref={aidRef}
+                required
+                defaultValue={"A-ID"}
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Evidence - Arguments</Form.Label>
               <Form.Control
                 type="text"
                 ref={textRef}
                 required
-                defaultValue={"I suspect a suspicious login on "}
+                defaultValue={"I suspect that this announcement is "}
               />
             </Form.Group>
             <Button disabled={loading} className="main-button text-center mt-5 mb-3" type="submit">
-              Report
+              Report announcement
             </Button>
             </Form>
    
@@ -108,4 +134,4 @@ function AdminModal() {
 }
 
 
-export default AdminModal;
+export default AdminModalAnnouncements

@@ -28,7 +28,7 @@ export default function UpdateProfile() {
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value))
     }
-
+    
     Promise.all(promises)
       .then(() => {
         history.push("/")
@@ -40,6 +40,8 @@ export default function UpdateProfile() {
         setLoading(false)
       })
   }
+
+
 
   return (
     <div className="App">
