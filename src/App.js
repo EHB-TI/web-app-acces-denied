@@ -21,6 +21,9 @@ import Blog from './components/Blog';
 import MyAnnouncements from './pages/MyAnnouncements';
 import Announcements from './pages/Announcements';
 import AdminWrapper from './logic/AdminWrapper';
+import Form from './components/sell_parts/Form';
+import CarParts from './pages/CarsParts';
+import CarPart from './pages/CarPart';
 
 function App() {
     return (      
@@ -41,8 +44,12 @@ function App() {
               <Route path="/buy" component={SearchCar}  />
               <Route path="/evaluate" component={EvaluateCar}  />
               <PrivateRoute path="/sell" component={PublishCar} />
-              <Route path="/my-announcements" component={MyAnnouncements} />
+              <PrivateRoute path="/sell-parts" component={Form} />
+              
               <Route path="/announcements" component={Announcements} />
+              <Route path="/my-announcements" component={MyAnnouncements} />
+              <Route path="/car-parts" component={CarParts} />
+              <PrivateRoute path="/car-part" component={CarPart} />
 
               <Route path="/admin" component={AdminWrapper} />
 
