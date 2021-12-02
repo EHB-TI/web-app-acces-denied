@@ -74,12 +74,7 @@ function PublishCar() {
         let id = uuid()
         e.preventDefault()
         handleUpload(e, id)
-<<<<<<< HEAD
 		let Car = new CarModel(
-=======
-   
-        let Announcement = new AnnouncementModel(
->>>>>>> 7e62fb99e20f35a10ac9aa7d5e13ba1838ed53a9
             id,
             brand.current.value,
             model.current.value,
