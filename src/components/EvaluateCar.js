@@ -53,7 +53,16 @@ const Condition = ({ when, is, children }) => (
 )
 
 const Nice = () =>(
-  
+    <div className="container-form">
+       <div className="row">
+        
+              <div className="section-heading dark-bg">
+                <h2>Evaluate <em>Your Car</em></h2>
+                <img src="assets/images/line-dec.png" alt="" />
+              </div>
+        
+          </div>
+ 
     <Form 
       onSubmit={onSubmit}
       initialValues={{ mileage: 1, motortype: 'gasoline' }}
@@ -78,22 +87,26 @@ const Nice = () =>(
       }}
     >
       {({ handleSubmit, form, submitting, pristine, values }) => (
-        <form className="form" onSubmit={handleSubmit}>
-          <Container className="background">
+        <form  onSubmit={handleSubmit}>
+          <Container className="background mb-5">
+      
+          <p className="text-white">Here you can evaluate your car. Fill in the form and press "sumbit".</p>
+          <p className="text-white"> The estimated price will be shown on the screen.</p>
             <Row>
                 <Col>
           <div>
             <label>Brand Name</label>
             <Field
+              
               name="brandName"
               component="input"
               type="text"
-              placeholder="Brand Name"
+              placeholder='Ex: "Mercedes"'
             />
             <Error name="brandName" />
           </div>
           <Condition when="brandName" is="Mercedes"> Type
-          <FormSelection.Select aria-label="type" name="type" id="type">
+          <FormSelection.Select aria-label="type" name="type" id="type"  className ="my-2">
               <option value="Class a" selected>Class A</option>
               <option value="Gle">Gle</option>
               <option value="Black series">Black Series</option>
@@ -101,7 +114,7 @@ const Nice = () =>(
           </Condition>
           <div>
             <label>Motortype</label>
-            <div>
+            <div className="my-2">
               <label>
                 <Field
                   name="motortype"
@@ -127,6 +140,7 @@ const Nice = () =>(
             <div>
               <label>Mileage</label>
               <Field
+                  
                 name="mileage"
                 component="input"
                 type="text"
@@ -271,6 +285,7 @@ const Nice = () =>(
         </form>
       )}
     </Form>
+    </div>
     
 )
 return(Nice())

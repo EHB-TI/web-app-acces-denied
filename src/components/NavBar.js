@@ -5,9 +5,6 @@ import "../layout/NavBar.css";
 
 import { useAuth } from "../firebase/context"
 
-
-
-
 function NavBar() 
 {
   const [error, setError] = useState("")
@@ -25,7 +22,6 @@ function NavBar()
       setError("Failed to log out")
     }
   }
-  
   
    return (
     <Navbar collapseOnSelect expand="xl" className="navbar" variant="dark">
@@ -59,24 +55,19 @@ function NavBar()
         
             </Nav>
             {currentUser == null ?
-            <Nav> 
-            
-            
-              <Nav.Link className="navlink" as={Link} to={"/signup"}>Register</Nav.Link>
-              <Nav.Link className="navlink" as={Link} to={"/login"}>Login</Nav.Link>
-            
-            
-            </Nav> : 
-            <Nav> 
-            
-            <Nav.Link className="navlink" as={Link} to={"/profile"}>Profile</Nav.Link>
-            <Button className="btn btn-primary border-r" onClick={handleLogout}>Logout</Button>
-            
-          
-          
-          </Nav>
-}
+              <Nav>            
+              
+                <Nav.Link className="navlink" as={Link} to={"/signup"}>Register</Nav.Link>
+                <Nav.Link className="navlink" as={Link} to={"/login"}>Login</Nav.Link>
+              
+              </Nav> : 
+              <Nav> 
+              
+                <Nav.Link className="navlink" as={Link} to={"/profile"}>Profile</Nav.Link>
+                <Button className="btn btn-primary border-r" onClick={handleLogout}>Logout</Button>
 
+              </Nav>
+            }
           </Navbar.Collapse>
       </Container>
       {error && <Alert variant="danger">{error}</Alert>}
