@@ -1,4 +1,5 @@
 import {React,useEffect,useState} from 'react';
+import { Link } from 'react-router-dom';
 import {Card,Button} from 'react-bootstrap';
 import "../layout/Announcements.css";
 import { db } from "../firebase/firebase.js";
@@ -69,7 +70,7 @@ function Announcements(props) {
                                         <i className="fa fa-cog" /> Manual &nbsp;&nbsp;&nbsp;
                                         </p>
                                         <ul className="social-icons">
-                                        <li><a href="car-details.html">+ View Car</a></li>
+                                        <li><Link to={{ pathname: "/announcement/details/" + announcement.id}}>+ View Car</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -81,7 +82,7 @@ function Announcements(props) {
                 </div>
                 <br />
                 <div className="main-button text-center">
-                <a href="/announcements">View Cars</a>
+                <a href="/announcements/{announcement.price}">View Cars</a>
                 </div>
             </div>
             </section>

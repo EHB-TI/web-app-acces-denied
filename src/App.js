@@ -23,6 +23,7 @@ import Announcements from './pages/Announcements';
 import AdminRoute from './components/AdminRoute';
 import AdminHome from './components/AdminHome';
 import AdminWrapper from './logic/AdminWrapper';
+import CarDetails from './pages/CarDetails';
 
 function App() {
     return (      
@@ -45,6 +46,7 @@ function App() {
               <PrivateRoute path="/sell" component={PublishCar} />
               <Route path="/my-announcements" component={MyAnnouncements} />
               <Route path="/announcements" component={Announcements} />
+              <Route path="/announcement/details/:id" component={CarDetails} />
 
               <Route path="/admin" component={AdminWrapper} />
 
