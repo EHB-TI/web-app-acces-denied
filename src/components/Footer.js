@@ -14,8 +14,7 @@ function Footer() {
                        <ul className="list-unstyled">
                            <li>Nijverheidskaailaan 170</li>
                            <li>1070 Anderlecht</li>
-                           <li>Tel: +32768797</li>
-                           
+                           <li>Tel: +32768797</li>                           
                        </ul>
                    </div>
 
@@ -29,7 +28,6 @@ function Footer() {
                            <li><Link to="/about" className="footer-link">About</Link></li>
                        </ul>
                    </div>
-
                    {/* Column 3 */}
                    <div className="col-md-3 col-sm-6">
                        <h5>Wet</h5>
@@ -39,7 +37,6 @@ function Footer() {
                            <li><Link to="/about" className="footer-link">Toegangelijkheid</Link></li>
                        </ul>
                    </div>
-
                    {/* Column 4 */}
                    <div className="col-md-3 col-sm-6">
                        <h5>Lorem ipsum</h5>
@@ -55,11 +52,8 @@ function Footer() {
                        <p className="p.text-xs-center">
                            &copy;{new Date().getFullYear()} Car App - All Rights Reserved
                        </p>
-                   </div>
-                   
-
+                   </div>  
                </div>
-
            </div>
         </div>
        </footer>

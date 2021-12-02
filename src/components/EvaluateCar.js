@@ -53,224 +53,237 @@ const Condition = ({ when, is, children }) => (
 )
 
 const Nice = () =>(
-  
-    <Form 
-      onSubmit={onSubmit}
-      initialValues={{ mileage: 1, motortype: 'gasoline' }}
-      validate={values => {
-        const errors = {}
-        if (!values.brandName) {
-          errors.brandName = 'Required'
-        }
-        if (!values.motortype) {
-          errors.motortype = 'Required'
-        }
-        if (values.motortype === 'gasoline') {
-          if (!values.mileage) {
-            errors.mileage = 'Required'
-          }
-        } else if (values.motortype === 'diesel') {
-          if (!values.dieselTime) {
-            errors.dieselTime = 'Required'
-          }
-        }
-        return errors
-      }}
-    >
-      {({ handleSubmit, form, submitting, pristine, values }) => (
-        <form className="form" onSubmit={handleSubmit}>
-          <Container className="background">
-            <Row>
-                <Col>
-          <div>
-            <label>Brand Name</label>
-            <Field
-              name="brandName"
-              component="input"
-              type="text"
-              placeholder="Brand Name"
-            />
-            <Error name="brandName" />
-          </div>
-          <Condition when="brandName" is="Mercedes"> Type
-          <FormSelection.Select aria-label="type" name="type" id="type">
-              <option value="Class a" selected>Class A</option>
-              <option value="Gle">Gle</option>
-              <option value="Black series">Black Series</option>
-            </FormSelection.Select>
-          </Condition>
-          <div>
-            <label>Motortype</label>
-            <div>
-              <label>
+    <div className="container-form">
+       <div className="row">        
+          <div className="section-heading dark-bg">
+            <h2>Evaluate <em>Your Car</em></h2>
+            <img src="assets/images/line-dec.png" alt="" />
+          </div>        
+        </div>
+ 
+        <Form 
+          onSubmit={onSubmit}
+          initialValues={{ mileage: 1, motortype: 'gasoline' }}
+          validate={values => {
+            const errors = {}
+            if (!values.brandName) {
+              errors.brandName = 'Required'
+            }
+            if (!values.motortype) {
+              errors.motortype = 'Required'
+            }
+            if (values.motortype === 'gasoline') {
+              if (!values.mileage) {
+                errors.mileage = 'Required'
+              }
+            } else if (values.motortype === 'diesel') {
+              if (!values.dieselTime) {
+                errors.dieselTime = 'Required'
+              }
+            }
+            return errors
+          }}
+        >
+          {({ handleSubmit, form, submitting, pristine, values }) => (
+            <form  onSubmit={handleSubmit}>
+              <Container className="background mb-5">
+          
+              <p className="text-white">Here you can evaluate your car. Fill in the form and press "sumbit".</p>
+              <p className="text-white"> The estimated price will be shown on the screen.</p>
+                <Row>
+                    <Col>
+              <div>
+                <label>Brand Name</label>
                 <Field
-                  name="motortype"
+                  
+                  name="brandName"
                   component="input"
-                  type="radio"
-                  value="gasoline"
-                />{' '}
-                Gasoline
-              </label>
-              <label>
-                <Field
-                  name="motortype"
-                  component="input"
-                  type="radio"
-                  value="diesel"
-                />{' '}
-                Diesel
-              </label>
-            </div>
-            <Error name="motortype" />
-          </div>
-          <Condition when="motortype" is="gasoline">
-            <div>
-              <label>Mileage</label>
-              <Field
-                name="mileage"
-                component="input"
-                type="text"
-                placeholder="Mileage (/km) "
-              />
-              <Error name="mileage" />
-            </div>
-          </Condition>
-          <Condition when="motortype" is="diesel">
-          <div>
-              <label>Mileage</label>
-              <Field
-                name="mileage"
-                component="input"
-                type="text"
-                placeholder="Mileage "
-              />
-              <Error name="mileage" />
-            </div>
-          </Condition>
-          <div>
-              <label>Purchase Date </label>
-              <Field
-                name="purchase"
-                component="input"
-                type="text"
-                placeholder="years ago"
-              />
-              <Error name="purchase" />
-            </div>
-            
-            <div>
-            <label>Are you the first owner of the car?</label>
-            <div>
-              <label>
-                <Field
-                  name="ownership"
-                  component="input"
-                  type="radio"
-                  value="yes"
-                />{' '}
-                Yes
-              </label>
-              <label>
-                <Field
-                  name="ownership"
-                  component="input"
-                  type="radio"
-                  value="no"
-                />{' '}
-                No
-              </label>
-            </div>
-            <Error name="ownership" />
-          </div>
-          <Condition when="ownership" is="yes">
+                  type="text"
+                  placeholder='Ex: "Mercedes"'
+                />
+                <Error name="brandName" />
+              </div>
+              <Condition when="brandName" is="Mercedes"> Type
+              <FormSelection.Select aria-label="type" name="type" id="type"  className ="my-2">
+                  <option value="Class a" selected>Class A</option>
+                  <option value="Gle">Gle</option>
+                  <option value="Black series">Black Series</option>
+                </FormSelection.Select>
+              </Condition>
+              <div>
+                <label>Motortype</label>
+                <div className="my-2">
+                  <label>
+                    <Field
+                      name="motortype"
+                      component="input"
+                      type="radio"
+                      value="gasoline"
+                    />{' '}
+                    Gasoline
+                  </label>
+                  <label>
+                    <Field
+                      name="motortype"
+                      component="input"
+                      type="radio"
+                      value="diesel"
+                    />{' '}
+                    Diesel
+                  </label>
+                </div>
+                <Error name="motortype" />
+              </div>
+              <Condition when="motortype" is="gasoline">
+                <div>
+                  <label>Mileage</label>
+                  <Field
+                      
+                    name="mileage"
+                    component="input"
+                    type="text"
+                    placeholder="Mileage (/km) "
+                  />
+                  <Error name="mileage" />
+                </div>
+              </Condition>
+              <Condition when="motortype" is="diesel">
+              <div>
+                  <label>Mileage</label>
+                  <Field
+                    name="mileage"
+                    component="input"
+                    type="text"
+                    placeholder="Mileage "
+                  />
+                  <Error name="mileage" />
+                </div>
+              </Condition>
+              <div>
+                  <label>Purchase Date </label>
+                  <Field
+                    name="purchase"
+                    component="input"
+                    type="text"
+                    placeholder="years ago"
+                  />
+                  <Error name="purchase" />
+                </div>
+                
+                <div>
+                <label>Are you the first owner of the car?</label>
+                <div>
+                  <label>
+                    <Field
+                      name="ownership"
+                      component="input"
+                      type="radio"
+                      value="yes"
+                    />{' '}
+                    Yes
+                  </label>
+                  <label>
+                    <Field
+                      name="ownership"
+                      component="input"
+                      type="radio"
+                      value="no"
+                    />{' '}
+                    No
+                  </label>
+                </div>
+                <Error name="ownership" />
+              </div>
+              <Condition when="ownership" is="yes">
 
-            <div>
-              <label>Price</label>
-              <Field
-                name="price"
-                component="input"
-                type="text"
-                placeholder="Price (€) "
-              />
-              <Error name="Price" />
-            </div>
+                <div>
+                  <label>Price</label>
+                  <Field
+                    name="price"
+                    component="input"
+                    type="text"
+                    placeholder="Price (€) "
+                  />
+                  <Error name="Price" />
+                </div>
 
-          </Condition>
-          <Condition when="ownership" is="no">
-          <div>
-              <label>Price</label>
-              <Field
-                name="price"
-                component="input"
-                type="text"
-                placeholder="Price (€) "
-              />
-              <Error name="Price" />
-            </div>
-          </Condition>
-          <label>Are there any visible traces of usage? (ex. bruises, scratches,...)?</label>
-            <div>
-              <label>
-                <Field
-                  name="usage"
-                  component="input"
-                  type="radio"
-                  value="yes"
-                />{' '}
-                Yes
-              </label>
-              <label>
-                <Field
-                  name="usage"
-                  component="input"
-                  type="radio"
-                  value="no"
-                />{' '}
-                No
-              </label>
-            </div>
-            <Error name="usage" />
+              </Condition>
+              <Condition when="ownership" is="no">
+              <div>
+                  <label>Price</label>
+                  <Field
+                    name="price"
+                    component="input"
+                    type="text"
+                    placeholder="Price (€) "
+                  />
+                  <Error name="Price" />
+                </div>
+              </Condition>
+              <label>Are there any visible traces of usage? (ex. bruises, scratches,...)?</label>
+                <div>
+                  <label>
+                    <Field
+                      name="usage"
+                      component="input"
+                      type="radio"
+                      value="yes"
+                    />{' '}
+                    Yes
+                  </label>
+                  <label>
+                    <Field
+                      name="usage"
+                      component="input"
+                      type="radio"
+                      value="no"
+                    />{' '}
+                    No
+                  </label>
+                </div>
+                <Error name="usage" />
 
-            <label>Is the car still under insurance?</label>
-            <div>
-              <label>
-                <Field
-                  name="insurance"
-                  component="input"
-                  type="radio"
-                  value="yes"
-                />{' '}
-                Yes
-              </label>
-              <label>
-                <Field
-                  name="insurance"
-                  component="input"
-                  type="radio"
-                  value="no"
-                />{' '}
-                No
-              </label>
-            </div>
-            <Error name="insurance" />
+                <label>Is the car still under insurance?</label>
+                <div>
+                  <label>
+                    <Field
+                      name="insurance"
+                      component="input"
+                      type="radio"
+                      value="yes"
+                    />{' '}
+                    Yes
+                  </label>
+                  <label>
+                    <Field
+                      name="insurance"
+                      component="input"
+                      type="radio"
+                      value="no"
+                    />{' '}
+                    No
+                  </label>
+                </div>
+                <Error name="insurance" />
 
-          <div className="Buttons">
-            <button type="submit" disabled={submitting}>
-              Submit
-            </button>
-            <button type="Button" onClick={form.reset} disabled={submitting}>
-              Reset
-            </button>
-          </div>
-          </Col>
-          <Col id="result">
-          <pre><div id="priceResults"></div></pre>
-                    </Col>
-                </Row>
-            </Container>
-        </form>
-      )}
-    </Form>
+              <div className="Buttons">
+                <button type="submit" disabled={submitting}>
+                  Submit
+                </button>
+                <button type="Button" onClick={form.reset} disabled={submitting}>
+                  Reset
+                </button>
+              </div>
+              </Col>
+              <Col id="result">
+              <pre><div id="priceResults"></div></pre>
+                        </Col>
+                    </Row>
+                </Container>
+            </form>
+          )}
+        </Form>
+    </div>
     
 )
 return(Nice())

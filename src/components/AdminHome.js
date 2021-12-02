@@ -1,10 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import { db } from "../firebase/firebase.js";
+import { auth, db } from "../firebase/firebase.js";
+import AdminModal from './AdminModal.js';
+import AdminModalAnnouncements from './AdminModalAnnouncements.js';
+import AdminModalUsers from './AdminModalUsers.js';
+import AdminReport from './AdminReport.js';
 
 function AdminHome() {
+
+
     const [announcements, setAnnouncements] = useState([]);
     const [allUsers, setAllUsers] = useState([]);
+    const [lastAdminLogin, setLastAdminLogin] = useState([]);
+    
+    const [suspiciousLogs, setSuspiciousLogs] = useState([]);
+    const [incidents, setIncidents] = useState([]);
 
     const fetchUsers = async () => {
     let queryAllUsers = db
@@ -35,9 +45,56 @@ function AdminHome() {
     })
     }
     
+    let adminLogin = [];
+    const fetchAdminLogin = async () => {
+    let queryAdmin = db
+            .collection("admins").doc(auth.currentUser.uid).collection("admin_page").orderBy('date').limitToLast(15);           
+    
+           
+    await queryAdmin.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          adminLogin.push(doc.data());
+        });
+        setLastAdminLogin(adminLogin);
+    })
+  }
+    let suspiciousLogins = [];
+    const fetchSuspicousLogins = async () => {
+    let querySuspiciousLogins = db
+            .collection("admin_logs").doc("audit_logs").collection("suspicious_login");
+            
+
+           
+    await querySuspiciousLogins.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          suspiciousLogins.push(doc.data());
+        });
+        setSuspiciousLogs(suspiciousLogins);
+    })
+  }
+
+  let incidentLogs = [];
+  const fetchIncidents = async () => {
+  let queryIncidents = db
+          .collection("admin_logs").doc("audit_logs").collection("reported_incidents");
+          
+
+         
+  await queryIncidents.get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        incidentLogs.push(doc.data());
+      });
+      setIncidents(incidentLogs);
+  })
+}
+
     useEffect(()=> {
+         fetchAdminLogin();
+         fetchSuspicousLogins();
+         fetchIncidents();
          fetchCars(); 
          fetchUsers();
+      
     return 
     },[])
         
@@ -61,7 +118,7 @@ function AdminHome() {
                   <li><a href="#tabs-1">Security logs - Audit logs</a></li>
                   <li><a href="#tabs-2">Delete a user</a></li>
                   <li><a href="#tabs-3">Delete an announcement</a></li>
-                  <div className="main-rounded-button"><Link to="/contact-us">ALERT US</Link></div>
+                  <AdminReport/>
                 </ul>
               </div>
               <div className="col-lg-8">
@@ -69,31 +126,33 @@ function AdminHome() {
                   <article id="tabs-1">
                     <img src="assets/sa-logs.png" alt="" />
                     <h4>Security Logs</h4>
-                    <hr/>
-                    <p><i className="fa fa-user" /> Anas Benather &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10 &nbsp;|&nbsp; <i className="fa fa-comments" />  15 comments</p>
-
-                    <p>Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.</p>
-                    <hr/>
-                    <div className="main-button text-center  mt-5 mb-3">
-                      <a href="blog-details.html">Report an anomaly</a>
-                    </div>
+                    {
+                        lastAdminLogin.map(admin =>
+                            <p><i className="fa fa-user" />{ admin.email}  &nbsp;|&nbsp; <i className="fa fa-calendar" /> { admin.date } </p>
+                        )
+                    }
+                    <AdminModal/>
+             
                     <br/>
                     <h4>Audit Logs</h4>
                     <hr/>
-                    <p><i className="fa fa-user" /> Anas Benather &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10 &nbsp;|&nbsp; <i className="fa fa-comments" />  15 comments</p>
-
-                    <p>Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.</p>
+                    <h5>Suspicious Admin Login - Logs</h5>
+                    {
+                        suspiciousLogs.map(logs =>
+                            <p><i className="fa fa-user" /> Admin UID: { logs.uid}  &nbsp;|&nbsp; <i class="fas fa-info"></i> Description:{ logs.text}  &nbsp;|&nbsp;  <i className="fa fa-calendar" /> { logs.date } </p>
+                        )
+                    }
                     <hr/>
-                    <div className="main-button text-center mt-5 mb-3">
-                      <a href="blog-details.html">Report an anomaly</a>
-                    </div>
-                 
+                    incidents
+           
 
-                    <h4>Errors &amp; Bugs </h4>
+                    <h4>Incidents - Errors &amp; Bugs </h4>
                     <hr/>
-                    <p><i className="fa fa-user" /> Anas Benather &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10 &nbsp;|&nbsp; <i className="fa fa-comments" />  15 comments</p>
-
-                    <p>Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.</p>
+                    {
+                        incidents.map(incident =>
+                            <p><i class="fas fa-info"></i> Type of Report: { incident.type}  &nbsp;|&nbsp; <i className="fa fa-user" /> Admin UID: { incident.uidAdmin}  &nbsp;|&nbsp; <i class="fas fa-info"></i> Description:{ incident.text}  &nbsp;|&nbsp;  <i className="fa fa-calendar" /> { incident.date } &nbsp;|&nbsp;  <i className="fa fa-user" />User UID: { incident.uidUser}  </p>
+                        )
+                    }
                     <hr/>
                     <div className="main-button text-center  mt-5 mb-3">
                       <a href="blog-details.html">Report an anomaly</a>
@@ -103,16 +162,15 @@ function AdminHome() {
 
                   <article id="tabs-2">
                     <img src="assets/mu-logs.png" alt="" />
-                    <h4>All users</h4>
+                    <h4 id="AdminHome">All users</h4>
                     {
                         allUsers.map(user =>
-                            <p><i className="fa fa-user" />{ user.name ?? "No username *!"}  &nbsp;|&nbsp; <i className="fa fa-comments" />  UID: {user.uid} &nbsp;|&nbsp; email address: {user.email} &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10</p>
+                            <p><i className="fa fa-user" /> { user.name ?? "No username *!"}  &nbsp;|&nbsp; <i className="fa fa-info" />  UID: {user.uid} &nbsp;|&nbsp; <i class="fas fa-at"></i> email: {user.email} <br/> &nbsp;|&nbsp; <i className="fa fa-calendar" /> {user.createdAt ?? ""}</p>
                         )
                     }
-                    
-                    <div className="main-button">
-                      <a href="blog-details.html">Report a user</a>
-                    </div>
+                    <AdminModalUsers/>
+   
+                  
                   </article>
 
                   <article id="tabs-3">
@@ -120,13 +178,13 @@ function AdminHome() {
                     <h4>All announcements</h4>
                     {
                         announcements.map(car =>
-                            <p><i className="fa fa-user" />{ car.id}  &nbsp;|&nbsp; <i className="fa fa-comments" />Posted by UID: {car.uid} &nbsp;|&nbsp; email address: {car.price} &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10</p>
+                            <p><i className="fa fa-user" /> { car.id}  &nbsp;|&nbsp; <i className="fa fa-comments" /> Posted by UID: {car.uid} &nbsp;|&nbsp; <i class="fas fa-at"></i> email: {car.price} <br/> &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10</p>
                         )
                     }
-                    
-                    <div className="main-button">
-                      <a href="blog-details.html">Delete an announcement with ID</a>
-                    </div>
+
+                    <AdminModalAnnouncements/>
+       
+           
                   </article>
                 </section>
               </div>
@@ -137,4 +195,6 @@ function AdminHome() {
     )
 }
 
-export default AdminHome
+export default AdminHome;
+
+

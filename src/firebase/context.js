@@ -10,9 +10,7 @@ export function useAuth(){
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
-
     const [loading, setLoading] = useState(true)
-    
 
     // function to create a new user in Firebase
     function signup(email, password){
@@ -21,10 +19,12 @@ export function AuthProvider({ children }) {
 
     //function to push the email and name of the user to Firestore
     function signupData(email, name){
+        const date = new Date;
+    
         const data = {
             email: email,
             name: name,
-            createdAt: new Date,            
+            createdAt: date.toString(),            
         };    
         const res = db.collection('users').doc(auth.currentUser.uid,).set(data);
         return res
@@ -38,19 +38,68 @@ export function AuthProvider({ children }) {
     return auth.signOut()
     }
 
-    function resetPassword(email) {
+    async function resetPassword(email) {  
+        try{
+            const date = new Date;
+            const data = {
+            text: "Password Recovery asked",
+            email: email,    
+            date: date.toString(),  
+            };  
+            await db
+            .collection("password_recovery").doc()
+            .set(data);          
+             
+          } catch (e){
+              console.log(e)
+          }    
     return auth.sendPasswordResetEmail(email)
     }
 
-    function updateEmail(email) {
+    async function updateEmail(email) {
+    try{
+        var uid =  auth.currentUser.uid
+        const date = new Date;
+        const data = {
+        text: "Email Updated",
+        uid: uid,    
+        date: date.toString(),  
+        };  
+        await db
+        .collection("users").doc(uid)
+        .collection("audit_logs").doc()
+        .set(data);     
+        var emailObject  ={
+            email: email,
+        }
+        await db
+        .collection("users").doc(uid)
+        .set(emailObject , {merge: true});               
+      } catch (e){
+        console.log(e)
+      }    
     return currentUser.updateEmail(email)
     }
 
-    function updatePassword(password) {
+    async function updatePassword(password) {
+    try{
+        var uid =  auth.currentUser.uid
+        const date = new Date;
+        const data = {
+        text: "Password Updated",
+        uid: uid,    
+        date: date.toString(),  
+        };  
+        await db
+        .collection("users").doc(uid)
+        .collection("audit_logs").doc()
+        .set(data);          
+         
+      } catch (e){
+          console.log(e)
+      }    
     return currentUser.updatePassword(password)
     }
-
-
 
     // in useEffect, only run when we mount our component !
     useEffect(()=>{
@@ -64,7 +113,6 @@ export function AuthProvider({ children }) {
     return unsubscribe
     },[])
   
-
     const value = {
         currentUser, 
         login,

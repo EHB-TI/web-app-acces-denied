@@ -17,11 +17,9 @@ export default function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
-
     try {
       setError("")
       setLoading(true)
@@ -33,7 +31,6 @@ export default function Signup() {
     } catch (err){
       setError(`Failed to create an account, ${err}`)
     }
-
     setLoading(false)
   }
 

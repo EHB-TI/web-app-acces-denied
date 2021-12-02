@@ -12,7 +12,6 @@ export default function ForgotPassword() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-
     try {
       setMessage("")
       setError("")
@@ -22,7 +21,6 @@ export default function ForgotPassword() {
     } catch {
       setError("Failed to reset password")
     }
-
     setLoading(false)
   }
 

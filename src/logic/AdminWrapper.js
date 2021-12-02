@@ -7,27 +7,31 @@ function AdminWrapper() {
     
     async function isAdmin(uid) {
         try{
-            var res = await db
+            await db
             .collection("admins")
             .doc(uid)
             .get();
 
-  
-            console.log(res.data())
-           setAdmin(res.data().admin)
-
+            var dateNow = new Date;
+            const data = {
+                email: auth.currentUser.email,
+                date: dateNow.toString(),            
+            };    
+    
+            setAdmin(true)
+            admin ? await db.collection('admins').doc(uid).collection("admin_page").add(data) : console.log("loading");
            
         } catch (e){
             console.log(e);
         }        
     }
-   
-
 
     useEffect(() => {
-        isAdmin(auth.currentUser.uid);
+        if(auth.currentUser != null)
+        {
+            isAdmin(auth.currentUser ? auth.currentUser.uid : "");
+        }
       }, );
-
 
     return admin ? <AdminHome/> : <PageNotFound/>
 }

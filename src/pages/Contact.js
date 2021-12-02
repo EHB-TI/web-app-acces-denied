@@ -1,11 +1,10 @@
 import {React,useState} from 'react';
-import {Card,Form,Button,Alert} from 'react-bootstrap';
+import {Card,Form,Button,Alert, Container} from 'react-bootstrap';
 import { useHistory } from "react-router";
 import emailjs from 'emailjs-com';
 import "../layout/Contact.css";
 
 function Contact() {
-  const history = useHistory()
   const [succes, setSucces] = useState("")
   const [error, setError] = useState("")
   
@@ -22,11 +21,14 @@ function Contact() {
       });
   };
     return (
-        <div>
-          <Card className="containerContact">
+        <Container>
+          <Card >
             <Card.Body>
               <Form className="contactForm" onSubmit={SendEmail}>
-                <h1 id="titleContact">Contact us</h1>
+                <div className="text-center">
+                  <h2>Evaluate <em>Your Car</em></h2>
+                  <img src="assets/images/line-dec.png" alt="" />
+                </div>
                 {succes && <Alert variant="success">{succes}</Alert>}
                 {error && <Alert variant="danger">{error}</Alert>}
                 <Form.Group className="mb-3">
@@ -57,7 +59,7 @@ function Contact() {
               </Form>
             </Card.Body>
           </Card>
-        </div>
+        </Container>
     )
 }
 

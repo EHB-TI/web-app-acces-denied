@@ -1,0 +1,27 @@
+.cardBody div{
+    
+    display: inline-block;
+    vertical-align: top;
+    
+}
+
+.carDetailsGroup{
+    
+    width: 60%;
+    
+}
+
+
+
+.boxDetails{
+    background-color: #dfc15e;
+    text-align: center  
+
+}
+
+.boxGroup{
+    width: 40%;
+    
+    
+    
+}

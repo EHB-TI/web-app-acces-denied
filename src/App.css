@@ -34,16 +34,7 @@
   center center fixed;
   background-size: cover;
 }
-#home-banner
-{
-  height: 100vh;
-  max-width: 1400px;
-  width: 100%;
-  margin: auto;
-  background: url('/src/images/home-banner.png') no-repeat
-  center center ;
-  background-size: contain;
-}
+
 
 /* ----- APP CARDS ----- */
 .App .login-card,.App .signup-card, .App .dashbaord-card, .App .updateprofile-card,.App .forgotpassword-card
