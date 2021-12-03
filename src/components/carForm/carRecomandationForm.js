@@ -1,19 +1,41 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import '../../layout/carRecomandationForm.css';
 
 export default function App() {
   const { register, handleSubmit } = useForm();
   const [result, setResult] = useState("");
-  const onSubmit = (data) => setResult(JSON.stringify(data));
+  
+  const onSubmit = (data) => {
+    setResult(JSON.stringify(data));
+    analyzeResult(data);
+  
+  }
+  
+  const analyzeResult = (result) => {
+    if(result["status"]=="Firstcar"){
+      console.log("categorie1");
+    }else if(result["status"]=="Bigfamilly"){
+
+      var carform = document.getElementById('carform');
+        carform.style.display = 'block';
+        carform.innerHTML = '';
+
+      var results = document.createElement('div');
+            results.innerHTML = '<h1 style="text-align:center">Cars we reccomand for you:<br/></h1>' + '<h3 style="text-align:center">' + "Categ1" + ' for you</h3>';      
+            carform.append(results);
+    }
+  }
 
   return (
+    <div id="carform">
+      <h3>Car recomandation</h3>
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("firstName")} placeholder="First name" />
-      <input {...register("lastName")} placeholder="Last name" />
+      
       <select {...register("status")}>
         <option value="">Select...</option>
         <option value="Firstcar">First car</option>
-        <option value="Bigfamily">Big family</option>
+        <option value="Bigfamilly">Big family</option>
       </select>
       <select {...register("priceRange")}>
         <option value="">Price Range</option>
@@ -25,7 +47,7 @@ export default function App() {
         <option value="5000_7999">5000-7999</option>
       </select>
       <select {...register("displacement")}>
-        <option value="">Price Range</option>
+        <option value="">Diplacement Range</option>
         <option value="small">Small displacement</option>
         <option value="mid">Midranged displacements</option>
         <option value="long">Traveling</option>
@@ -37,7 +59,9 @@ export default function App() {
         <option value="large">Large cargo</option>
       </select>
       <p>{result}</p>
+      {analyzeResult(result)}
       <input type="submit" />
     </form>
+    </div>
   );
 }
