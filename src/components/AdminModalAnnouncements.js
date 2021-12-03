@@ -1,4 +1,3 @@
-
 import React , {useRef} from 'react'
 import Modal from 'react-modal';
 import { auth, db } from '../firebase/firebase';
@@ -46,10 +45,8 @@ function AdminModalAnnouncements() {
     setError("") 
   }
 
-
   async function reportSuspciousLogin() {
       try{
-
            var refAnnouncement = await db
             .collection("announcement").doc(aidRef.current.value)
             .get();
@@ -74,7 +71,6 @@ function AdminModalAnnouncements() {
             .collection("deleted_announcements").doc()
             .set(data);
             setMessage("Succesfully sent!")
-
          
       } catch (e){
           setError(e);

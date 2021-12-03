@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import {Navbar,Nav,NavDropdown,Container, Alert, Button} from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom"
-import "../layout/NavBar.css";
-
+import "../layout/NavBar.css"
 import { useAuth } from "../firebase/context"
 
 function NavBar() 
@@ -10,14 +9,11 @@ function NavBar()
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
   const history = useHistory()
-
   async function handleLogout() {
     setError("")
-
     try {
       await logout()
       history.replace("/")
-
     } catch {
       setError("Failed to log out")
     }
@@ -31,7 +27,6 @@ function NavBar()
               src="/images/carApp.png"
               width="30"
               height="30"
-            
               alt="React Bootstrap logo"
             />{' '}
             Car App
@@ -39,10 +34,16 @@ function NavBar()
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-            <Nav.Link className="navlink" as={Link} to={"/buy"}>Buy</Nav.Link>
+              <NavDropdown className="navlink" title="Buy" >
+                  <NavDropdown.Item  className="navlink" as={Link} to={"/buy"}>Buy A Car</NavDropdown.Item >
+                  
+                  <NavDropdown.Item className="navlink-Item" as={Link} to={"/car-parts"}>Buy A car part</NavDropdown.Item>
+              </NavDropdown>
+           
 
               <NavDropdown className="navlink" title="Sell" >
                 <NavDropdown.Item className="navlink-Item" as={Link} to={"/sell"}>Publish your car</NavDropdown.Item>
+                <NavDropdown.Item className="navlink-Item" as={Link} to={"/sell-parts"}>Publish a car part</NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown className="navlink"  title="Services" >

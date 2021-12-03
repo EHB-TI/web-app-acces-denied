@@ -66,15 +66,12 @@ function PublishCar() {
           });
       });
     }
-    
 
     async function handleSubmit(e) {
         const id = uuid();
         e.preventDefault()
         handleUpload(e, id)
-
-
-        
+   
         let Announcement = new AnnouncementModel(
             id,
             brand.current.value,

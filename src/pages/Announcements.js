@@ -42,9 +42,9 @@ function Announcements(props) {
                 <div className="row">
                     <div className="col-lg-6 offset-lg-3">
                         <div className="section-heading">
-                            <h2>Featured <em>Cars</em></h2>
+                            <h2>Find Your <em> Dream Car</em></h2>
                             <img src="assets/images/line-dec.png" alt="" />
-                            <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
+                            <p>Below you can find an overview of all the announcements posted on our website.</p>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@ function Announcements(props) {
                 </div>
                 <br />
                 <div className="main-button text-center">
-                <a href="/announcements/{announcement.price}">View Cars</a>
+                <a href="#">View More Cars</a>
                 </div>
             </div>
             </section>

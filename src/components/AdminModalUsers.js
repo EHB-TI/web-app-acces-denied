@@ -1,4 +1,3 @@
-
 import React , {useRef} from 'react'
 import Modal from 'react-modal';
 import { auth, db } from '../firebase/firebase';
@@ -44,29 +43,26 @@ function AdminModalUsers() {
     setError("") 
   }
 
-
   async function reportSuspciousLogin() {
-      try{
-            const date = new Date;
-            const data = {
-            uidAdmin: auth.currentUser.uid,
-            uidUser: uidRef.current.value,
-            text: textRef.current.value,          
-            date: date.toString(),  
-            };  
-            await db
-            .collection("admin_logs").doc("audit_logs")
-            .collection("reported_users").doc()
-            .set(data);
-            setMessage("Succesfully sent!")
-
-         
+  try{
+      const date = new Date;
+      const data = {
+      uidAdmin: auth.currentUser.uid,
+      uidUser: uidRef.current.value,
+      text: textRef.current.value,          
+      date: date.toString(),  
+      };  
+      await db
+      .collection("admin_logs").doc("audit_logs")
+      .collection("reported_users").doc()
+      .set(data);
+      setMessage("Succesfully sent!")
+      
       } catch (e){
           setError(e);
       }        
   }
-  
- 
+
   return (
     <div>
       <button onClick={openModal} className="btn btn-danger mt-5 mb-3 mx-5">Report a suspicious user</button>
@@ -83,7 +79,7 @@ function AdminModalUsers() {
         <p>Also, make sure you provide some pieces of evidence and arguments when reporting a user.</p>
         {message && <Alert variant="success">{message}</Alert>}
         {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>UID of suspicious user</Form.Label>
               <Form.Control
@@ -105,9 +101,8 @@ function AdminModalUsers() {
             <Button disabled={loading} className="main-button text-center mt-5 mb-3" type="submit">
               Report User
             </Button>
-            </Form>
+        </Form>
    
-
         <div className="d-flex justify-content-end mt-5">
             <button onClick={closeModal}className="btn btn-dark">close</button>
         </div>

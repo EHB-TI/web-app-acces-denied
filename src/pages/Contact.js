@@ -5,7 +5,6 @@ import emailjs from 'emailjs-com';
 import "../layout/Contact.css";
 
 function Contact() {
-  const history = useHistory()
   const [succes, setSucces] = useState("")
   const [error, setError] = useState("")
   
