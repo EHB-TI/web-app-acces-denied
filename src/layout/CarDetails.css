@@ -1,0 +1,49 @@
+.cardBody div{
+    
+    display: inline-block;
+    vertical-align: top;
+    
+}
+
+.carImage{
+    
+    width: 65%;
+    
+}
+
+label{
+    color:#dfc15e;
+    font-weight: bold;
+}
+
+
+
+.boxDetails{
+    background-color: #dfc15e;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    
+
+}
+
+.boxGroup{
+    margin-top: 30px;
+    width: 35%;
+    margin-bottom: 100px;
+    
+    
+    
+}
+
+
+.Column1{
+    width: 50%;
+    padding-left: 80px;
+}
+
+
+.Column2{
+    width: 50%;
+    padding-left: 80px;
+}
