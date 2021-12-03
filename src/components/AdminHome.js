@@ -126,48 +126,45 @@ function AdminHome() {
                   <article id="tabs-1">
                     <img src="assets/sa-logs.png" alt="" />
                     <h4>Security Logs</h4>
+                    <hr/>
                     {
                         lastAdminLogin.map(admin =>
-                            <p><i className="fa fa-user" />{ admin.email}  &nbsp;|&nbsp; <i className="fa fa-calendar" /> { admin.date } </p>
+                            <p><i className="fa fa-user" /> { admin.email}  <br/> <i className="fa fa-calendar" /> { admin.date } </p>
                         )
                     }
                     <AdminModal/>
-             
-                    <br/>
-                    <h4>Audit Logs</h4>
-                    <hr/>
-                    <h5>Suspicious Admin Login - Logs</h5>
+                    
+                    <h4>Suspicious Login</h4>
                     {
                         suspiciousLogs.map(logs =>
-                            <p><i className="fa fa-user" /> Admin UID: { logs.uid}  &nbsp;|&nbsp; <i class="fas fa-info"></i> Description:{ logs.text}  &nbsp;|&nbsp;  <i className="fa fa-calendar" /> { logs.date } </p>
+                            <p><i className="fa fa-user" /> Admin UID: { logs.uid}  &nbsp;|&nbsp; <i class="fas fa-info"></i> Description:{ logs.text} <br/>  <i className="fa fa-calendar" /> { logs.date } </p>
                         )
                     }
                     <hr/>
-                    incidents
-           
+                    
 
                     <h4>Incidents - Errors &amp; Bugs </h4>
                     <hr/>
                     {
                         incidents.map(incident =>
-                            <p><i class="fas fa-info"></i> Type of Report: { incident.type}  &nbsp;|&nbsp; <i className="fa fa-user" /> Admin UID: { incident.uidAdmin}  &nbsp;|&nbsp; <i class="fas fa-info"></i> Description:{ incident.text}  &nbsp;|&nbsp;  <i className="fa fa-calendar" /> { incident.date } &nbsp;|&nbsp;  <i className="fa fa-user" />User UID: { incident.uidUser}  </p>
+                            <p><i class="fas fa-info"></i> Type of Report: { incident.type}  &nbsp;|&nbsp; <i className="fa fa-user" /> Admin UID: { incident.uidAdmin}  &nbsp;|&nbsp; <i class="fas fa-info"></i> Description: { incident.text}  &nbsp;|&nbsp;  <i className="fa fa-user" /> Concerning the User: { incident.uidUser} <br/> <i className="fa fa-calendar" /> { incident.date }</p>
                         )
                     }
                     <hr/>
-                    <div className="main-button text-center  mt-5 mb-3">
-                      <a href="blog-details.html">Report an anomaly</a>
-                    </div>
+                    <AdminReport/>
                     <br/>
                   </article>
 
                   <article id="tabs-2">
                     <img src="assets/mu-logs.png" alt="" />
                     <h4 id="AdminHome">All users</h4>
+                    <hr/>
                     {
                         allUsers.map(user =>
-                            <p><i className="fa fa-user" /> { user.name ?? "No username *!"}  &nbsp;|&nbsp; <i className="fa fa-info" />  UID: {user.uid} &nbsp;|&nbsp; <i class="fas fa-at"></i> email: {user.email} <br/> &nbsp;|&nbsp; <i className="fa fa-calendar" /> {user.createdAt ?? ""}</p>
+                            <p><i className="fa fa-user" /> { user.name ?? "No username *!"}  &nbsp;|&nbsp; <i className="fa fa-info" />  UID: {user.uid} &nbsp;|&nbsp; <i class="fas fa-at"></i> email: {user.email} <br/><i className="fa fa-calendar" /> {user.createdAt ?? ""}</p>
                         )
                     }
+                    <hr/>
                     <AdminModalUsers/>
    
                   
@@ -176,12 +173,13 @@ function AdminHome() {
                   <article id="tabs-3">
                     <img src="assets/ma-logs.png" alt="" />
                     <h4>All announcements</h4>
+                    <hr/>
                     {
                         announcements.map(car =>
-                            <p><i className="fa fa-user" /> { car.id}  &nbsp;|&nbsp; <i className="fa fa-comments" /> Posted by UID: {car.uid} &nbsp;|&nbsp; <i class="fas fa-at"></i> email: {car.price} <br/> &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10</p>
+                            <p><i className="fa fa-user" /> { car.id}  &nbsp;|&nbsp; <i className="fa fa-comments" /> Posted by UID: {car.uid} &nbsp;|&nbsp; <i class="fas fa-at"></i> email: {car.price} <br/><i className="fa fa-calendar" /> 27.07.2020 10:10</p>
                         )
                     }
-
+                    <hr/>
                     <AdminModalAnnouncements/>
        
            

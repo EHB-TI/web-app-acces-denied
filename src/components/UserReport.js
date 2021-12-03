@@ -14,7 +14,7 @@ const customStyles = {
     },
   };
 
-function AdminReport() {
+function UserReport() {
   let subtitle;
   const textRef = useRef()
   const uidRef = useRef()
@@ -52,13 +52,12 @@ function AdminReport() {
         const date = new Date;
         const data = {
         type: selectValue,
-        uidAdmin: auth.currentUser.uid,
-        uidUser: uidRef.current.value =="UID" ? "" : uidRef.current.value ,
+        concerning: uidRef.current.value =="UID or email" ? "" : uidRef.current.value ,
         text: textRef.current.value,          
         date: date.toString(),  
         };  
         await db
-        .collection("admin_logs").doc("audit_logs")
+        .collection("users").doc(auth.currentUser.uid)
         .collection("reported_incidents").doc()
         .set(data);
         setMessage("Succesfully sent!")
@@ -80,7 +79,7 @@ function AdminReport() {
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Report an incident</h2>
        
-        <p className="mt-4">Please fill in below why and when you suspect a suspicious user, error or bugs, or security-thread.</p>
+        <p className="mt-4">Please fill in below why and when you suspect something suspicious on your account, an error or a bugs, or a security-thread.</p>
         <p>Also, make sure you provide some pieces of evidence and arguments when reporting an incident.</p>
         {message && <Alert variant="success">{message}</Alert>}
         {error && <Alert variant="danger">{error}</Alert>}
@@ -97,15 +96,15 @@ function AdminReport() {
               type="text"
               ref={textRef}
               required
-              defaultValue={"I suspect that the user "}
+              defaultValue={"I suspect thatn"}
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label>If it affects a user or an admin, please provide the UID of suspicious user or admin</Form.Label>
+            <Form.Label>If it affects a user, please provide the UID, the name or email of suspicious user.</Form.Label>
             <Form.Control
               type="text"
               ref={uidRef}
-              defaultValue={"UID"}
+              defaultValue={"UID or email"}
             />
           </Form.Group>
           <Button disabled={loading} className="main-button text-center mt-5 mb-3" type="submit">
@@ -122,4 +121,5 @@ function AdminReport() {
   );
 }
 
-export default AdminReport
+
+export default UserReport

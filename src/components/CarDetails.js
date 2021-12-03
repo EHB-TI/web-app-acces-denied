@@ -38,7 +38,7 @@ function CarDetails(props) {
 
             <div className="cardBody">
 
-              <div className="carDetailsGroup">
+              <div className="carImage">
               <h2>Mercedes Classe A 180 160pk</h2>
               <img src="assets/images/line-dec.png" alt=""/>
               </div>
@@ -48,7 +48,7 @@ function CarDetails(props) {
             <Card.Body>
             
             <Card.Text >
-           130 0000km
+           130 vgbh
             </Card.Text>
             
             </Card.Body>
@@ -85,57 +85,65 @@ function CarDetails(props) {
             <div className="Column1">
 
               
-              <h5>Brand:</h5>
+              <label>Brand:</label>
               <p>Mercedes</p>
 
-              <h5>Model:</h5>
+              <label>Model:</label>
               <p>A180</p>
 
-              <h5>ConstructionYear:</h5>
+              <label>ConstructionYear:</label>
               <p>2021</p>
 
-              <h5>Fuel:</h5>
+              <label>Fuel:</label>
               <p>Diesel</p>
 
-              <h5>Gearbox:</h5>
+              <label>Gearbox:</label>
               <p>Manual</p>
 
-              <h5>Transmission:</h5>
+              <label>Transmission:</label>
               <p>loru</p>
 
-              <h5>Color:</h5>
+              <label>Color:</label>
               <p>Black</p>
 
-              <h5>Number of places:</h5>
-              <p>5</p>
-
-              <h5>Number of doors:</h5>
-              <p>5</p>
-
               
-
-              <h5>Number of doors:</h5>
-              <p>Mercedes</p>
-
-              <h5>Number of doors:</h5>
-              <p>Mercedes</p>
-
-              <h5>Number of doors:</h5>
-              <p>Mercedes</p>
              
               </div>
 
 
               <div className="Column2">
 
-              <h5>Brand:</h5>
+              <label>Brand:</label>
               <p>Mercedes</p>
 
-              <h5>Brand:</h5>
+              <label>Brand:</label>
+              <p>Mercedes</p>
+
+              <label>Number of places:</label>
+              <p>5</p>
+
+              <label>Number of doors:</label>
+              <p>5</p>
+
+              
+
+              <label>Number of doors:</label>
+              <p>Mercedes</p>
+
+              <label>Number of doors:</label>
+              <p>Mercedes</p>
+
+              <label>Number of doors:</label>
               <p>Mercedes</p>
 
               </div>
 
+              </div>
+
+
+              <div style={{ marginTop: 40 }}>
+                <label>Description:</label>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               </div>
 
             

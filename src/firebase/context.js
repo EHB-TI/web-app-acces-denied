@@ -33,12 +33,30 @@ export function AuthProvider({ children }) {
     function login(email, password) {
         return auth.signInWithEmailAndPassword(email, password)
     }
+    async function loginLog() {  
+        try{
+            const date = new Date;
+            const data = {
+            text: "Logged in",
+            date: date.toString(),  
+            };  
+            await db
+            .collection("users").doc(auth.currentUser.uid).collection("audit_logs").add(data);   
+            return "Success"
+          } catch (e){
+              console.log(e)
+          }    
+    }
 
     function logout() {
     return auth.signOut()
     }
 
-    async function resetPassword(email) {  
+    async function resetPassword(email) {     
+    return auth.sendPasswordResetEmail(email)
+    }
+
+    async function resetPasswordLog(email) {  
         try{
             const date = new Date;
             const data = {
@@ -53,16 +71,14 @@ export function AuthProvider({ children }) {
           } catch (e){
               console.log(e)
           }    
-    return auth.sendPasswordResetEmail(email)
     }
 
     async function updateEmail(email) {
     try{
-        var uid =  auth.currentUser.uid
+        var uid =  auth.currentUser.uid;
         const date = new Date;
         const data = {
         text: "Email Updated",
-        uid: uid,    
         date: date.toString(),  
         };  
         await db
@@ -87,7 +103,6 @@ export function AuthProvider({ children }) {
         const date = new Date;
         const data = {
         text: "Password Updated",
-        uid: uid,    
         date: date.toString(),  
         };  
         await db
@@ -116,10 +131,12 @@ export function AuthProvider({ children }) {
     const value = {
         currentUser, 
         login,
+        loginLog,
         signup,
         signupData,
         logout,
         resetPassword,
+        resetPasswordLog,
         updateEmail,
         updatePassword
     }

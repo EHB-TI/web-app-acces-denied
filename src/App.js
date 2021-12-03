@@ -25,6 +25,7 @@ import Form from './components/sell_parts/Form';
 import CarParts from './pages/CarsParts';
 import CarPart from './pages/CarPart';
 import CarDetails from './components/CarDetails';
+import ProfileLogs from './components/ProfileLogs';
 
 function App() {
     return (      
@@ -35,6 +36,7 @@ function App() {
               <Route exact path="/" component={Dashboard} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
+              <PrivateRoute path="/profile-logs" component={ProfileLogs} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />

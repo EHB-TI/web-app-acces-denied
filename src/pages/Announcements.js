@@ -70,7 +70,7 @@ function Announcements(props) {
                                         <i className="fa fa-cog" /> Manual &nbsp;&nbsp;&nbsp;
                                         </p>
                                         <ul className="social-icons">
-                                        <li><Link to={{ pathname: "/announcement/details/" + announcement.id}}>+ View Car</Link></li>
+                                        <li><Link to={{ pathname: "/announcement/details/" + announcement.id}}>+ View Car Details</Link></li>
                                         </ul>
                                     </div>
                                 </div>
