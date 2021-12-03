@@ -20,31 +20,31 @@ function Footer() {
 
                    {/* Column 2 */}
                    <div className="col-md-3 col-sm-6">
-                       <h5>Klantenservice</h5>
+                       <h5>Services</h5>
                        <ul className="list-unstyled">
-                           <li><Link to="/about" className="footer-link">Hulp en informatie</Link></li>
-                           <li><Link to="/about" className="footer-link">About</Link></li>
-                           <li><Link to="/about" className="footer-link">About</Link></li>
-                           <li><Link to="/about" className="footer-link">About</Link></li>
+                           <li><Link to="/buy" className="footer-link">Search for a car</Link></li>
+                           <li><Link to="/evaluate" className="footer-link">Evaluate your car</Link></li>
+                           <li><Link to="/sell" className="footer-link">Sell a car</Link></li>
+                           <li><Link to="/sell-parts" className="footer-link">Sell car parts</Link></li>
                        </ul>
                    </div>
                    {/* Column 3 */}
                    <div className="col-md-3 col-sm-6">
                        <h5>Wet</h5>
                        <ul className="list-unstyled">
-                           <li><Link to="/about" className="footer-link">Algemene Voorwaarden</Link></li>
-                           <li><Link to="/about" className="footer-link">Privacy &amp; Cookies</Link></li>
-                           <li><Link to="/about" className="footer-link">Toegangelijkheid</Link></li>
+                           <li><Link to="/about-us" className="footer-link">Algemene Voorwaarden</Link></li>
+                           <li><Link to="/about-us" className="footer-link">Privacy &amp; Cookies</Link></li>
+                           <li><Link to="/about-us" className="footer-link">Toegangelijkheid</Link></li>
                        </ul>
                    </div>
                    {/* Column 4 */}
                    <div className="col-md-3 col-sm-6">
-                       <h5>Lorem ipsum</h5>
+                       <h5>Services</h5>
                        <ul className="list-unstyled">
-                           <li><Link to="/about" className="footer-link">About</Link></li>
-                           <li><Link to="/about" className="footer-link">About</Link></li>
-                           <li><Link to="/about" className="footer-link">About</Link></li>
-                           <li><Link to="/about" className="footer-link">About</Link></li>
+                           <li><Link to="/about-us" className="footer-link">About us</Link></li>
+                           <li><Link to="/contact-us" className="footer-link">Contact us</Link></li>
+                           <li><Link to="/announcements" className="footer-link">Announcements</Link></li>
+                           <li><Link to="/car-parts" className="footer-link">Car Parts</Link></li>
                        </ul>
                    </div>
                    {/* Footer Bottom */}
