@@ -3,11 +3,19 @@
     display: inline-block;
     vertical-align: top;
     
+    
 }
 
-.carDetailsGroup{
+Container{
+    margin: auto;
+}
+
+
+
+.carImage{
     
-    width: 60%;
+    width: 70%;
+    margin-bottom: 60px;
     
 }
 
@@ -19,8 +27,34 @@
 
 }
 
+.Column1{
+width: 50%;
+padding-left: 70px;
+
+}
+
+label{
+    color: #dfc15e;
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+p {
+    font-size: 16px;
+}
+
+.Column2{
+width: 50%;
+padding-left: 70px;
+    
+}
+
 .boxGroup{
-    width: 40%;
+    width: 30%;
+    margin-top: 30px;
+    
+    margin-bottom: 80px;
     
     
     
