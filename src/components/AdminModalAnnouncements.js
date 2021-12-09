@@ -80,7 +80,7 @@ function AdminModalAnnouncements() {
  
   return (
     <div>
-      <button onClick={openModal} className="btn btn-danger mt-5 mb-3 mx-5">Report a suspicious announcement</button>
+      <button onClick={openModal} className="btn btn-danger mt-2 mb-2">Report a suspicious announcement</button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

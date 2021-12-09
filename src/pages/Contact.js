@@ -26,7 +26,7 @@ function Contact() {
             <Card.Body>
               <Form className="contactForm" onSubmit={SendEmail}>
                 <div className="text-center">
-                  <h2>Evaluate <em>Your Car</em></h2>
+                  <h2>Contact <em>Us</em></h2>
                   <img src="assets/images/line-dec.png" alt="" />
                 </div>
                 {succes && <Alert variant="success">{succes}</Alert>}

@@ -1,36 +1,22 @@
-import {React,useEffect,useState} from 'react';
+import {React,useEffect, useState} from 'react';
 import { db } from '../firebase/firebase';
-import { Container,Alert,Card,Form,Button } from 'react-bootstrap';
+import { Container,Card, } from 'react-bootstrap';
 import "../layout/CarDetails.css";
 
-function CarDetails(props) {
-    const [announcements, setAnnouncements] = useState([]);
-
-    
-
+function CarDetails(props) {    
+    const [data, setData] = useState([]);
     const carDetails = async () => {
-    let query = db
-    .collection("announcement").where("carDetailId", "==", props.match.params.id);
-            
-            let array = [];
-            
-           await 
-           query.get().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                array.push(doc.data());
-            });
-
-            setAnnouncements(array);
-        })
-        .catch(function(error) {
-            console.log("Error getting documents: ", error);
-        })   
+    let query = await db
+    .collection("announcement").doc(props.match.params.id).get();
+    var data = query.data();
+    setData(data)
     }
     
     useEffect(()=> {
         const unsub = carDetails();  
     return unsub
     },[])
+    
     return (
         <Container>
         <Card  style={{ width: '60rem'}} >
@@ -39,8 +25,10 @@ function CarDetails(props) {
             <div className="cardBody">
 
               <div className="carImage">
-              <h2>Mercedes Classe A 180 160pk</h2>
-              <img className="img-fluid" src="logo192.png" alt=""/>
+              <h2>{data.brand} {data.model}</h2>
+          
+                <img className="w-100" src={data.picture} />
+  
               </div>
 
         <div className="boxGroup">
@@ -48,7 +36,7 @@ function CarDetails(props) {
             <Card.Body>
             
             <Card.Text >
-           130 vgbh
+            {data.emissionNorm}
             </Card.Text>
             
             </Card.Body>
@@ -60,7 +48,7 @@ function CarDetails(props) {
             <Card.Body>
             
             <Card.Text>
-            23 000$
+            {data.price} $
             </Card.Text>
             
             </Card.Body>
@@ -72,7 +60,7 @@ function CarDetails(props) {
             <Card.Body>
             
             <Card.Text>
-            122pk
+            {data.mileage} km
             </Card.Text>
             
             </Card.Body>
@@ -84,27 +72,34 @@ function CarDetails(props) {
 
             <div className="Column1">
 
-              
-              <label>Brand:</label>
-              <p>Mercedes</p>
-
               <label>Model:</label>
-              <p>A180</p>
+              <p>{data.model}</p>
+
+              <label>Brand:</label>
+              <p>{data.brand}</p>
+
+              <label>Bodywork:</label>
+              <p>{data.bodywork}</p>
 
               <label>ConstructionYear:</label>
-              <p>2021</p>
+              <p>{data.constructionYear}</p>
 
               <label>Fuel:</label>
-              <p>Diesel</p>
+              <p>{data.fuel}</p>
 
               <label>Gearbox:</label>
-              <p>Manual</p>
+              <p>{data.gearboxe}</p>
 
               <label>Transmission:</label>
-              <p>loru</p>
+              <p>{data.transmission}</p>
 
               <label>Color:</label>
-              <p>Black</p>
+              <p>{data.color}</p>
+
+              <label>Price option:</label>
+              <p>{data.priceOption}</p>
+              <label>Price:</label>
+              <p>{data.price}</p>
 
               
              
@@ -113,28 +108,16 @@ function CarDetails(props) {
 
               <div className="Column2">
 
-              <label>Brand:</label>
-              <p>Mercedes</p>
 
-              <label>Brand:</label>
-              <p>Mercedes</p>
+              <label>Number of doors:</label>
+              <p>5</p>
 
               <label>Number of places:</label>
-              <p>5</p>
+              <p>{data.numberOfPlace}</p>
 
-              <label>Number of doors:</label>
-              <p>5</p>
+              <label>Delivery:</label>
+              <p>{data.delivery}</p>
 
-              
-
-              <label>Number of doors:</label>
-              <p>Mercedes</p>
-
-              <label>Number of doors:</label>
-              <p>Mercedes</p>
-
-              <label>Number of doors:</label>
-              <p>Mercedes</p>
 
               </div>
 
@@ -143,11 +126,8 @@ function CarDetails(props) {
 
               <div style={{ marginTop: 40 }}>
                 <label>Description:</label>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>{data.description}</p>
               </div>
-
-
-              <img className="img-fluid" src="logo192.png" alt=""/>
 
             
             

@@ -16,6 +16,10 @@ label{
     font-weight: bold;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1d77dfbb65107b3a005095f97f7b63b8e06f7b08
 
 
 .boxDetails{
@@ -23,17 +27,23 @@ label{
     text-align: center;
     font-weight: bold;
     font-size: 20px;
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> 1d77dfbb65107b3a005095f97f7b63b8e06f7b08
 }
 
 .boxGroup{
     margin-top: 30px;
     width: 35%;
     margin-bottom: 100px;
+<<<<<<< HEAD
     
     
     
+=======
+>>>>>>> 1d77dfbb65107b3a005095f97f7b63b8e06f7b08
 }
 
 
@@ -42,6 +52,14 @@ label{
     padding-left: 80px;
 }
 
+<<<<<<< HEAD
+=======
+.Column1 p {
+    margin-left: 0.5em;
+ 
+}
+
+>>>>>>> 1d77dfbb65107b3a005095f97f7b63b8e06f7b08
 
 .Column2{
     width: 50%;
