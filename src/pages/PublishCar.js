@@ -13,7 +13,12 @@ function PublishCar() {
     const history = useHistory()
     const [success, setSuccess] = useState("")
     const [error, setError] = useState("")
-	const [status, setStatus] = useState(statuses[8])
+	const [step, setStep] = useState(0);
+	const status = statuses[step];
+
+	function isLastStep(){
+		return step === statuses.length - 2;
+	}
 
     {/* Data Lists */}
     const brands = ['TVR','Mclaren','Mercedes', 'Ferrari', 'Ford']
@@ -34,16 +39,20 @@ function PublishCar() {
     const brand = useRef();
     const model = useRef();
     const constructionYear = useRef();
+
     const fuel = useRef();
     const engine = useRef();
     const emissionNorm = useRef();
     const gearboxe = useRef();
     const transmission = useRef();
+
     const emptyWeight = useRef();
     const consumption = useRef();
+
     const bodywork = useRef();
     const numberOfPlace = useRef();
     const color = useRef();
+
     const mileage = useRef();
     
     const description = useRef();
@@ -51,11 +60,36 @@ function PublishCar() {
     const priceOption = useRef();
     const price = useRef();
 
+	{/* Stats */}
+	const [brand_d, setbrand_d] = useState(null);
+	const [model_d, setmodel_d] = useState(null);
+	const [constructionYear_d, setconstructionYear_d] = useState(null);
+
+	const [fuel_d, setfuel_d] = useState(null);
+	const [engine_d, setengine_d] = useState(null);
+	const [emissionNorm_d, setemissionNorm_d] = useState(null);
+	const [gearboxe_d, setgearboxe_d] = useState(null);
+	const [transmission_d, settransmission_d] = useState(null);
+
+	const [emptyWeight_d, setemptyWeight_d] = useState(null);
+	const [consumption_d, setconsumption_d] = useState(null);
+
+	const [bodywork_d, setbodywork_d] = useState(null);
+	const [numberOfPlace_d, setnumberOfPlace_d] = useState(null);
+	const [color_d, setcolor_d] = useState(null);
+
+	const [mileage_d, setmileage_d] = useState(null);
+
+	const [description_d, setdescription_d] = useState(null);
+	const [delivery_d, setdelivery_d] = useState(null);
+	const [priceOption_d, setpriceOption_d] = useState(null);
+	const [price_d, setprice_d] = useState(null);
+    
     const [file, setFile] = useState(null);
     const [url, setURL] = useState("");
 
-    function handleChange(e) {
-        setFile(e.target.files[0]);
+	function handleChange(e) {
+		setFile(e.target.files[0]);
     }
      function handleUpload(e, id) {
       e.preventDefault();
@@ -73,32 +107,32 @@ function PublishCar() {
     async function handleSubmit(e) {
         let id = uuid()
         e.preventDefault()
-        handleUpload(e, id)
+        //handleUpload(e, id)
 		let Car = new CarModel(
             id,
-            brand.current.value,
-            model.current.value,
-			bodywork.current.value,
-            constructionYear.current.value,
-            fuel.current.value,
-            emissionNorm.current.value,
-            gearboxe.current.value,
-            mileage.current.value,
+            brand.current.value == null ? brand_d : brand.current.value,
+            model.current.value == null ? model_d : model.current.value,
+			bodywork.current.value == null ? bodywork_d : bodywork.current.value,
+            constructionYear.current.value == null ? constructionYear_d : constructionYear.current.value,
+            fuel.current.value == null ? fuel_d : fuel.current.value,
+            emissionNorm.current.value == null ? emissionNorm_d : emissionNorm.current.value,
+            gearboxe.current.value == null ? gearboxe_d : gearboxe.current.value,
+            mileage.current.value == null ? mileage_d : mileage.current.value,
             url,
-            price.current.value
+            price.current.value == null ? price_d : price.current.value
         )
 		id = uuid()
 		let CarDetail = new CarDetailModel(
             id,
-            engine.current.value,
-            transmission.current.value,
-            emptyWeight.current.value,
-            consumption.current.value,
-            numberOfPlace.current.value,
-            color.current.value,
-            description.current.value,
-            delivery.current.value,
-            priceOption.current.value,
+            engine.current.value == null ? engine_d : engine.current.value,
+            transmission.current.value == null ? transmission_d : transmission.current.value,
+            emptyWeight.current.value == null ? emptyWeight_d : emptyWeight.current.value,
+            consumption.current.value == null ? consumption_d : consumption.current.value,
+            numberOfPlace.current.value == null ? numberOfPlace_d : numberOfPlace.current.value,
+            color.current.value == null ? color_d : color.current.value,
+            description.current.value == null ? description_d : description.current.value,
+            delivery.current.value == null ? delivery_d : delivery.current.value,
+            priceOption.current.value == null ? priceOption_d : priceOption.current.value,
         ) 
 		id = uuid()
         let Announcement = new AnnouncementModel(
@@ -107,16 +141,16 @@ function PublishCar() {
 			CarDetail.id,
             auth.currentUser.uid,
         )
-
         try {
 			if (Car.picture == "")
 				setError("We are loading the image, please click submit again.") 
 			else{ 
 				setSuccess("Thanks, your announcement has been successfully sent")
-				await db.collection("announcements").doc(id).collection("car").add(Car.toMap())
-				await db.collection("announcements").doc(id).collection("details").add(CarDetail.toMap())
-				await db.collection("announcements").doc(id).collection("announcement").add(Announcement.toMap())
-				history.replace('/')}
+				//await db.collection("announcements").doc(id).collection("car").add(Car.toMap())
+				//await db.collection("announcements").doc(id).collection("details").add(CarDetail.toMap())
+				//await db.collection("announcements").doc(id).collection("announcement").add(Announcement.toMap())
+				//history.replace('/')
+			}
         } catch (err) {
             setError(`Failed to publish try again: ${err}`)
             console.error(err)
@@ -129,20 +163,20 @@ function PublishCar() {
             <h1>Place Announcement</h1>
 			<Form onSubmit={handleSubmit}>
 				{
-					status == "Choose" &&
+					status == "Choose" ?
 					<div>
-						<Button variant="primary" type="button">
+						<Button variant="primary" onClick={() => setStep(s=> s+1)}>
 						Debutant
 						</Button>
-						<Button variant="primary" type="button">
+						<Button variant="primary" onClick={() => setStep(s=> s+8)}>
 						Expert
 						</Button>
-					</div>
+					</div> :null
 				}
 				{ /* @csrf */ }
 				{/* Model */}
 				{	
-					status == "Model" &&
+					status == "Model" ?
 					<div>
 						<h2>Model</h2>
 						<Row className="mb-3">
@@ -159,7 +193,7 @@ function PublishCar() {
 							{/* MODEL */}
 							<Form.Group as={Col} controlId="PublishModel">
 								<Form.Label>Model*</Form.Label>
-								<Form.Select ref={model} required>
+								<Form.Select ref={model}  required>
 									{
 										models.map((el) =>
 										<option value={el}>{el}</option>)
@@ -177,12 +211,12 @@ function PublishCar() {
 								</Form.Select>
 							</Form.Group>
 						</Row>
-					</div>
+					</div> :null
 				}
 				
 				{/* Engine and Transmission */}
 				{
-					status == "EngineAndTransmission" &&
+					status == "EngineAndTransmission" ?
 					<div>
 						<h2>Engine and Transmission</h2>
 						<Row className="mb-3">
@@ -237,12 +271,12 @@ function PublishCar() {
 								</Form.Select>
 							</Form.Group>
 						</Row>
-					</div>
+					</div> :null
 				}
 
 				{/* Weight and performance */}
 				{
-					status == "WeightAndPerformance" &&
+					status == "WeightAndPerformance" ?
 					<div>
 						<h2>Weight and performance</h2>
 						<Row className="mb-3">
@@ -257,12 +291,12 @@ function PublishCar() {
 								<Form.Control ref={consumption} type="number" placeholder="example 13"/>
 							</Form.Group>
 						</Row>
-					</div>
+					</div> :null
 				}
 
 				{/* Chassis and Bodywork */}
 				{
-					status == "ChassisAndBodywork" &&
+					status == "ChassisAndBodywork" ?
 					<div>
 						<h2>Chassis and Bodywork</h2>
 						<Row className="mb-3">
@@ -297,12 +331,12 @@ function PublishCar() {
 								</Form.Select>
 							</Form.Group>
 						</Row>
-					</div>
+					</div> :null
 				}
 				
 				{/* Maintenance */}
 				{
-					status == "Maintenance" &&
+					status == "Maintenance" ?
 					<div>
 						<h2>Maintenance</h2>
 						<Row className="mb-3">
@@ -312,12 +346,12 @@ function PublishCar() {
 								<Form.Control ref={mileage} type="number" placeholder="example 200000" required />
 							</Form.Group>
 						</Row>
-					</div>
+					</div> :null
 				}
 
 				{/* Add Picture */}
 				{
-					status == "AddPicture" &&
+					status == "AddPicture" ?
 					<div>
 						<h2>Add Picture</h2>
 						<Row className="mb-3">
@@ -326,12 +360,12 @@ function PublishCar() {
 								<Form.Control onChange={handleChange} type="file" required/>
 							</Form.Group>
 						</Row>
-					</div>
+					</div> :null
 				}
 
 				{/* Announcement */}
 				{
-					status == "Announcement" &&
+					status == "Announcement" ?
 					<div>
 						<h2>Announcement</h2>
 						{/* DESCRIPTION */}
@@ -366,30 +400,12 @@ function PublishCar() {
 								<Form.Control ref={price} type="number" placeholder="" required />
 							</Form.Group>
 						</Row>
-					</div>
+					</div> :null
 				}
 
-				{/* Prev and Next button */}
-					
-					{
-						status != "Expert"  &&
-						<div>
-							<Button variant="primary" type="button" >
-								Prev
-							</Button>
-						</div>
-					}
-					{
-						status != "Expert"  &&
-						<div>
-							<Button variant="primary" type="button" >
-								Next
-							</Button>
-						</div>
-					}
 				{/* Publish car */}
 				{
-					status == "Expert" &&
+					status == "Expert" ?
 					<div>
 						<h2>Model</h2>
 						<Row className="mb-3">
@@ -545,7 +561,11 @@ function PublishCar() {
 						<Row className="mb-3">
 							<Form.Group as={Col} controlId="formFile" className="mb-3">
 								<Form.Label>Picture*</Form.Label>
-								<Form.Control onChange={handleChange} type="file" required/>
+								<Form.Control onChange={(e) => {
+									setFile(e.target.files[0]);
+									console.log("file");
+									console.log(file);
+									}} type="file" required/>
 							</Form.Group>
 						</Row>
 
@@ -586,30 +606,67 @@ function PublishCar() {
 
 
 
-					</div>
+					</div> :null
+				}
+
+				{/* Prev and Next button */}
+					
+				{
+					step > 0 ? <Button variant="primary" onClick={() => status == "Expert" ? setStep(s=> s=0)  : setStep(s=> s-1)} >Back</Button> :null
+				}
+				{
+					step > 0 && isLastStep() != true && status != "Expert" ? <Button variant="primary" onClick={() => {
+						switch (status) {
+							case statuses[1]:
+								setbrand_d(brand.current.value)
+								setmodel_d(model.current.value)
+								setconstructionYear_d(constructionYear.current.value)
+								setStep(s=> s+1)
+								break;
+							case statuses[2]:
+								setfuel_d(fuel.current.value)
+								setengine_d(engine.current.value)
+								setemissionNorm_d(emissionNorm.current.value)
+								setgearboxe_d(gearboxe.current.value)
+								settransmission_d(transmission.current.value)
+								setStep(s=> s+1)
+								break;
+							case statuses[3]:
+								setemptyWeight_d(emptyWeight.current.value)
+								setconsumption_d(consumption.current.value)
+								setStep(s=> s+1)
+								break;
+							case statuses[4]:
+								setbodywork_d(bodywork.current.value)
+								setnumberOfPlace_d(numberOfPlace.current.value)
+								setcolor_d(color.current.value)
+								setStep(s=> s+1)
+								break;
+							case statuses[5]:
+								setmileage_d(mileage.current.value)
+								if(mileage.current.value != ""){
+									setStep(s=> s+1)
+								}
+								break;
+							case statuses[6]:
+								if(file != null){
+									setStep(s=> s+1)
+								}
+								break;
+							case statuses[7]:
+								setdescription_d(description.current.value)
+								setdelivery_d(delivery.current.value)
+								setpriceOption_d(priceOption.current.value)
+								setprice_d(price.current.value)
+								setStep(s=> s+1)
+								break;
+						};
+					}} >Next</Button> :null
 				}
 
 				{/* Publish button */}
 				{
-					status == "Expert" &&
-					<div>
-						<Button variant="primary" type="submit" >
-						Publish
-						</Button>
-
-						{error && <Alert variant="danger">{error}</Alert> || success && <Alert variant="success">{success}</Alert> }
-						{}
-					</div>
-				}
-				{
-					status == "Announcement" &&
-					<div>
-						<Button variant="primary" type="submit" >
-						Publish
-						</Button>
-						{success && <Alert variant="success">{success}</Alert>}
-						{error && <Alert variant="danger">{error}</Alert>}
-					</div>
+					isLastStep() == true || status == "Expert" ? <Button variant="primary" type="submit">Submit</Button> :null
 				}
 			</Form>
             </section>
