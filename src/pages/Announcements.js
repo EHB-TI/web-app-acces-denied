@@ -11,13 +11,17 @@ function Announcements(props) {
 
     const searchCar = async () => {
     let query = db
-    .collection("announcement");
+    .collection("announcements");
             
             let array = [];
             
            await 
            query.get().then(function(querySnapshot) {
+               console.log(querySnapshot);
             querySnapshot.forEach(function(doc) {
+                
+                console.log(doc);
+                console.log(doc.data());
                 array.push(doc.data());
             });
 
