@@ -17,9 +17,9 @@ function SearchCar() {
     function getModels(brand){
         
 
-        if(brand != null)
+        if(brand != "")
         {
-            setModels([]);
+            
 
         for(let car of Cars)
         {
@@ -30,6 +30,9 @@ function SearchCar() {
                 
             }
         }
+    }
+    else{
+        setModels([]);
     }
         
     }
