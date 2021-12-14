@@ -7,6 +7,7 @@ import CarModel from '../model/CarModel';
 import CarDetailModel from '../model/CarDetailModel';
 import AnnouncementModel from '../model/AnnouncementModel';
 import { v4 as uuid } from 'uuid';
+import {Box, Stepper, Step, StepLabel } from '@mui/material/';
 
 function PublishCar() {
     const statuses = ['Choose','Model','EngineAndTransmission','WeightAndPerformance', 'ChassisAndBodywork', 'Maintenance', 'AddPicture', 'Announcement', 'Expert']
@@ -107,32 +108,32 @@ function PublishCar() {
     async function handleSubmit(e) {
         let id = uuid()
         e.preventDefault()
-        //handleUpload(e, id)
+        handleUpload(e, id)
 		let Car = new CarModel(
             id,
-            brand.current.value == null ? brand_d : brand.current.value,
-            model.current.value == null ? model_d : model.current.value,
-			bodywork.current.value == null ? bodywork_d : bodywork.current.value,
-            constructionYear.current.value == null ? constructionYear_d : constructionYear.current.value,
-            fuel.current.value == null ? fuel_d : fuel.current.value,
-            emissionNorm.current.value == null ? emissionNorm_d : emissionNorm.current.value,
-            gearboxe.current.value == null ? gearboxe_d : gearboxe.current.value,
-            mileage.current.value == null ? mileage_d : mileage.current.value,
+            brand.current == null ? brand_d : brand.current.value,
+            model.current == null ? model_d : model.current.value,
+			bodywork.current == null ? bodywork_d : bodywork.current.value,
+            constructionYear.current == null ? constructionYear_d : constructionYear.current.value,
+            fuel.current == null ? fuel_d : fuel.current.value,
+            emissionNorm.current == null ? emissionNorm_d : emissionNorm.current.value,
+            gearboxe.current == null ? gearboxe_d : gearboxe.current.value,
+            mileage.current == null ? mileage_d : mileage.current.value,
             url,
-            price.current.value == null ? price_d : price.current.value
+            price.current == null ? price_d : price.current.value
         )
 		id = uuid()
 		let CarDetail = new CarDetailModel(
             id,
-            engine.current.value == null ? engine_d : engine.current.value,
-            transmission.current.value == null ? transmission_d : transmission.current.value,
-            emptyWeight.current.value == null ? emptyWeight_d : emptyWeight.current.value,
-            consumption.current.value == null ? consumption_d : consumption.current.value,
-            numberOfPlace.current.value == null ? numberOfPlace_d : numberOfPlace.current.value,
-            color.current.value == null ? color_d : color.current.value,
-            description.current.value == null ? description_d : description.current.value,
-            delivery.current.value == null ? delivery_d : delivery.current.value,
-            priceOption.current.value == null ? priceOption_d : priceOption.current.value,
+            engine.current == null ? engine_d : engine.current.value,
+            transmission.current == null ? transmission_d : transmission.current.value,
+            emptyWeight.current == null ? emptyWeight_d : emptyWeight.current.value,
+            consumption.current == null ? consumption_d : consumption.current.value,
+            numberOfPlace.current == null ? numberOfPlace_d : numberOfPlace.current.value,
+            color.current == null ? color_d : color.current.value,
+            description.current == null ? description_d : description.current.value,
+            delivery.current == null ? delivery_d : delivery.current.value,
+            priceOption.current == null ? priceOption_d : priceOption.current.value,
         ) 
 		id = uuid()
         let Announcement = new AnnouncementModel(
@@ -144,12 +145,12 @@ function PublishCar() {
         try {
 			if (Car.picture == "")
 				setError("We are loading the image, please click submit again.") 
-			else{ 
+			else{
 				setSuccess("Thanks, your announcement has been successfully sent")
-				//await db.collection("announcements").doc(id).collection("car").add(Car.toMap())
-				//await db.collection("announcements").doc(id).collection("details").add(CarDetail.toMap())
-				//await db.collection("announcements").doc(id).collection("announcement").add(Announcement.toMap())
-				//history.replace('/')
+				await db.collection("announcements").doc(id).set(Car.toMap())
+				await db.collection("announcements").doc(id).collection("details").add(CarDetail.toMap())
+				await db.collection("announcements").doc(id).collection("announcement").add(Announcement.toMap())
+				history.replace('/')
 			}
         } catch (err) {
             setError(`Failed to publish try again: ${err}`)
@@ -161,7 +162,22 @@ function PublishCar() {
         <div className="PublishCar">
             <section>
             <h1>Place Announcement</h1>
+			{
+					status != "Choose" || status != "Expert" ?
+					<div>
+						<Box sx={{ maxWidth: 400 }}>
+							<Stepper activeStep={step} orientation="vertical" >
+								{statuses.map((label) => (
+								<Step key={label}>
+									<StepLabel>{label}</StepLabel>
+								</Step>
+								))}
+							</Stepper>
+						</Box>
+					</div>:null
+			}
 			<Form onSubmit={handleSubmit}>
+				
 				{
 					status == "Choose" ?
 					<div>
@@ -603,9 +619,6 @@ function PublishCar() {
 								<Form.Control ref={price} type="number" placeholder="" required />
 							</Form.Group>
 						</Row>
-
-
-
 					</div> :null
 				}
 
