@@ -12,16 +12,31 @@ function Announcements(props) {
     const searchCar = async () => {
     let query = db
     .collection("announcements");
+
+    let objData = props.location.state.object;
+
+    
+
+    for(let key in objData)
+    {                  
+        if(objData[key] !== "")
+        {
+            if(key === "price"){
+                let priceInt = parseFloat(objData[key]);
+                query = query.where(key,"<=",priceInt)            
+            }else{
+                query = query.where(key, '==', objData[key]);
+            }
+        }
+    }
             
             let array = [];
             
            await 
            query.get().then(function(querySnapshot) {
-               console.log(querySnapshot);
+               
             querySnapshot.forEach(function(doc) {
                 
-                console.log(doc);
-                console.log(doc.data());
                 array.push(doc.data());
             });
 
