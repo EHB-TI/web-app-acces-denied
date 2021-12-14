@@ -1,4 +1,4 @@
-import {React, useRef, useState} from 'react';
+import {React, useRef, useState, useEffect} from 'react';
 import "../layout/PublishCar.css";
 import { useHistory } from 'react-router';
 import {Form,Button, Row, Col, Alert} from 'react-bootstrap';
@@ -8,6 +8,7 @@ import CarDetailModel from '../model/CarDetailModel';
 import AnnouncementModel from '../model/AnnouncementModel';
 import { v4 as uuid } from 'uuid';
 import {Box, Stepper, Step, StepLabel } from '@mui/material/';
+import Cars from "../data/cars";
 
 function PublishCar() {
     const statuses = ['Choose','Model','EngineAndTransmission','WeightAndPerformance', 'ChassisAndBodywork', 'Maintenance', 'AddPicture', 'Announcement', 'Expert']
@@ -21,9 +22,39 @@ function PublishCar() {
 		return step === statuses.length - 2;
 	}
 
+	const [models, setModels] = useState([]);
+
+    function getModels(brand){
+        
+
+        if(brand != "")
+        {
+            
+
+        for(let car of Cars)
+        {
+            if(car["brand"] == brand)
+            {
+                
+                setModels(car["models"]);
+                
+            }
+        }
+    }
+    else{
+        setModels([]);
+    }
+        
+    }
+
+	useEffect(()=> {
+        const unsub = getModels();  
+    return unsub
+    },[])
+
     {/* Data Lists */}
-    const brands = ['TVR','Mclaren','Mercedes', 'Ferrari', 'Ford']
-    const models = ['TVR Speed 12','Mclaren F1','Mercedes W124 E500', 'Ferrari F40', 'Ford GT40']
+    //const brands = ['TVR','Mclaren','Mercedes', 'Ferrari', 'Ford']
+    //const models = ['TVR Speed 12','Mclaren F1','Mercedes W124 E500', 'Ferrari F40', 'Ford GT40']
     const constructionYears = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021']
     const fuels = ['Gasoline','Diesel','Electric','Hybrid','LPG']
     const engines = ['V12', 'V10', 'V8']
@@ -109,6 +140,7 @@ function PublishCar() {
         let id = uuid()
         e.preventDefault()
         handleUpload(e, id)
+
 		let Car = new CarModel(
             id,
             brand.current == null ? brand_d : brand.current.value,
@@ -120,7 +152,7 @@ function PublishCar() {
             gearboxe.current == null ? gearboxe_d : gearboxe.current.value,
             mileage.current == null ? mileage_d : mileage.current.value,
             url,
-            price.current == null ? price_d : price.current.value
+            price.current == null ? parseFloat(price_d) : parseFloat(price.current.value)
         )
 		id = uuid()
 		let CarDetail = new CarDetailModel(
@@ -199,10 +231,13 @@ function PublishCar() {
 							{/* BRAND */}
 							<Form.Group as={Col} controlId="PublishBrand">
 								<Form.Label>Brand*</Form.Label>
-								<Form.Select ref={brand} required>
+								<Form.Select ref={brand} onChange={(val) => getModels(val.target.value)} required>
 									{
-										brands.map((el) =>
-										<option value={el}>{el}</option>)
+										Cars.map(post => {
+											return(
+												<option value={post["brand"]} >{post["brand"]}</option>
+											)
+										})
 									}
 								</Form.Select>
 							</Form.Group>
@@ -211,8 +246,11 @@ function PublishCar() {
 								<Form.Label>Model*</Form.Label>
 								<Form.Select ref={model}  required>
 									{
-										models.map((el) =>
-										<option value={el}>{el}</option>)
+										 models.map(post => {
+											return(
+												<option value={post} >{post}</option>
+											)
+										})
 									}
 								</Form.Select>
 							</Form.Group>
@@ -428,20 +466,26 @@ function PublishCar() {
 							{/* BRAND */}
 							<Form.Group as={Col} controlId="PublishBrand">
 								<Form.Label>Brand*</Form.Label>
-								<Form.Select ref={brand} required>
+								<Form.Select ref={brand} onChange={(val) => getModels(val.target.value)} required>
 									{
-										brands.map((el) =>
-										<option value={el}>{el}</option>)
+										Cars.map(post => {
+											return(
+												<option value={post["brand"]} >{post["brand"]}</option>
+											)
+										})
 									}
 								</Form.Select>
 							</Form.Group>
 							{/* MODEL */}
 							<Form.Group as={Col} controlId="PublishModel">
 								<Form.Label>Model*</Form.Label>
-								<Form.Select ref={model} required>
+								<Form.Select ref={model}  required>
 									{
-										models.map((el) =>
-										<option value={el}>{el}</option>)
+										 models.map(post => {
+											return(
+												<option value={post} >{post}</option>
+											)
+										})
 									}
 								</Form.Select>
 							</Form.Group>
