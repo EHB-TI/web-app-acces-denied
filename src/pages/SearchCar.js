@@ -19,6 +19,7 @@ function SearchCar() {
 
         if(brand != null)
         {
+            setModels([]);
 
         for(let car of Cars)
         {
