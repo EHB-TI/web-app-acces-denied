@@ -29,11 +29,13 @@ function CarPart(props) {
                                     <div className="image-thumb">
                                         <img className="img-fluid" src={props.location.carProps.picture} />
                                     </div>
-                                    <div className="down-content">
+                                    <div className="down-content p-2">
                                         <span>
-                                        <del><sup>€</sup>{parseInt(props.location.carProps.price)+59} </del> &nbsp; <sup>€</sup>  {props.location.carProps.price} 
+                                        <del><sup>€</sup>{parseInt(props.location.carProps.price)+29} </del> &nbsp; <sup>€</sup>  {props.location.carProps.price} 
                                         </span>
-                                    
+                                        <h4>
+                                        {props.location.carProps.title} &nbsp;&nbsp;&nbsp;
+                                        </h4>
                                         <p>
                                         #PostedBy  {props.location.carProps.email} &nbsp;&nbsp;&nbsp;
                                         </p>
@@ -44,7 +46,7 @@ function CarPart(props) {
                                         <i className="fa fa-cube" /> Still in the box &nbsp;&nbsp;&nbsp;
                                         </p>
                                         <p>
-                                        <i className="fa fa-cog" /> {props.location.carProps.description} &nbsp;&nbsp;&nbsp;
+                                        <i className="fa fa-cog" /> {props.location.carProps.desc} &nbsp;&nbsp;&nbsp;
                                         </p>
                                         <ul className="social-icons">
                                     

@@ -1,36 +1,22 @@
-import {React,useEffect,useState} from 'react';
+import {React,useEffect, useState} from 'react';
 import { db } from '../firebase/firebase';
-import { Container,Alert,Card,Form,Button } from 'react-bootstrap';
+import { Container,Card, } from 'react-bootstrap';
 import "../layout/CarDetails.css";
 
-function CarDetails(props) {
-    const [announcements, setAnnouncements] = useState([]);
-
-    
-
+function CarDetails(props) {    
+    const [data, setData] = useState([]);
     const carDetails = async () => {
-    let query = db
-    .collection("announcement").where("carDetailId", "==", props.match.params.id);
-            
-            let array = [];
-            
-           await 
-           query.get().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                array.push(doc.data());
-            });
-
-            setAnnouncements(array);
-        })
-        .catch(function(error) {
-            console.log("Error getting documents: ", error);
-        })   
+    let query = await db
+    .collection("announcement").doc(props.match.params.id).get();
+    var data = query.data();
+    setData(data)
     }
     
     useEffect(()=> {
         const unsub = carDetails();  
     return unsub
     },[])
+    
     return (
         <Container>
         <Card  style={{ width: '60rem'}} >
@@ -38,9 +24,11 @@ function CarDetails(props) {
 
             <div className="cardBody">
 
-              <div className="carDetailsGroup">
-              <h2>Mercedes Classe A 180 160pk</h2>
-              <img src="assets/images/line-dec.png" alt=""/>
+              <div className="carImage">
+              <h2>{data.brand} {data.model}</h2>
+          
+                <img className="w-100" src={data.picture} />
+  
               </div>
 
         <div className="boxGroup">
@@ -48,7 +36,7 @@ function CarDetails(props) {
             <Card.Body>
             
             <Card.Text >
-           130 0000km
+            {data.emissionNorm}
             </Card.Text>
             
             </Card.Body>
@@ -60,7 +48,7 @@ function CarDetails(props) {
             <Card.Body>
             
             <Card.Text>
-            23 000$
+            {data.price} $
             </Card.Text>
             
             </Card.Body>
@@ -72,7 +60,7 @@ function CarDetails(props) {
             <Card.Body>
             
             <Card.Text>
-            122pk
+            {data.mileage} km
             </Card.Text>
             
             </Card.Body>
@@ -84,58 +72,61 @@ function CarDetails(props) {
 
             <div className="Column1">
 
+              <label>Model:</label>
+              <p>{data.model}</p>
+
+              <label>Brand:</label>
+              <p>{data.brand}</p>
+
+              <label>Bodywork:</label>
+              <p>{data.bodywork}</p>
+
+              <label>ConstructionYear:</label>
+              <p>{data.constructionYear}</p>
+
+              <label>Fuel:</label>
+              <p>{data.fuel}</p>
+
+              <label>Gearbox:</label>
+              <p>{data.gearboxe}</p>
+
+              <label>Transmission:</label>
+              <p>{data.transmission}</p>
+
+              <label>Color:</label>
+              <p>{data.color}</p>
+
+              <label>Price option:</label>
+              <p>{data.priceOption}</p>
+              <label>Price:</label>
+              <p>{data.price}</p>
+
               
-              <h5>Brand:</h5>
-              <p>Mercedes</p>
-
-              <h5>Model:</h5>
-              <p>A180</p>
-
-              <h5>ConstructionYear:</h5>
-              <p>2021</p>
-
-              <h5>Fuel:</h5>
-              <p>Diesel</p>
-
-              <h5>Gearbox:</h5>
-              <p>Manual</p>
-
-              <h5>Transmission:</h5>
-              <p>loru</p>
-
-              <h5>Color:</h5>
-              <p>Black</p>
-
-              <h5>Number of places:</h5>
-              <p>5</p>
-
-              <h5>Number of doors:</h5>
-              <p>5</p>
-
-              
-
-              <h5>Number of doors:</h5>
-              <p>Mercedes</p>
-
-              <h5>Number of doors:</h5>
-              <p>Mercedes</p>
-
-              <h5>Number of doors:</h5>
-              <p>Mercedes</p>
              
               </div>
 
 
               <div className="Column2">
 
-              <h5>Brand:</h5>
-              <p>Mercedes</p>
 
-              <h5>Brand:</h5>
-              <p>Mercedes</p>
+              <label>Number of doors:</label>
+              <p>5</p>
+
+              <label>Number of places:</label>
+              <p>{data.numberOfPlace}</p>
+
+              <label>Delivery:</label>
+              <p>{data.delivery}</p>
+
 
               </div>
 
+              </div>
+
+
+              <div style={{ marginTop: 40 }}>
+                <label>Description:</label>
+                <p>{data.description}</p>
               </div>
 
             

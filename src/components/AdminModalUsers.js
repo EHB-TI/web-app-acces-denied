@@ -65,7 +65,7 @@ function AdminModalUsers() {
 
   return (
     <div>
-      <button onClick={openModal} className="btn btn-danger mt-5 mb-3 mx-5">Report a suspicious user</button>
+      <button onClick={openModal} className="btn btn-danger mb-4">Report a suspicious user</button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

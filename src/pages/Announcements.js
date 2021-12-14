@@ -11,13 +11,32 @@ function Announcements(props) {
 
     const searchCar = async () => {
     let query = db
-    .collection("announcement");
+    .collection("announcements");
+
+    let objData = props.location.state.object;
+
+    
+
+    for(let key in objData)
+    {                  
+        if(objData[key] !== "")
+        {
+            if(key === "price"){
+                let priceInt = parseFloat(objData[key]);
+                query = query.where(key,"<=",priceInt)            
+            }else{
+                query = query.where(key, '==', objData[key]);
+            }
+        }
+    }
             
             let array = [];
             
            await 
            query.get().then(function(querySnapshot) {
+               
             querySnapshot.forEach(function(doc) {
+                
                 array.push(doc.data());
             });
 
@@ -60,7 +79,7 @@ function Announcements(props) {
                                     </div>
                                     <div className="down-content">
                                         <span>
-                                        <del><sup>€</sup>{announcement.price} </del> &nbsp; <sup>€</sup>  {announcement.price} 
+                                        <del><sup>€</sup>{announcement.price} </del> &nbsp; <sup>€</sup> {announcement.price} 
                                         </span>
                                         <h4>{announcement.brand}{announcement.model}</h4>
                                         <p>{announcement.description}</p>
@@ -70,7 +89,9 @@ function Announcements(props) {
                                         <i className="fa fa-cog" /> Manual &nbsp;&nbsp;&nbsp;
                                         </p>
                                         <ul className="social-icons">
-                                        <li><Link to={{ pathname: "/announcement/details/" + announcement.id}}>+ View Car</Link></li>
+                                        <li><Link to={{ 
+                                            pathname: "/announcement/details/" + announcement.id ,
+                                             }}>+ View Car Details</Link></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -62,6 +62,9 @@ function Profile() {
                                 <Link to="/update-profile" className="btn btn-primary w-50 mt-3">
                                     Update Profile
                                 </Link>
+                                <Link to="/profile-logs" className="btn btn-secondary w-50 mt-3">
+                                    Security Logs
+                                </Link>
                                 <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>
                                 <div className="row">
                                     <div className="col-sm-6">

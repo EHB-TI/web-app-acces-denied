@@ -56,10 +56,11 @@ function CarParts() {
                                     <div className="image-thumb">
                                         <img className="img-fluid" src={carPart.picture} />
                                     </div>
-                                    <div className="down-content">
+                                    <div className="down-content p-2">
                                         <span>
-                                        <del><sup>€</sup>{parseInt(carPart.price)+59} </del> &nbsp; <sup>€</sup>  {carPart.price} 
-                                        </span>                                     
+                                        <del><sup>€</sup>{parseInt(carPart.price)+29} </del> &nbsp; <sup>€</sup>  {carPart.price} 
+                                        </span>
+                                        <h4> {carPart.title}</h4>                                     
                                         <p>
                                         <i className="fa fa-calendar" /> {carPart.date} &nbsp;&nbsp;&nbsp;
                                         </p>
@@ -73,6 +74,7 @@ function CarParts() {
                                         <li><Link to= {{
                                             pathname: '/car-part',
                                             carProps:{
+                                                title: carPart.title,
                                                 desc: carPart.description,
                                                 date: carPart.date,
                                                 price: carPart.price,

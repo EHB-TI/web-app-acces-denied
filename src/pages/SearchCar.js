@@ -1,6 +1,7 @@
-import {React,useRef} from 'react';
+import {React,useRef,useEffect,useState} from 'react';
 import "../layout/SearchCar.css";
 import { useHistory } from "react-router";
+import Cars from "../data/cars";
 
 function SearchCar() {
     const brand = useRef()
@@ -11,9 +12,40 @@ function SearchCar() {
     const constructionYear = useRef()
     const history = useHistory()
 
+    const [models, setModels] = useState([]);
+
+    function getModels(brand){
+        
+
+        if(brand != "")
+        {
+            
+
+        for(let car of Cars)
+        {
+            if(car["brand"] == brand)
+            {
+                
+                setModels(car["models"]);
+                
+            }
+        }
+    }
+    else{
+        setModels([]);
+    }
+        
+    }
+
+
+
+
     const searchAnnouncement = async (e) =>
     {
         e.preventDefault();
+
+       
+
 
         let objData = {
             brand: brand.current.value,
@@ -30,6 +62,11 @@ function SearchCar() {
         }) 
     }
 
+    useEffect(()=> {
+        const unsub = getModels();  
+    return unsub
+    },[])
+
     return (
         <div className="SearchCar">            
             <section>
@@ -37,14 +74,35 @@ function SearchCar() {
                 {/* TODO: FORM REQUEST POST ?? */}
                 <form action="/search" method="POST" onSubmit={searchAnnouncement}>
                     {/* BRAND */}
-                    <select name="brand" ref={brand} id="SearchBrand">
+                    <select name="brand"  ref={brand} onChange={(val) => getModels(val.target.value)} id="SearchBrand">
                         <option value="">Brand</option>
-                        <optgroup label="Brand" id="optionSearchBrand"/>                        
+                        <optgroup label="Brand" id="optionSearchBrand"/> 
+                        { Cars.map(post => {
+                            return(
+                                <option value={post["brand"]} >{post["brand"]}</option>
+                            )
+                        })
+
+
+                        }                  
                     </select>
                     {/* MODEL */}
                     <select name="model" ref={model} id="SearchModel">
-                        <option value="">Model</option>
-                        <optgroup label="Model" id="optionSearchModel"/> 
+                        
+                    <option value="">Model</option>
+                        <optgroup label="Model" id="optionSearchModel"/>
+                        
+                        { models.map(post => {
+                            return(
+                                <option value={post} >{post}</option>
+                            )
+                        })
+
+
+                        }    
+
+
+                         
                     </select>
                     {/* FUEL */}
                     <select name="fuel" ref={fuel} id="SearchFuel">

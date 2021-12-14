@@ -58,7 +58,7 @@ function AdminModal() {
  
   return (
     <div>
-      <button onClick={openModal} className="btn btn-danger mt-5 mb-3 mx-5">Report a suspicious login</button>
+      <button onClick={openModal} className="btn btn-danger">Report a suspicious login</button>
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
