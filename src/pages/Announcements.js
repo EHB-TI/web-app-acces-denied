@@ -7,13 +7,24 @@ import { db } from "../firebase/firebase.js";
 
 function Announcements(props) {
 
+    let objData = null;
+
+    if(props.location != null)
+    {
+        objData = props.location.state.object;
+    }
+
+    
+
     const [announcements, setAnnouncements] = useState([]);
 
     const searchCar = async () => {
     let query = db
     .collection("announcements");
 
-    let objData = props.location.state.object;
+    
+
+    
 
     
 
