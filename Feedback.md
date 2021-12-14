@@ -1,5 +1,6 @@
 # Software security: Security testen
 
+- [Acceptance criteria](#Acceptance%20criteria)
 - [Testen evaluatiecriteria](#Testen%20evaluatiecriteria)
   - [HTTPs](#HTTPs)
   - [Aanmelden](#Aanmelden)
@@ -8,6 +9,19 @@
   - [REST APIs](#REST%20APIs)
 - [Aanbevelingen](#Aanbevelingen)
 - [Gebruikte tools](#Gebruikte%20tools)
+
+## Acceptance criteria
+
+| Criteria                                                                              |  Geslaagd |  Opmerkingen |
+| ------------------------------------------------------------------------------------- |  :----: | :----: |
+| Gebruikers kunnen de interessantste auto's vinden door een formulier in te vullen zonder enige kennis van auto's te hebben | :x: 
+| Gebruikers kunnen enkel auto's of onderdelen verkopen door alle criteriapunten in te vullen | :x: | Auto's verkopen werkt niet, auto-onderdelen verkopen werkt
+| Gebruikers kunnen veilig inloggen om gebruik te maken van de website en contact op te nemen met producteigenaren | :x: | Contact opnemen met producteigenaar is onmogelijk
+| Gebruikers kunnen zelfstandig gebruik maken van onze website | :white_check_mark:
+| Zowel klant als verkoper moeten veilig gebruik kunnen maken van de website zonder zich te verdwalen in een groot assortiment aan vragen en criteria | :white_check_mark:
+| Door logging en monitoring toe te voegen, kunnen we onze applicatie verbeteren en bugs veel sneller detecteren | :white_check_mark:
+
+
 
 ## Testen evaluatiecriteria
 
@@ -32,7 +46,7 @@ Bij het heropenen van een venster, nadat deze gesloten werd, is de gebruiker nog
 - Na registratie kan de gebruiker direct inloggen. Dit betekent dat er geen controle wordt uitgevoerd 
 op het email adres via een bevestigingsmail bijvoorbeeld. (Severity: Medium)
 - Via de admin dashboard is het mogelijk om audit logs te bekijken.
-	
+
 
 
 ## Wachtwoorden
@@ -49,8 +63,8 @@ op het email adres via een bevestigingsmail bijvoorbeeld. (Severity: Medium)
 	intern aangepaste versie van Scrypt om wachtwoorden te hashen. 
 
 - Bij herhaalde mislukte pogingen wordt het account niet geblokkeerd / De tijdsinterval wordt niet verhoogd tussen de herhaalde misklukte pogingen. (Severity: Medium)
-	
-	
+
+
 
 ## Beveiliging tegen typische web vulnerabilities
 
