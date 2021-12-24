@@ -45,6 +45,7 @@ function Footer() {
                            <li><Link to="/car-parts" className="footer-link">Car Parts</Link></li>
                            <li><Link to="/about-us" className="footer-link">About us</Link></li>
                            <li><Link to="/contact-us" className="footer-link">Contact us</Link></li>
+                           <li><Link to="/loan-calculator" className="footer-link">Calulate your loan</Link></li>
                        </ul>
                    </div>
                    {/* Footer Bottom */}

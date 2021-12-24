@@ -42,6 +42,7 @@ function NavBar()
                   <NavDropdown.Item  className="navlink" as={Link} to={"/buy"}>Buy A Car</NavDropdown.Item >
                   
                   <NavDropdown.Item className="navlink-Item" as={Link} to={"/car-parts"}>Buy A car part</NavDropdown.Item>
+
               </NavDropdown>
            
 
@@ -57,6 +58,8 @@ function NavBar()
               <Nav.Link className="navlink" as={Link} to={"/blog"}>Blog</Nav.Link>
               <Nav.Link className="navlink" as={Link} to={"/contact-us"}>Contact Us</Nav.Link>
               <Nav.Link className="navlink" as={Link} to={"/about-us"}>About</Nav.Link>
+              <Nav.Link className="navlink" as={Link} to={"/car-recomandation"}>Car recomandation</Nav.Link>
+              <Nav.Link className="navlink" as={Link} to={"/loan-calculator"}>Loan calculator</Nav.Link>
         
             </Nav>
 

@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import SearchCar from './pages/SearchCar';
 
+import CarRecomandation from './components/carForm/carRecomandationForm';
 import PublishCar from './pages/PublishCar';
 import Contact from './pages/Contact';
 import PageNotFound from './components/PageNotFound';
@@ -50,6 +51,7 @@ function App() {
               <Route path="/confirm"><ConfirmForm/></Route>
               <Route path="/privacy" component={Privacy}  />
               <Route path="/buy" component={SearchCar}  />
+              <Route path="/car-recomandation" component={CarRecomandation}  />
               <Route path="/loan-calculator" component={LoanCalculator}  />
               <Route path="/evaluate" component={EvaluateCar}  />
               <PrivateRoute path="/sell" component={PublishCar} />

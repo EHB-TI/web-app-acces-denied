@@ -1,7 +1,6 @@
 import { React,useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import '../../layout/carRecomandationForm.css';
-import { db } from "../../firebase/firebase.js";
 import { useHistory } from "react-router";
 
 export default function CarRecomandation() {
@@ -48,6 +47,8 @@ export default function CarRecomandation() {
     // Initialize State using useState()
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [resultPrice, setPrice] = useState(0);
+    const [resultModel, setModel] = useState("");
+    const [resultFuel, setFuel] = useState("");
     const history = useHistory();
     var results = new Array();
     
@@ -57,12 +58,40 @@ export default function CarRecomandation() {
       async function AnalyzeResults(){
         
 
+        if(results[0]== "Small cars and town cars"){
+          setModel("CityCar");
+        }else if(results[0]== "Family cars"){
+          setModel("Monospace");
+        }else if(results[0]== "Berlines"){
+          setModel("Berline");
+        }else if(results[0]== "Trucks and roadster"){
+          setModel("SUVorOffRoad");
+        }
+
         if(results[1]== "Less than 10 000€"){
           setPrice(10000);
+        }else if(results[1]== "Less than 2 500€"){
+          setPrice(2500);
+        }else if(results[1]== "Less than 5 000€"){
+          setPrice(5000);
+        }else if(results[1]== "Neither or more than 10 000€"){
+          setPrice(100000);
+        }
+
+        if(results[3]== "Yes, diesel"){
+          setFuel("Diesel");
+        }else if(results[3]== "Yes, gasoline"){
+          setFuel("Gasoline");
+        }else if(results[3]== "Yes, electric"){
+          setFuel("Electric");
+        }else if(results[3]== "No"){
+          setFuel("");
         }
 
         let objData = {
-          price : resultPrice
+          price : resultPrice,
+          model: resultModel,
+          fuel: resultFuel,
         }
         history.push({
                     pathname: '/announcements',
@@ -113,3 +142,4 @@ export default function CarRecomandation() {
     </div>
 	);
 }
+
