@@ -3,10 +3,6 @@
 
 
 
-
-
-
-
 <hr>
 
 # Demo 1 webtoepassing - Access Denied

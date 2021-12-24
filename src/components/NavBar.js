@@ -75,13 +75,13 @@ function NavBar()
 
               </Nav>
             }
-                     <ChakraProvider theme={theme}>
-                  <ColorModeSwitcher position="absolute" top={3} right={3} />
-                  </ChakraProvider>
 
 
             
           </Navbar.Collapse>
+                     <ChakraProvider theme={theme}>
+                  <ColorModeSwitcher position="absolute" top={3} right={3} />
+                  </ChakraProvider>
       </Container>
       {error && <Alert variant="danger">{error}</Alert>}
     </Navbar>   

@@ -38,7 +38,7 @@ function CarDetails(props) {
               </div>
 
         <div className="boxGroup">
-          <button onClick={() => window.open(`mailto:${data.email}?subject=${subjectMail}&body=${bodyMail}`)} style={{ width: '13rem', marginTop:30,margin:20 }}>Click here to contact the seller via mail</button>
+          <button className='btn btn-success' onClick={() => window.open(`mailto:${data.email}?subject=${subjectMail}&body=${bodyMail}`)} style={{ width: '13rem', marginTop:30,margin:20 }}>Contact Seller <i class="far fa-paper-plane"></i></button>
           <Card className="boxDetails" style={{ width: '13rem', marginTop:30,margin:20 }}>
           
             <Card.Body>

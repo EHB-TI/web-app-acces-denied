@@ -91,13 +91,13 @@ function Profile() {
                                         <h6 className="text-muted f-w-400">{user?.email}</h6>
                                     </div>
                                 </div>
-                                <Link to="/update-profile" className="btn btn-primary w-50 mt-3">
+                                <Link to="/update-profile" className="btn btn-primary mx-2 mt-3">
                                     Update Profile
                                 </Link>
-                                <Link to="/profile-logs" className="btn btn-secondary w-50 mt-3">
+                                <Link to="/profile-logs" className="mx-2 btn btn-secondary mt-3">
                                     Security Logs
                                 </Link>
-                                <Button onClick={() => delete_user_data()}>
+                                <Button className="mt-3 mx-2" onClick={() => delete_user_data()}>
                                     Delete Profile
                                 </Button>
                                 <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>

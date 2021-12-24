@@ -100,9 +100,7 @@ function Announcements(props) {
                 
                 </div>
                 <br />
-                <div className="main-button text-center">
-                <a href="#">View More Cars</a>
-                </div>
+                
             </div>
             </section>
             

@@ -1,7 +1,9 @@
 import {React,useEffect,useState} from 'react';
 import "../layout/Announcements.css";
 
-function CarPart(props) {      
+function CarPart(props) {     
+    const [subjectMail, setSubjectMail] = useState("subject");
+    const [bodyMail, setBodyMail] = useState("body"); 
     return (
         <div>
         {/* ***** Cars Starts ***** */}
@@ -47,7 +49,7 @@ function CarPart(props) {
                                         </ul>
                                     </div>
                                     <div className="row d-flex justify-content-center">
-                                    <button className="btn btn-success">Contact Seller <i class="far fa-paper-plane"></i></button>
+                                    <button className='btn btn-success' onClick={() => window.open(`mailto:${props.location.carProps.email}?subject=${subjectMail}&body=${bodyMail}`)} style={{ width: '13rem', marginTop:30,margin:20 }}>Contact Seller <i class="far fa-paper-plane"></i></button>
                                     </div>
                                 </div>
                             </div>

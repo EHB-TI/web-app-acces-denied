@@ -31,7 +31,7 @@ function Blog() {
                     <p><i className="fa fa-user" /> Anas Benather &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10 &nbsp;|&nbsp; <i className="fa fa-comments" />  15 comments</p>
                     <p>Phasellus convallis mauris sed elementum vulputate. Donec posuere leo sed dui eleifend hendrerit. Sed suscipit suscipit erat, sed vehicula ligula. Aliquam ut sem fermentum sem tincidunt lacinia gravida aliquam nunc. Morbi quis erat imperdiet, molestie nunc ut, accumsan diam.</p>
                     <div className="main-button">
-                      <a href="blog-details.html">Continue Reading</a>
+                      <Link to="/blog">Continue Reading</Link>
                     </div>
                   </article>
                   <article id="tabs-2">
@@ -40,7 +40,7 @@ function Blog() {
                     <p><i className="fa fa-user" /> Anas Benather &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10 &nbsp;|&nbsp; <i className="fa fa-comments" />  15 comments</p>
                     <p>Integer dapibus, est vel dapibus mattis, sem mauris luctus leo, ac pulvinar quam tortor a velit. Praesent ultrices erat ante, in ultricies augue ultricies faucibus. Nam tellus nibh, ullamcorper at mattis non, rhoncus sed massa. Cras quis pulvinar eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
                     <div className="main-button">
-                      <a href="blog-details.html">Continue Reading</a>
+                    <Link to="/blog">Continue Reading</Link>
                     </div>
                   </article>
                   <article id="tabs-3">
@@ -49,7 +49,7 @@ function Blog() {
                     <p><i className="fa fa-user" /> Anas Benather &nbsp;|&nbsp; <i className="fa fa-calendar" /> 27.07.2020 10:10 &nbsp;|&nbsp; <i className="fa fa-comments" />  15 comments</p>
                     <p>Fusce laoreet malesuada rhoncus. Donec ultricies diam tortor, id auctor neque posuere sit amet. Aliquam pharetra, augue vel cursus porta, nisi tortor vulputate sapien, id scelerisque felis magna id felis. Proin neque metus, pellentesque pharetra semper vel, accumsan a neque.</p>
                     <div className="main-button">
-                      <a href="blog-details.html">Continue Reading</a>
+                    <Link to="/blog">Continue Reading</Link>
                     </div>
                   </article>
                 </section>

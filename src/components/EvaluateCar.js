@@ -76,18 +76,18 @@ const Nice = () =>(
           validate={values => {
             const errors = {}
             if (!values.brandName) {
-              errors.brandName = 'Required'
+              errors.brandName = 'Required*'
             }
             if (!values.motortype) {
-              errors.motortype = 'Required'
+              errors.motortype = 'Required*'
             }
             if (values.motortype === 'gasoline') {
               if (!values.mileage) {
-                errors.mileage = 'Required'
+                errors.mileage = 'Required*'
               }
             } else if (values.motortype === 'diesel') {
               if (!values.dieselTime) {
-                errors.dieselTime = 'Required'
+                errors.dieselTime = 'Required*'
               }
             }
             return errors
@@ -101,14 +101,14 @@ const Nice = () =>(
 
 
 
-              <p className="text-white">Here you can evaluate your car. Fill in the form and press "submit".</p>
-              <p className="text-white"> The estimated price will be shown on the screen.</p>
+              <p>Here you can evaluate your car. Fill in the form and press "submit".</p>
+              <p> The estimated price will be shown on the screen.</p>
                 <Row>
                     <Col>
-              <div>
+              <div className='mt-4'>
                 <label >Brand Name</label>
                 <Field
-                  
+                  className="p-1"
                   name="brandName"
                   component="input"
                   type="text"
@@ -151,7 +151,7 @@ const Nice = () =>(
                 <div>
                   <label>Mileage</label>
                   <Field
-                      
+                    className="p-1"
                     name="mileage"
                     component="input"
                     type="text"
@@ -164,6 +164,7 @@ const Nice = () =>(
               <div>
                   <label>Mileage</label>
                   <Field
+                    className="p-1"
                     name="mileage"
                     component="input"
                     type="text"
@@ -175,6 +176,7 @@ const Nice = () =>(
               <div>
                   <label>Purchase Date </label>
                   <Field
+                    className="p-1"
                     name="purchase"
                     component="input"
                     type="text"
@@ -212,6 +214,7 @@ const Nice = () =>(
                 <div>
                   <label>Price</label>
                   <Field
+                   className="p-1"
                     name="price"
                     component="input"
                     type="text"
@@ -279,18 +282,17 @@ const Nice = () =>(
                 </div>
                 <Error name="insurance" />
 
-              <div className="Buttons">
-                <button id='button' type="submit" disabled={submitting}>
+              <div className="Buttons mt-2">
+                <button className="mx-2 btn btn-success" id='button' type="submit" disabled={submitting}>
                   Submit
                 </button>
-                <button id='button' type="Button" onClick={form.reset} disabled={submitting}>
+                <button className="mx-2 btn btn-warning" id='button' type="Button" onClick={form.reset} disabled={submitting}>
                   Reset
                 </button>
               </div>
+              <pre><div className='mt-4' id="priceResults"></div></pre>
               </Col>
-              <Col id="result">
-              <pre><div id="priceResults"></div></pre>
-                        </Col>
+              
                     </Row>
                 </Container>
             </form>

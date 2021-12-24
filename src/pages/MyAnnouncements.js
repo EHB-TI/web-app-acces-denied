@@ -77,7 +77,7 @@ function MyAnnouncements() {
                                         <li><Link to={{ 
                                             pathname: "/announcement/details/" + announcement.id ,
                                              }}>+ View Car Details</Link></li>
-                                        <li><button onClick={() => delete_an_annoucement(announcement.id)}>Delete this announcement</button></li>
+                                        <li><button className='btn btn-danger' onClick={() => delete_an_annoucement(announcement.id)}>Delete this announcement <i class="fas fa-trash"></i></button></li>
                                         </ul>
                                     </div>
                                 </div>
