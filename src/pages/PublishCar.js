@@ -12,7 +12,7 @@ import Cars from "../data/cars";
 
 function PublishCar() {
     const statuses = ['Choose','Model','EngineAndTransmission','WeightAndPerformance', 'ChassisAndBodywork', 'Maintenance', 'AddPicture', 'Announcement', 'Expert']
-    const history = useHistory()
+	const history = useHistory()
     const [success, setSuccess] = useState("")
     const [error, setError] = useState("")
 	const [step, setStep] = useState(0);
@@ -25,25 +25,16 @@ function PublishCar() {
 	const [models, setModels] = useState([]);
 
     function getModels(brand){
-        
-
-        if(brand != "")
-        {
-            
-
-        for(let car of Cars)
-        {
-            if(car["brand"] == brand)
-            {
-                
-                setModels(car["models"]);
-                
-            }
-        }
-    }
-    else{
-        setModels([]);
-    }
+        if(brand != ""){
+			for(let car of Cars){
+				if(car["brand"] == brand){
+					setModels(car["models"]);
+				}
+			}
+		}
+		else{
+			setModels([]);
+		}
         
     }
 
@@ -123,15 +114,23 @@ function PublishCar() {
 	function handleChange(e) {
 		setFile(e.target.files[0]);
     }
-     function handleUpload(e, id) {
+
+    function handleUpload(e, id) {
       e.preventDefault();
       const ref = store.ref(`/images/${id}/${file.name}`);
       const uploadTask =  ref.put(file);
       uploadTask.on("state_changed", console.log, console.error,  () =>  {
         ref
           .getDownloadURL()
-          .then((url) => {
-              setURL(url);
+          .then((val) => {
+			  console.log("val")
+			  console.log(val)
+			  setURL(val)
+			  console.log(url)
+			  setURL((state) => {
+				console.log(state)
+				return state
+			})
           });
       });
     }
@@ -139,7 +138,7 @@ function PublishCar() {
     async function handleSubmit(e) {
         let id = uuid()
         e.preventDefault()
-        handleUpload(e, id)
+		handleUpload(e, id)
 
 		let Car = new CarModel(
             id,
@@ -175,6 +174,8 @@ function PublishCar() {
             auth.currentUser.uid,
         )
         try {
+			console.log(Car.picture == "")
+			console.log(Car.picture)
 			if (Car.picture == "")
 				setError("We are loading the image, please click submit again.") 
 			else{
@@ -194,21 +195,25 @@ function PublishCar() {
         <div className="PublishCar">
             <section>
             <h1>Place Announcement</h1>
-			{
-					status != "Choose" || status != "Expert" ?
-					<div>
-						<Box sx={{ maxWidth: 400 }}>
-							<Stepper activeStep={step} orientation="vertical" >
-								{statuses.map((label) => (
-								<Step key={label}>
-									<StepLabel>{label}</StepLabel>
-								</Step>
-								))}
-							</Stepper>
-						</Box>
-					</div>:null
+			{	
+				status != "Choose" ?
+					status != "Expert" ? 
+							<Box sx={{ maxWidth: 400 }} > 
+								<Stepper activeStep={step-1} orientation="vertical" > 
+									{statuses.slice(1,8).map((label) => (
+									<Step key={label}>
+										<StepLabel>{label}</StepLabel>
+									</Step>
+									))}
+								</Stepper>
+							</Box>
+					:null
+				:null
 			}
-			<Form onSubmit={handleSubmit}>
+			
+			<Form  onSubmit={(e) => {
+				handleSubmit(e)
+			}}>
 				
 				{
 					status == "Choose" ?
@@ -623,8 +628,6 @@ function PublishCar() {
 								<Form.Label>Picture*</Form.Label>
 								<Form.Control onChange={(e) => {
 									setFile(e.target.files[0]);
-									console.log("file");
-									console.log(file);
 									}} type="file" required/>
 							</Form.Group>
 						</Row>
@@ -676,9 +679,13 @@ function PublishCar() {
 						switch (status) {
 							case statuses[1]:
 								setbrand_d(brand.current.value)
-								setmodel_d(model.current.value)
+								
 								setconstructionYear_d(constructionYear.current.value)
-								setStep(s=> s+1)
+								if(model.current.value != ""){
+									setmodel_d(model.current.value)
+									setStep(s=> s+1)
+								}
+								
 								break;
 							case statuses[2]:
 								setfuel_d(fuel.current.value)
@@ -715,7 +722,6 @@ function PublishCar() {
 								setdelivery_d(delivery.current.value)
 								setpriceOption_d(priceOption.current.value)
 								setprice_d(price.current.value)
-								setStep(s=> s+1)
 								break;
 						};
 					}} >Next</Button> :null
@@ -725,7 +731,9 @@ function PublishCar() {
 				{
 					isLastStep() == true || status == "Expert" ? <Button variant="primary" type="submit">Submit</Button> :null
 				}
+				{success && <Alert variant="success">{success}</Alert> || error && <Alert variant="danger">{error}</Alert>}
 			</Form>
+			
             </section>
         </div>
     )
