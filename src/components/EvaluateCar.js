@@ -1,7 +1,18 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
-import { Col, Row, Container, Form as FormSelection} from 'react-bootstrap'
+import { Col, Row, Card,  Container, Form as FormSelection} from 'react-bootstrap'
 import "../layout/EvaluateCar.css"
+import {
+  Heading,
+  GridItem,
+  Alert,
+  AlertIcon,
+  FormLabel,
+  FormControl,
+  Input,
+  Button,
+} from '@chakra-ui/react';
+import {ChakraProvider} from '@chakra-ui/react';
 
 
 export default function EvaluateCar() {
@@ -49,14 +60,12 @@ const Error = ({ name }) => (
 const Condition = ({ when, is, children }) => (
   <Field name={when} subscription={{ value: true }}>
     {({ input: { value } }) => (value === is ? children : null)}
-  </Field>
-)
-
+  </Field>)
 const Nice = () =>(
     <div className="container-form">
        <div className="row">        
           <div className="section-heading dark-bg">
-            <h2>Evaluate <em>Your Car</em></h2>
+            <h2> <em>EVALUATE Your Car</em></h2>
             <img src="assets/images/line-dec.png" alt="" />
           </div>        
         </div>
@@ -86,9 +95,13 @@ const Nice = () =>(
         >
           {({ handleSubmit, form, submitting, pristine, values }) => (
             <form  onSubmit={handleSubmit}>
+              
+
               <Container className="background mb-5">
-          
-              <p className="text-white">Here you can evaluate your car. Fill in the form and press "sumbit".</p>
+
+
+
+              <p className="text-white">Here you can evaluate your car. Fill in the form and press "submit".</p>
               <p className="text-white"> The estimated price will be shown on the screen.</p>
                 <Row>
                     <Col>
@@ -267,10 +280,10 @@ const Nice = () =>(
                 <Error name="insurance" />
 
               <div className="Buttons">
-                <button type="submit" disabled={submitting}>
+                <button id='button' type="submit" disabled={submitting}>
                   Submit
                 </button>
-                <button type="Button" onClick={form.reset} disabled={submitting}>
+                <button id='button' type="Button" onClick={form.reset} disabled={submitting}>
                   Reset
                 </button>
               </div>
@@ -288,3 +301,4 @@ const Nice = () =>(
 )
 return(Nice())
 }
+

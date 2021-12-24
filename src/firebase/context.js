@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
 
     const sendSignInLinkToEmail = email =>{
         return firebase.auth().sendSignInLinkToEmail(email, {
-            url: 'https://access-denied-79d03.web.app/confirm',
+            url: 'http://localhost:3000/confirm',
             handleCodeInApp: true,
         }).then(() => {
             return true;

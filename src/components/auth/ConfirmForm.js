@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth } from "../../firebase/context"
 import { useForm } from 'react-hook-form';
 import {
   Heading,
@@ -13,12 +14,13 @@ import {
 import { useHistory, useLocation } from 'react-router-dom';
 import {ChakraProvider} from '@chakra-ui/react';
 
-import { useAuth } from '../../firebase/context';
+
 
 const ConfirmForm = () => {
   const { handleSubmit, register, errors, setError, formState } = useForm();
 
   const { signInWithEmailLink } = useAuth();
+  const { signupData } = useAuth()
 
   const history = useHistory();
 
@@ -27,7 +29,10 @@ const ConfirmForm = () => {
   const onSubmit = async data => {
     try {
       await signInWithEmailLink(data.email, location.search);
-      history.push('/');
+      var name   = data.email.substring(0, data.email.lastIndexOf("@"));
+      await signupData(data.email, name);
+      history.push("/")
+
     } catch (error) {
       setError('email', {
         type: 'manual',

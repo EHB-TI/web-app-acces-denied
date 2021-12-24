@@ -40,7 +40,7 @@ function App() {
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/profile-logs" component={ProfileLogs} />
-              <Route path="/signup" component={Signup} />              
+              {/* <Route path="/signup" component={Signup} />               */}
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/blog" component={Blog}  />
               <Route path="/contact-us" component={Contact}  />

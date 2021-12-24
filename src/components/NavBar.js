@@ -63,7 +63,7 @@ function NavBar()
             {currentUser == null ?
               <Nav>            
               
-                <Nav.Link className="navlink" as={Link} to={"/signup"}>Register</Nav.Link>
+                {/* <Nav.Link className="navlink" as={Link} to={"/signup"}>Register</Nav.Link> */}
                 <Nav.Link className="navlink" as={Link} to={"/login"}>Login</Nav.Link>
               
               </Nav> : 
