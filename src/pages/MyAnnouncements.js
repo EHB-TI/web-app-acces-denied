@@ -1,5 +1,6 @@
 import {React,useEffect,useState} from 'react';
 import "../layout/Announcements.css";
+import { Link } from 'react-router-dom';
 import { auth, db } from "../firebase/firebase.js";
 
 async function delete_an_annoucement(id_announcement){
@@ -73,7 +74,9 @@ console.log(auth.currentUser.uid)
                                         <i className="fa fa-cog" /> Manual &nbsp;&nbsp;&nbsp;
                                         </p>
                                         <ul className="social-icons">
-                                        <li><a href="car-details.html">+ View my announcement</a></li>
+                                        <li><Link to={{ 
+                                            pathname: "/announcement/details/" + announcement.id ,
+                                             }}>+ View Car Details</Link></li>
                                         <li><button onClick={() => delete_an_annoucement(announcement.id)}>Delete this announcement</button></li>
                                         </ul>
                                     </div>
