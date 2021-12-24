@@ -1,34 +1,35 @@
 
 
 - :white_check_mark: HTTPS
-- :x: Aanmelden
-- :x: Beveiliging tegen typische web vulnerabilities
-- :x: Conform Europese privacy regelgeving
+- ✅ Wachtwoorden: 
 
+De evaluatiecriteria waaraan wij niet aan voldeden ivm wachtwoorden, hebben we allemaal kunnen wegwerken door gebruik te maken van passwordless authentication.
+Passwordless authentication zal onze beveiliging versterken doordat het al de riskante wachtwoordbeheerpraktijken elimineert en aanvalsvectoren te bepeperkt.  
 
-We hebben ons thread model geregeld aangepast, in de laatste versie hebben we steeds een risico-level vermeld bij elke thread met bijkomende uitleg en waar nodig een oplossing.
+- ✅ Beveiliging tegen typische web vulnerabilities
 
-- :x: De huidige versie van het threat model inventariseert de bedreigingen waarvoor nog geen tegenmaatregelen werden genomen, m.a.w. de risico's die je, al dan niet voorlopig
+Wij hebben deze vulnerabilities opgelost door de X-Frame-Options en X-Content-Option headers toe te voegen in de response headers
 
+- ✅ Conform Europese privacy regelgeving
 
-- :x: Er wordt ook rekening gehouden met de bevindingen en aanbevelingen van de security testers - behoudens een goede argumentatie ga ik ervan uit dat ze allemaal geïmplementeerd worden.
+Onze domein werd geanalyseerd door Cookiebot. Om GDPR compliant te kunnen zijn op CookieBot, moet het domein eerst voldoen aan verschillende vereisten. Wij voldoen aan alle vereiste. 
+Ook hebben we ons thread model geregeld aangepast, in de laatste versie hebben we steeds een risico-level vermeld bij elke thread met bijkomende uitleg en waar nodig een oplossing.
+
+- ✅ Er wordt ook rekening gehouden met de bevindingen en aanbevelingen van de security testers - behoudens een goede argumentatie ga ik ervan uit dat ze allemaal geïmplementeerd worden.
 
 
 # Evaluatiecriteria ivm privacy
 
 - :white_check_mark: Wij gebruiken geen Cookies noch trackers.
-- :x: iedere pagina van de toepassing een duidelijk zichtbare link moet bevatten naar de privacyverklaring,
-- :x: betrokkenen hun wettelijke rechten moeten kunnen uitoefenen,
-.........
+- ✅ iedere pagina van de toepassing een duidelijk zichtbare link moet bevatten naar de privacyverklaring.
 
 
 
 # Bevindingen en aanbevelingen van de security testers
-- :x: Gebruikers kunnen de interessantste auto's vinden door een formulier in te vullen zonder enige kennis van auto's te hebben 	
+- ✅ Gebruikers kunnen de interessantste auto's vinden door een formulier in te vullen zonder enige kennis van auto's te hebben 	
 
 
-- :x: Contact opnemen met producteigenaar is onmogelijk!
-Gebruikers kunnen veilig inloggen om gebruik te maken van de website en contact op te nemen met producteigenaren
+- ✅ Contact opnemen met de eigenaars is nu mogelijk via email
 
 - :white_check_mark: Bij herhaald mislukte pogingen wordt het account tijdelijk geblokkeerd. We hadden echter graag ingesteld dat de tijd exponentieel stijgt. Echter is dit een betalende feature.
 
