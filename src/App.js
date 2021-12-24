@@ -26,6 +26,9 @@ import CarParts from './pages/CarsParts';
 import CarPart from './pages/CarPart';
 import CarDetails from './components/CarDetails';
 import ProfileLogs from './components/ProfileLogs';
+import Layout from './components/Layout';
+import LoginForm from './components/auth/LoginForm'
+import ConfirmForm from './components/auth/ConfirmForm';
 
 function App() {
     return (      
@@ -37,12 +40,15 @@ function App() {
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <PrivateRoute path="/profile-logs" component={ProfileLogs} />
+              <Route path="/Layout" component={Layout} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/blog" component={Blog}  />
               <Route path="/contact-us" component={Contact}  />
               <Route path="/about-us" component={AboutUs}  />
+              <Route path="/Loginnew"><LoginForm/></Route>
+              <Route path="/confirm"><ConfirmForm/></Route>
 
               <Route path="/buy" component={SearchCar}  />
               <Route path="/evaluate" component={EvaluateCar}  />

@@ -3,6 +3,9 @@ import {Navbar,Nav,NavDropdown,Container, Alert, Button} from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom"
 import "../layout/NavBar.css"
 import { useAuth } from "../firebase/context"
+import { GridItem, Box, Flex, Text } from '@chakra-ui/react';
+import { ColorModeSwitcher } from './ColorModeSwitcher';
+import { Grid } from '@chakra-ui/react';
 
 function NavBar() 
 {
@@ -55,6 +58,7 @@ function NavBar()
               <Nav.Link className="navlink" as={Link} to={"/about-us"}>About</Nav.Link>
         
             </Nav>
+
             {currentUser == null ?
               <Nav>            
               
@@ -66,9 +70,15 @@ function NavBar()
               
                 <Nav.Link className="navlink" as={Link} to={"/profile"}>Profile</Nav.Link>
                 <Button className="btn btn-primary border-r" onClick={handleLogout}>Logout</Button>
+                
 
               </Nav>
             }
+                  <ColorModeSwitcher position="absolute" top={3} right={3} />
+
+
+
+            
           </Navbar.Collapse>
       </Container>
       {error && <Alert variant="danger">{error}</Alert>}

@@ -1,5 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {auth, db} from './firebase'
+import firebase from 'firebase/app'
 
 const AuthContext = React.createContext();
 
@@ -9,8 +10,34 @@ export function useAuth(){
 }
 
 export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useState(null)
     const [loading, setLoading] = useState(true)
+
+
+    const sendSignInLinkToEmail = email =>{
+        return firebase.auth().sendSignInLinkToEmail(email, {
+            url:  'http://localhost:3000/confirm',
+            handleCodeInApp: true,
+        }).then(() => {
+            return true;
+        }) 
+
+    }
+
+    const signInWithEmailLink = (email, code) => {
+        return firebase.auth().signInWithEmailLink(email, code).then(result => {
+            setCurrentUser(result.currentUser)
+            return true
+        })
+    }
+
+    const logoutNew = () => {
+        return firebase.auth().signOut().then(() => {
+            setCurrentUser(null);
+        })
+    }
+    
+
 
     // function to create a new user in Firebase
     function signup(email, password){
@@ -124,9 +151,11 @@ export function AuthProvider({ children }) {
         setCurrentUser(user)
         setLoading(false)
         // unmount our component, when we dont need it anymore, unsubscribe
-    })
-    return unsubscribe
-    },[])
+    });
+    return () => unsubscribe;
+    },[]);
+
+
   
     const value = {
         currentUser, 
@@ -135,6 +164,9 @@ export function AuthProvider({ children }) {
         signup,
         signupData,
         logout,
+        logoutNew,
+        sendSignInLinkToEmail,
+        signInWithEmailLink,
         resetPassword,
         resetPasswordLog,
         updateEmail,
