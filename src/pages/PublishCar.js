@@ -44,9 +44,7 @@ function PublishCar() {
     },[])
 
     {/* Data Lists */}
-    //const brands = ['TVR','Mclaren','Mercedes', 'Ferrari', 'Ford']
-    //const models = ['TVR Speed 12','Mclaren F1','Mercedes W124 E500', 'Ferrari F40', 'Ford GT40']
-    const constructionYears = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021']
+	const constructionYears = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021']
     const fuels = ['Gasoline','Diesel','Electric','Hybrid','LPG']
     const engines = ['V12', 'V10', 'V8']
     const emissionNorms = ['euro 1','euro 2','euro 3','euro 4','euro 5','euro 6']
@@ -123,14 +121,7 @@ function PublishCar() {
         ref
           .getDownloadURL()
           .then((val) => {
-			  console.log("val")
-			  console.log(val)
 			  setURL(val)
-			  console.log(url)
-			  setURL((state) => {
-				console.log(state)
-				return state
-			})
           });
       });
     }
@@ -174,8 +165,6 @@ function PublishCar() {
             auth.currentUser.uid,
         )
         try {
-			console.log(Car.picture == "")
-			console.log(Car.picture)
 			if (Car.picture == "")
 				setError("We are loading the image, please click submit again.") 
 			else{
@@ -218,6 +207,7 @@ function PublishCar() {
 				{
 					status == "Choose" ?
 					<div>
+						
 						<Button variant="primary" onClick={() => setStep(s=> s+1)}>
 						Debutant
 						</Button>
