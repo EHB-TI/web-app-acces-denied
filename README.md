@@ -32,7 +32,7 @@ The main reason to add car-pieces on our website is that some cars will be poten
 
 Able to help our customers to also take care of their car, we offer the possibility to buy and sell separated car-pieces. There will be some restrictions too before putting an advertisement online.
 
-**# Acceptance criteria**
+# Acceptance criteria
 
 1. Users can find the best cars for their interests, by filling in a form without having any knowledge of cars in the first place
 - Basic questions will be asked about the customer himself, able to target the best car-category
@@ -41,7 +41,7 @@ Able to help our customers to also take care of their car, we offer the possibil
 
 <hr>
 
-1. Users can only sell cars or parts by filling in all criteria points
+2. Users can only sell cars or parts by filling in all criteria points
 - An advertisement must contain specific information, all advertisements will have descriptions, images, and a list of characteristics.
 - This will help us improve our recommendation AI and improve our car selection.
 - This way we will be able to display the same amount of information for each advertisement placed on our website.
@@ -52,9 +52,7 @@ Able to help our customers to also take care of their car, we offer the possibil
 
 - A system will be created to securely send messages using our website.
 
-<hr>
-
-> Users can make use of our website independently without having trouble doing so
+- Users can make use of our website independently without having trouble doing so
 
 - Mobile devices: smartphones and tablets, independent of the OS should be able to see a decent version of our website.
 - Mobile compatibility test ( using Google bot engines we can easily find out if our website is completely compatible with mobile devices)
@@ -63,7 +61,7 @@ Able to help our customers to also take care of their car, we offer the possibil
 
 <hr>
 
-1.  Both customer and seller have to be able to make use of the website safely and securely without getting lost in a large assortment of questions and criteria.
+4.  Both customer and seller have to be able to make use of the website safely and securely without getting lost in a large assortment of questions and criteria.
 - A user will be to easily create an advertisement, able to create the best advertisement and have descent information about the vehicles and car-parts we will be asking a lot of information and images.
 - We will create a clean and interactive design able to keep our users interested and don not borrow them with exhausting questions
 - We will also provide questions with prefilled in answers or examples able to help our customers create an advertisement of quality without losing too much time
@@ -114,32 +112,32 @@ The basic flow of administration access to our web application.
 <aside>
 ⚠️ Attackers bring the service down by exhausting it (D)DoS [Risk VERY HIGH]
 
-> [Confidentiality: Very High] 
+[Confidentiality: Very High] 
 [Integrity: Very High]
 [Availability: Very High]
 [Ease of Exploitation: Very High]
-> 
+
 </aside>
 
 <aside>
 ⚠️ An attacker crafts malicious web links and distributes them hoping to induce users to click on the link and execute a malicious action. [Risk VERY HIGH]
 
-> [Confidentiality: Very High] 
+[Confidentiality: Very High] 
 [Integrity: Very High]
 [Availability: Very High]
 [Ease of Exploitation: Very High]
-> 
+ 
 </aside>
 
 <aside>
 ⚠️ Attackers gain unauthorised access to the application through an environment flaw  or attackers subvert the intended workflow in order to perform unauthorized operations
 [Risk VERY HIGH]
 
-> [Confidentiality: Very High] 
+[Confidentiality: Very High] 
 [Integrity: Very High]
 [Availability: Very High]
 [Ease of Exploitation: Medium]
-> 
+ 
 </aside>
 
 <aside>
