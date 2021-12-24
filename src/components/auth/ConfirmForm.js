@@ -11,7 +11,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useHistory, useLocation } from 'react-router-dom';
-import {ChakraProvider, theme} from '@chakra-ui/react';
+import {ChakraProvider} from '@chakra-ui/react';
 
 import { useAuth } from '../../firebase/context';
 

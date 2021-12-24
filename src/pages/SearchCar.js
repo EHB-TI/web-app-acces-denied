@@ -14,12 +14,10 @@ function SearchCar() {
 
     const [models, setModels] = useState([]);
 
-    function getModels(brand){
-        
+    function getModels(brand){      
 
         if(brand != "")
         {
-            
 
         for(let car of Cars)
         {
@@ -37,15 +35,9 @@ function SearchCar() {
         
     }
 
-
-
-
     const searchAnnouncement = async (e) =>
     {
-        e.preventDefault();
-
-       
-
+        e.preventDefault();    
 
         let objData = {
             brand: brand.current.value,
@@ -82,8 +74,6 @@ function SearchCar() {
                                 <option value={post["brand"]} >{post["brand"]}</option>
                             )
                         })
-
-
                         }                  
                     </select>
                     {/* MODEL */}
@@ -97,11 +87,7 @@ function SearchCar() {
                                 <option value={post} >{post}</option>
                             )
                         })
-
-
                         }    
-
-
                          
                     </select>
                     {/* FUEL */}
