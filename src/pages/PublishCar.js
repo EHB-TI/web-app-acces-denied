@@ -34,17 +34,14 @@ function PublishCar() {
 		}
 		else{
 			setModels([]);
-		}
-        
+		}   
     }
-
 	useEffect(()=> {
         const unsub = getModels();  
     return unsub
     },[])
 
-    {/* Data Lists */}
-	const constructionYears = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021']
+    {/* Data Lists */} const constructionYears = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021']
     const fuels = ['Gasoline','Diesel','Electric','Hybrid','LPG']
     const engines = ['V12', 'V10', 'V8']
     const emissionNorms = ['euro 1','euro 2','euro 3','euro 4','euro 5','euro 6']
@@ -114,16 +111,16 @@ function PublishCar() {
     }
 
     function handleUpload(e, id) {
-      e.preventDefault();
-      const ref = store.ref(`/images/${id}/${file.name}`);
-      const uploadTask =  ref.put(file);
-      uploadTask.on("state_changed", console.log, console.error,  () =>  {
-        ref
-          .getDownloadURL()
-          .then((val) => {
-			  setURL(val)
-          });
-      });
+		e.preventDefault();
+		const ref = store.ref(`/images/${auth.currentUser.uid}/${id}/${file.name}`);
+		const uploadTask =  ref.put(file);
+		uploadTask.on("state_changed", console.log, console.error,  () =>  {
+			ref
+			.getDownloadURL()
+			.then((val) => {
+				setURL(val)
+			});
+		});
     }
 
     async function handleSubmit(e) {
@@ -142,12 +139,8 @@ function PublishCar() {
             gearboxe.current == null ? gearboxe_d : gearboxe.current.value,
             mileage.current == null ? mileage_d : mileage.current.value,
             url,
-            price.current == null ? parseFloat(price_d) : parseFloat(price.current.value)
-        )
-		id = uuid()
-		let CarDetail = new CarDetailModel(
-            id,
-            engine.current == null ? engine_d : engine.current.value,
+            price.current == null ? parseFloat(price_d) : parseFloat(price.current.value),
+			engine.current == null ? engine_d : engine.current.value,
             transmission.current == null ? transmission_d : transmission.current.value,
             emptyWeight.current == null ? emptyWeight_d : emptyWeight.current.value,
             consumption.current == null ? consumption_d : consumption.current.value,
@@ -156,13 +149,7 @@ function PublishCar() {
             description.current == null ? description_d : description.current.value,
             delivery.current == null ? delivery_d : delivery.current.value,
             priceOption.current == null ? priceOption_d : priceOption.current.value,
-        ) 
-		id = uuid()
-        let Announcement = new AnnouncementModel(
-            id,
-			Car.id,
-			CarDetail.id,
-            auth.currentUser.uid,
+			auth.currentUser.email
         )
         try {
 			if (Car.picture == "")
@@ -170,15 +157,70 @@ function PublishCar() {
 			else{
 				setSuccess("Thanks, your announcement has been successfully sent")
 				await db.collection("announcements").doc(id).set(Car.toMap())
-				await db.collection("announcements").doc(id).collection("details").add(CarDetail.toMap())
-				await db.collection("announcements").doc(id).collection("announcement").add(Announcement.toMap())
-				history.replace('/')
+				history.replace('/profile')
 			}
         } catch (err) {
             setError(`Failed to publish try again: ${err}`)
             console.error(err)
         }
     }
+	/*
+	async function get_user_data(){
+		try {
+			const userDoc = await db.collection("users").doc(auth.currentUser.uid).get();
+			console.log(userDoc.data())
+
+			const anouncementQuery = await db.collection("announcements").where("email", "==", auth.currentUser.email);
+			anouncementQuery.get().then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					console.log(doc.data().id)
+					//let ref = store.ref(`/images/${auth.currentUser.uid}/${doc.data().id}`);
+					let ref = store.ref(`/images/${auth.currentUser.uid}/`);
+					ref.listAll().then((res) => {
+						console.log("look storage")
+						res.prefixes.forEach((folderRef) => {
+							console.log(folderRef.listAll())
+							folderRef.listAll().then((val) => {
+								console.log(val.items);
+							});
+						});
+						res.items.forEach((itemRef) => {
+							console.log(itemRef)
+						});
+					}).catch((error) => {
+						console.log(error)
+					})
+				});
+			});
+        } catch (err) {
+            console.error(err)
+        }
+	}*/
+	async function get_user_data(){
+		try {
+			const userDoc = await db.collection("users").doc(auth.currentUser.uid).get();
+			console.log(userDoc.data())
+
+			const anouncementQuery = await db.collection("announcements").where("email", "==", auth.currentUser.email);
+			anouncementQuery.get().then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					//all anouncement structure
+					console.log(doc.data().id)
+				});
+			});
+        } catch (err) {
+            console.error(err)
+        }
+	}
+	
+	async function delete_user_data(){
+		try {
+			//await db.collection("users").doc(auth.currentUser.uid).delete();
+			//auth.currentUser.delete()
+        } catch (err) {
+            console.error(err)
+        }
+	}
     
     return (
         <div className="PublishCar">
@@ -199,15 +241,18 @@ function PublishCar() {
 					:null
 				:null
 			}
-			
 			<Form  onSubmit={(e) => {
 				handleSubmit(e)
 			}}>
-				
 				{
 					status == "Choose" ?
 					<div>
-						
+						<Button variant="primary" onClick={() => get_user_data()}>
+						get all user data
+						</Button>
+						<Button variant="primary" onClick={() => delete_user_data()}>
+						delete all user data
+						</Button>
 						<Button variant="primary" onClick={() => setStep(s=> s+1)}>
 						Debutant
 						</Button>

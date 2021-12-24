@@ -2,15 +2,26 @@ import {React,useEffect,useState} from 'react';
 import "../layout/Announcements.css";
 import { auth, db } from "../firebase/firebase.js";
 
+async function delete_an_annoucement(id_announcement){
+    try {
+        //let ref = store.ref(`/images/${auth.currentUser.uid}/${id_announcement}`);
+        await db.collection("announcements").doc(id_announcement).delete();
+    } catch (err) {
+        console.error(err)
+    }
+}
+
 function MyAnnouncements() {
 console.log(auth.currentUser.uid)
     const [announcements, setAnnouncements] = useState([]);
 
     const fetchCars = async () => {
         let queryAnnouncements = db
-            .collection("announcement").where("uid", "==", auth.currentUser.uid);           
+            .collection("announcements").where("email", "==", auth.currentUser.email);           
             
     let array = [];
+
+   
            
     await queryAnnouncements.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -63,6 +74,7 @@ console.log(auth.currentUser.uid)
                                         </p>
                                         <ul className="social-icons">
                                         <li><a href="car-details.html">+ View my announcement</a></li>
+                                        <li><button onClick={() => delete_an_annoucement(announcement.id)}>Delete this announcement</button></li>
                                         </ul>
                                     </div>
                                 </div>
