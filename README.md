@@ -708,7 +708,7 @@ This type of attack allows an attacker to inject code into a program or query or
 </aside>
 
 <aside>
-⚠️ To be able to exploit code issues, is a **difficult task**. The attacker will typically exploit vulnerabilities in this category by supplying carefully crafted inputs to the victim. Typical types of attacks will exploit memory leaks and buffer overflows. Some vulnerabilities are hard to detect and the impact of such attacks are most likely not critical, but they can still deal a great amount of damage to the system.
+⚠️ To be able to exploit code issues, is a difficult task. The attacker will typically exploit vulnerabilities in this category by supplying carefully crafted inputs to the victim. Typical types of attacks will exploit memory leaks and buffer overflows. Some vulnerabilities are hard to detect and the impact of such attacks are most likely not critical, but they can still deal a great amount of damage to the system.
 →  Being aware of these threads is important as a developer.
 
 </aside>
