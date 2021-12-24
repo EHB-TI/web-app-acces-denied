@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../../layout/Form.css';
 import FormSellPart from './FormSellPart';
-
 import FormSuccess from './FormSuccess';
 
 const Form = () => {

@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
 }
 
 .PublishCar section {
@@ -61,8 +60,7 @@
 
 }
 
-#VerkoopSection h1 {
-    text-align: center;
-
-
+#title-publishcar{
+    font-size: 2em;
+    padding-bottom: 1em;
 }

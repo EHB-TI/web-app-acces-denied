@@ -4,6 +4,7 @@ import '../layout/Dashboard.css'
 import AboutUs from "./AboutUs"
 import Blog from "./Blog"
 import Announcements from "../pages/Announcements";
+import { Link } from "react-router-dom";
 
 function Dashboard(){
     return (
@@ -130,7 +131,7 @@ function Dashboard(){
             
             <br />
             <div className="main-button text-center">
-              <a href="testimonials.html">Read More</a>
+              <Link to="/blog">Read More</Link>
             </div>
           </div>
         </section>

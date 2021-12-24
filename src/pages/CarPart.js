@@ -1,11 +1,7 @@
 import {React,useEffect,useState} from 'react';
 import "../layout/Announcements.css";
 
-
-
-function CarPart(props) {
-       
-
+function CarPart(props) {      
     return (
         <div>
         {/* ***** Cars Starts ***** */}
@@ -20,9 +16,7 @@ function CarPart(props) {
                         </div>
                     </div>
                 </div>
-                <div className="row ">
-                
-             
+                <div className="row ">             
                         <div className="center-col">  
                             <div className="col-lg-6 col-sm-12  ">
                                 <div className="trainer-item">
@@ -57,22 +51,15 @@ function CarPart(props) {
                                     </div>
                                 </div>
                             </div>
-                        </div>                     
-         
-        
-                
+                        </div>
                 </div>
                 <br />
                 <div className="main-button text-center">
                 <a href="/car-parts">Return to All Car Parts</a>
                 </div>
             </div>
-            </section>
-            
+            </section>            
         </div>
-           
-
-        
     )
 }
 

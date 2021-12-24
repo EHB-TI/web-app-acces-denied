@@ -9,6 +9,7 @@ import {Box, Stepper, Step, StepLabel } from '@mui/material/';
 import Cars from "../data/cars";
 
 function PublishCar() {
+	
     const statuses = ['Choose','Model','EngineAndTransmission','WeightAndPerformance', 'ChassisAndBodywork', 'Maintenance', 'AddPicture', 'Announcement', 'Expert']
 	const history = useHistory()
     const [success, setSuccess] = useState("")
@@ -150,8 +151,10 @@ function PublishCar() {
 			auth.currentUser.email
         )
         try {
+			console.log(Car.picture == "")
+			console.log(Car.picture)
 			if (Car.picture == "")
-				setError("We are loading the image, please click submit again.") 
+				setError("We are loading the image. Please click submit again.") 
 			else{
 				setSuccess("Thanks, your announcement has been successfully sent")
 				await db.collection("announcements").doc(id).set(Car.toMap())
@@ -188,7 +191,7 @@ function PublishCar() {
 				{
 					status == "Choose" ?
 					<div>
-						<Button variant="primary" onClick={() => setStep(s=> s+1)}>
+						<Button className="mx-2" variant="primary" onClick={() => setStep(s=> s+1)}>
 						Debutant
 						</Button>
 						<Button variant="primary" onClick={() => setStep(s=> s+8)}>
@@ -642,7 +645,7 @@ function PublishCar() {
 				{/* Prev and Next button */}
 					
 				{
-					step > 0 ? <Button variant="primary" onClick={() => status == "Expert" ? setStep(s=> s=0)  : setStep(s=> s-1)} >Back</Button> :null
+					step > 0 ? <Button className="mx-2" variant="primary" onClick={() => status == "Expert" ? setStep(s=> s=0)  : setStep(s=> s-1)} >Back</Button> :null
 				}
 				{
 					step > 0 && isLastStep() != true && status != "Expert" ? <Button variant="primary" onClick={() => {

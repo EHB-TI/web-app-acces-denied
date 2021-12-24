@@ -20,7 +20,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url("https://wallpaperaccess.com/full/1786208.jpg") center no-repeat;
     background-size: cover;
 
 }
@@ -32,10 +31,10 @@
 .form-control-label {
     margin-bottom: 0;
 }
-
-button{
-    background-color: rgb(130, 190, 229);
+#button{
+    color: white;
 }
+
 .container-form .text-white {
  color: red !important;
  letter-spacing: 2px;
@@ -61,6 +60,12 @@ textarea:focus {
     outline-width: 0;
     font-weight: 400
 }
+
+#button{
+    color: black;
+    font-size: medium;
+    
+}   
 
 .btn-block {
     text-transform: uppercase;
