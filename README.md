@@ -112,32 +112,32 @@ The basic flow of administration access to our web application.
 <aside>
 ⚠️ Attackers bring the service down by exhausting it (D)DoS [Risk VERY HIGH]
 
-[Confidentiality: Very High] 
+> [Confidentiality: Very High] 
 [Integrity: Very High]
 [Availability: Very High]
 [Ease of Exploitation: Very High]
-
+> 
 </aside>
 
 <aside>
 ⚠️ An attacker crafts malicious web links and distributes them hoping to induce users to click on the link and execute a malicious action. [Risk VERY HIGH]
 
-[Confidentiality: Very High] 
+> [Confidentiality: Very High] 
 [Integrity: Very High]
 [Availability: Very High]
 [Ease of Exploitation: Very High]
- 
+> 
 </aside>
 
 <aside>
 ⚠️ Attackers gain unauthorised access to the application through an environment flaw  or attackers subvert the intended workflow in order to perform unauthorized operations
 [Risk VERY HIGH]
 
-[Confidentiality: Very High] 
+> [Confidentiality: Very High] 
 [Integrity: Very High]
 [Availability: Very High]
 [Ease of Exploitation: Medium]
- 
+> 
 </aside>
 
 <aside>
@@ -217,14 +217,11 @@ Attackers gain unauthorized access to a service by reading raw source code retur
 ⚠️ Application contains security vulnerabilities not identified during the development process. [Risk Very HIGH]
 (VULN-DEV-PROCESS)
 
-[Confidentiality: Very High] 
-
+>[Confidentiality: Very High] 
 [Integrity: Very High] 
-
 [Availability: Very High]
-
 [Ease of Exploitation: Very High]
-
+>
 <aside>
 💡 Application security should be embedded into a project's development environment, allowing developers to monitor their code regularly in order to avoid security vulnerabilities when the application is deployed in the production environment.
 
@@ -237,13 +234,11 @@ Solution:  Scan the code with code analysis tools
 <aside>
 ⚠️ Attackers gain unauthorised access to data or services by accessing a client side secret [Risk Very HIGH]
 
-[Confidentiality: Very High] 
-
+>[Confidentiality: Very High] 
 [Integrity: Medium] 
-
 [Availability: Medium]
-
 [Ease of Exploitation: High]
+>
 
 <aside>
 💡 Secrets stored in any client side components, such as a mobile 
@@ -263,14 +258,11 @@ Solution:  Implement simple logic and do some data validation! Do not include pa
 ⚠️ Attackers could gain access to sensitive data through a man in the middle attack.
 [Risk Very HIGH]
 
-[Confidentiality: Very High] 
-
+>[Confidentiality: Very High] 
 [Integrity: Very High]] 
-
 [Availability: Very High]]
-
 [Ease of Exploitation: Medium]
-
+>
 <aside>
 💡 This type of attack targets the communication between two components (typically client and server). The attacker places himself in the communication channel between the two components. Whenever one component attempts to communicate with the other (data flow, authentication challenges, etc.), the data first goes to the attacker, who has the opportunity to observe or alter it, and it is then passed to the other component as if it were never intercepted. This interposition is transparent leaving the two compromised components unaware of the potential corruption or leakage of their communications. The potential for Man-in-the-Middle attacks yields an implicit lack of trust in communication or identity between two components.
 
@@ -290,13 +282,11 @@ Solution:  Validate the CA presented by the server. Encrypt sensitive data betwe
 ⚠️ Attackers gain unauthorized access to the root account due to lack of configuration of the account - Authentication [Risk Very HIGH]
 (LOSS-CONTROL_ENV)
 
-[Confidentiality: Very High] 
-
+>[Confidentiality: Very High] 
 [Integrity: Very High] 
-
 [Availability: Very High]
-
 [Ease of Exploitation: Low]
+>
 
 <aside>
 💡 Attackers could gain unauthorized access to the administrator account due to lack of configuration of the account and its security mechanisms, such as modifying credentials and adding/removing user accounts.
@@ -311,14 +301,12 @@ Solution: Create individual accounts for admins. Use Security Key for 2-Step Ver
 ⚠️ Exploitation of insufficient logging and monitoring. [Risk Very HIGH]
 (OWASP A10:2017)
 
+>
 [Confidentiality: Very High] 
-
 [Integrity: Very  High] 
-
 [Availability: Very High]
-
 [Ease of Exploitation: Low]
-
+>
 <aside>
 💡 Exploitation of insufficient logging and monitoring is the bedrock of nearly every major incident. Attackers rely on the lack of monitoring and timely response to achieve their goals without being detected.
 
@@ -331,13 +319,12 @@ Solution: Enable Google Analytics, use Google Cloud Hosting to be able to monito
 <aside>
 ⚠️ Attackers gain unauthorized access to the control of the environment - Authorization [Risk HIGH]
 
+>
 [Confidentiality: High] 
-
 [Integrity: High] 
-
 [Availability: High]
-
 [Ease of Exploitation: Medium]
+>
 
 <aside>
 💡 Attackers could potentially gain unauthorized access to the control of the environment, due to user accounts - or role groups - not being well defined and configured. As a consequence attackers may be able to make changes without root approval.
@@ -352,13 +339,12 @@ Solution: Principle of least privileges. Control access with Security Rules. Def
 ⚠️ Attackers destroy the data and the data cannot be recovered or sensitive data is compromised through unauthorized access to data storage. [Risk HIGH]
 (LOSS-DATA-REMOVED)
 
+>
 [Confidentiality: High] 
-
 [Integrity: High] 
-
 [Availability: High]
-
 [Ease of Exploitation: Medium]
+>
 
 Solution: Securely store your credentials. Enable data storage versioning
 
@@ -371,13 +357,12 @@ Solution: Securely store your credentials. Enable data storage versioning
 <aside>
 ⚠️ Attackers gain unauthorized access to the root account due to lack of configuration of the account [Risk HIGH]
 
+>
 [Confidentiality: Very High] 
-
 [Integrity: Very High] 
-
 [Availability: Very High]
-
 [Ease of Exploitation: Low]
+>
 
 <aside>
 💡 Attackers could gain unauthorized access to the administrator account due to lack of configuration of the account and its security mechanisms, such as modifying credentials and adding/removing user accounts.
@@ -391,13 +376,12 @@ Solution: Use Security Key for 2-Step Verification for administrator or co-admin
 <aside>
 ⚠️ Sensitive data is compromised through unauthorized access to data storage [Risk HIGH]
 
+>
 [Confidentiality: Risk High] 
-
 [Integrity: Risk Low] 
-
 [Availability: Risk Medium]
-
 [Ease of Exploitation: Risk Medium]
+>
 
 <aside>
 💡 A data breach is a security violation in which sensitive, protected or confidential data is copied, transmitted, viewed, stolen or used by an individual unauthorized to do so. Sensitive data could be exposed due to a bad configuration in user permissions.
@@ -411,13 +395,12 @@ Solution: Avoid obsolete applications to have access to the resources. Credentia
 <aside>
 ⚠️ Attackers destroy data, and data cannot be recovered [Risk Medium-High]
 
+>
 [Confidentiality: Risk High] 
-
 [Integrity: Risk High] 
-
 [Availability: Risk Medium]
-
 [Ease of Exploitation: Risk Low]
+>
 
 <aside>
 💡 Attackers gain access to the systems and data with excessive permissions and they remove all the information from the system, which might lead to permanent loss of data, including sensitive or personal data.
@@ -458,7 +441,7 @@ Firebase provides build-in CA, this way it becomes impossible for a hacker to ac
 
 <hr>
 
-By hosting our website using ``Firebase Hosting``, we will provide a valid SSL-CA. This way our website will be secure and available as an HTTPS website ‘https://..’, and prevent us from spoofing**.** **A hacker will not be able to act as our website**.
+By hosting our website using ``Firebase Hosting``, we will provide a valid SSL-CA. This way our website will be secure and available as an HTTPS website ‘https://..’, and prevent us from spoofing. **A hacker will not be able to act as our website**.
 
 <hr>
 
@@ -514,7 +497,7 @@ Whenever a hacker modifies our code, for example: by changing the parameters of 
 
 > Threat: **Permitting malicious manipulation or forging the identification of new actions.**
 
-**#### Defence/ Solution | Mitigate**
+#### Defence/ Solution | Mitigate
 
 <hr>
 
