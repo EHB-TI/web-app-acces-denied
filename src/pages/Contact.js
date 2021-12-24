@@ -13,11 +13,9 @@ function Contact() {
 
     emailjs.sendForm('service_tyhl9gw', 'template_pmk3zdm', e.target, 'user_GfFYdwckCKTcz5nj46W9F')
       .then((result) => {        
-          setSucces("Email successfully sent")
-          //console.log(result.text);        
+          setSucces("Email successfully sent")     
       }, (error) => {
           setError(`An error has occured: ${error}`)
-          //console.log(error.text);
       });
   };
     return (

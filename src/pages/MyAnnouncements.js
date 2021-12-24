@@ -3,17 +3,19 @@ import "../layout/Announcements.css";
 import { Link } from 'react-router-dom';
 import { auth, db } from "../firebase/firebase.js";
 
+
+
 async function delete_an_annoucement(id_announcement){
     try {
-        //let ref = store.ref(`/images/${auth.currentUser.uid}/${id_announcement}`);
         await db.collection("announcements").doc(id_announcement).delete();
+        window.location.reload(false);
     } catch (err) {
         console.error(err)
     }
 }
 
 function MyAnnouncements() {
-console.log(auth.currentUser.uid)
+    
     const [announcements, setAnnouncements] = useState([]);
 
     const fetchCars = async () => {
@@ -21,9 +23,7 @@ console.log(auth.currentUser.uid)
             .collection("announcements").where("email", "==", auth.currentUser.email);           
             
     let array = [];
-
-   
-           
+  
     await queryAnnouncements.get().then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             array.push(doc.data());

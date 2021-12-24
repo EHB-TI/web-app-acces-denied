@@ -4,8 +4,6 @@ import { useHistory } from 'react-router';
 import {Form,Button, Row, Col, Alert} from 'react-bootstrap';
 import { auth, db, store } from '../firebase/firebase.js'
 import CarModel from '../model/CarModel';
-import CarDetailModel from '../model/CarDetailModel';
-import AnnouncementModel from '../model/AnnouncementModel';
 import { v4 as uuid } from 'uuid';
 import {Box, Stepper, Step, StepLabel } from '@mui/material/';
 import Cars from "../data/cars";
@@ -164,64 +162,7 @@ function PublishCar() {
             console.error(err)
         }
     }
-	/*
-	async function get_user_data(){
-		try {
-			const userDoc = await db.collection("users").doc(auth.currentUser.uid).get();
-			console.log(userDoc.data())
-
-			const anouncementQuery = await db.collection("announcements").where("email", "==", auth.currentUser.email);
-			anouncementQuery.get().then((querySnapshot) => {
-				querySnapshot.forEach((doc) => {
-					console.log(doc.data().id)
-					//let ref = store.ref(`/images/${auth.currentUser.uid}/${doc.data().id}`);
-					let ref = store.ref(`/images/${auth.currentUser.uid}/`);
-					ref.listAll().then((res) => {
-						console.log("look storage")
-						res.prefixes.forEach((folderRef) => {
-							console.log(folderRef.listAll())
-							folderRef.listAll().then((val) => {
-								console.log(val.items);
-							});
-						});
-						res.items.forEach((itemRef) => {
-							console.log(itemRef)
-						});
-					}).catch((error) => {
-						console.log(error)
-					})
-				});
-			});
-        } catch (err) {
-            console.error(err)
-        }
-	}*/
-	async function get_user_data(){
-		try {
-			const userDoc = await db.collection("users").doc(auth.currentUser.uid).get();
-			console.log(userDoc.data())
-
-			const anouncementQuery = await db.collection("announcements").where("email", "==", auth.currentUser.email);
-			anouncementQuery.get().then((querySnapshot) => {
-				querySnapshot.forEach((doc) => {
-					//all anouncement structure
-					console.log(doc.data().id)
-				});
-			});
-        } catch (err) {
-            console.error(err)
-        }
-	}
 	
-	async function delete_user_data(){
-		try {
-			//await db.collection("users").doc(auth.currentUser.uid).delete();
-			//auth.currentUser.delete()
-        } catch (err) {
-            console.error(err)
-        }
-	}
-    
     return (
         <div className="PublishCar">
             <section>
@@ -247,12 +188,6 @@ function PublishCar() {
 				{
 					status == "Choose" ?
 					<div>
-						<Button variant="primary" onClick={() => get_user_data()}>
-						get all user data
-						</Button>
-						<Button variant="primary" onClick={() => delete_user_data()}>
-						delete all user data
-						</Button>
 						<Button variant="primary" onClick={() => setStep(s=> s+1)}>
 						Debutant
 						</Button>

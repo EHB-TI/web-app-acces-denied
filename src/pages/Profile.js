@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../layout/Profile.css';
 import "firebase/auth";
+import { Button} from 'react-bootstrap';
 import { useHistory } from "react-router";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase/firebase.js";
@@ -12,6 +13,38 @@ function Profile() {
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
     const history = useHistory();
+
+    async function delete_annoucements(id_announcement){
+        try {
+            await db.collection("announcements").doc(id_announcement).delete();
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    async function delete_user(){
+        try {
+            await db.collection("users").doc(auth.currentUser.uid).delete();
+            await auth.currentUser.delete();
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    async function delete_user_data(){
+		try {
+			const anouncementQuery = await db.collection("announcements").where("email", "==", auth.currentUser.email);
+			anouncementQuery.get().then((querySnapshot) => {
+				querySnapshot.forEach((doc) =>  {
+                    console.log(doc.data().email)
+                    delete_annoucements(doc.id)
+				});
+			});
+			delete_user()
+        } catch (err) {
+            console.error(err)
+        }
+	}
 
     const fetchUserName = async () => {
         try {
@@ -65,6 +98,9 @@ function Profile() {
                                 <Link to="/profile-logs" className="btn btn-secondary w-50 mt-3">
                                     Security Logs
                                 </Link>
+                                <Button onClick={() => delete_user_data()}>
+                                    Delete Profile
+                                </Button>
                                 <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>
                                 <div className="row">
                                     <div className="col-sm-6">

@@ -14,19 +14,11 @@ function Announcements(props) {
         objData = props.location.state.object;
     }
 
-    
-
     const [announcements, setAnnouncements] = useState([]);
 
     const searchCar = async () => {
     let query = db
     .collection("announcements");
-
-    
-
-    
-
-    
 
     for(let key in objData)
     {                  
@@ -39,8 +31,7 @@ function Announcements(props) {
                 query = query.where(key, '==', objData[key]);
             }
         }
-    }
-            
+    }  
             let array = [];
             
            await 
@@ -63,7 +54,6 @@ function Announcements(props) {
     return unsub
     },[])
         
-
     return (
         <div>
         {/* ***** Cars Starts ***** */}
@@ -79,7 +69,6 @@ function Announcements(props) {
                     </div>
                 </div>
                 <div className="row ">
-                
                 {
                     announcements.map(announcement =>
                         <div className="center-col">  

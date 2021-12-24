@@ -1,6 +1,6 @@
 import {React,useEffect, useState} from 'react';
 import { db } from '../firebase/firebase';
-import { Container,Card, } from 'react-bootstrap';
+import { Container,Card, Button} from 'react-bootstrap';
 import "../layout/CarDetails.css";
 
 function CarDetails(props) {    
@@ -10,19 +10,12 @@ function CarDetails(props) {
     let query = await db
     .collection("announcements").where("id","==",props.match.params.id);
 
-
-    console.log(query.id);
-
     await query.get().then(function(querySnapshot) {
         
         setData(querySnapshot.docs[0].data());
   });
 
 }
-  
-    
-    
-    
     useEffect(()=> {
         const unsub = carDetails();  
     return unsub
@@ -43,6 +36,17 @@ function CarDetails(props) {
               </div>
 
         <div className="boxGroup">
+          <button style={{ width: '13rem', marginTop:30,margin:20 }}>{data.email}</button>
+          <Card className="boxDetails" style={{ width: '13rem', marginTop:30,margin:20 }}>
+          
+            <Card.Body>
+            
+            <Card.Text >
+            {data.emissionNorm}
+            </Card.Text>
+            
+            </Card.Body>
+            </Card>
           <Card className="boxDetails" style={{ width: '13rem', marginTop:30,margin:20 }}>
             <Card.Body>
             
@@ -53,7 +57,7 @@ function CarDetails(props) {
             </Card.Body>
             </Card>
 
-          
+            
 
             <Card className="boxDetails" style={{ width: '13rem', margin:20 }}>
             <Card.Body>
