@@ -14,7 +14,7 @@ export default function CarRecomandation() {
 				{ answerText: 'Berlines' },
 				{ answerText: 'Trucks and roadster'},
 			],
-		},
+		}, 
 		{
 			questionText: 'What is your budget ?',
 			answerOptions: [
@@ -66,7 +66,7 @@ export default function CarRecomandation() {
 
     const answerOption = () => {
       if(currentQuestion === questions.length - 1){
-        //if(questions[0]== "")
+        //if(questions[0]=="")
         console.log(currentQuestion[0]); 
       }else{
         // Note we can't do currentQuestion++  -> const!
