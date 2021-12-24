@@ -3,7 +3,9 @@ import { db } from '../firebase/firebase';
 import { Container,Card, Button} from 'react-bootstrap';
 import "../layout/CarDetails.css";
 
-function CarDetails(props) {    
+function CarDetails(props) { 
+    const [subjectMail, setSubjectMail] = useState("subject");
+    const [bodyMail, setBodyMail] = useState("body");
     const [data, setData] = useState({});
     const carDetails = async () => {
     
@@ -36,7 +38,7 @@ function CarDetails(props) {
               </div>
 
         <div className="boxGroup">
-          <button style={{ width: '13rem', marginTop:30,margin:20 }}>{data.email}</button>
+          <button onClick={() => window.open(`mailto:${data.email}?subject=${subjectMail}&body=${bodyMail}`)} style={{ width: '13rem', marginTop:30,margin:20 }}>Click here to contact the seller via mail</button>
           <Card className="boxDetails" style={{ width: '13rem', marginTop:30,margin:20 }}>
           
             <Card.Body>
