@@ -1,7 +1,8 @@
-import { React,useEffect,useState } from "react";
+import { React,useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import '../../layout/carRecomandationForm.css';
 import { db } from "../../firebase/firebase.js";
+import { useHistory } from "react-router";
 
 export default function CarRecomandation() {
 
@@ -24,6 +25,7 @@ export default function CarRecomandation() {
 				{ answerText: 'Neither or more than 10 000€' },
 			],
 		},
+    
 		{
 			questionText: 'Will it be your first car ?',
 			answerOptions: [
@@ -45,38 +47,29 @@ export default function CarRecomandation() {
 	];
     // Initialize State using useState()
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [data, setData] = useState([]);
-    let answers = [];
+    const [resultPrice, setPrice] = useState(0);
+    const history = useHistory();
+    var results = new Array();
+    
 
-    // Create onClickHandler
-    const onClickHandler = () => {
-      if(currentQuestion === questions.length - 1){
-        //if(questions[0]== "")
-        console.log("end"); 
-      }else{
-        // Note we can't do currentQuestion++  -> const!
-        // So we create a temp variable called 'nextQuestion' that is equal to the currentQuestion + 1
-        const nextQuestion =  currentQuestion +1;
-        console.log(currentQuestion);
-        // Change the state -> currentQuestion => nextQuestion
-        setCurrentQuestion(nextQuestion)
-        // Note we call setCurrentQuestion to set a new value, to change the state of our currentQuestion.
-      }
-    }
+     
+      
+      async function AnalyzeResults(){
+        
 
-    const answerOption = () => {
-      if(currentQuestion === questions.length - 1){
-        //if(questions[0]=="")
-        console.log(currentQuestion[0]); 
-      }else{
-        // Note we can't do currentQuestion++  -> const!
-        // So we create a temp variable called 'nextQuestion' that is equal to the currentQuestion + 1
-        const nextQuestion =  currentQuestion +1;
-        // Change the state -> currentQuestion => nextQuestion
-        setCurrentQuestion(nextQuestion)
-        // Note we call setCurrentQuestion to set a new value, to change the state of our currentQuestion.
+        if(results[1]== "Less than 10 000€"){
+          setPrice(10000);
+        }
+
+        let objData = {
+          price : resultPrice
+        }
+        history.push({
+                    pathname: '/announcements',
+                    state: {object:objData}
+      })
       }
-    }
+
 
 	return (
     <div className='questionBox'>
@@ -94,7 +87,25 @@ export default function CarRecomandation() {
             <div className='answer-section'>
                 { 
                     questions[currentQuestion].answerOptions.map(
-                        answerOption =>( <button onClick={onClickHandler}>{answerOption.answerText}</button> )) 
+                        answerOption =>( <button onClick={
+                          
+        function onClickHandler() {
+
+           if(currentQuestion === questions.length - 1){
+            
+            results.push(answerOption.answerText);
+            AnalyzeResults();
+               }else{
+                results.push(answerOption.answerText);
+               // Note we can't do currentQuestion++  -> const!
+              // So we create a temp variable called 'nextQuestion' that is equal to the currentQuestion + 1
+              const nextQuestion =  currentQuestion +1;
+                    
+              // Change the state -> currentQuestion => nextQuestion
+              setCurrentQuestion(nextQuestion)
+              // Note we call setCurrentQuestion to set a new value, to change the state of our currentQuestion.
+               }
+               }}>{answerOption.answerText}</button> )) 
                 }
             </div>				
 			
