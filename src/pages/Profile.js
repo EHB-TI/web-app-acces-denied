@@ -36,7 +36,6 @@ function Profile() {
 			const anouncementQuery = await db.collection("announcements").where("email", "==", auth.currentUser.email);
 			anouncementQuery.get().then((querySnapshot) => {
 				querySnapshot.forEach((doc) =>  {
-                    console.log(doc.data().email)
                     delete_annoucements(doc.id)
 				});
 			});
