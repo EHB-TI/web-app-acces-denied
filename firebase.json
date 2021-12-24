@@ -1,16 +1,79 @@
 {
+
   "hosting": {
+
     "public": "build",
+
     "ignore": [
+
       "firebase.json",
+
       "**/.*",
+
       "**/node_modules/**"
+
     ],
-    "rewrites": [
+
+    "cleanUrls": true,
+
+    "headers": [
+
       {
+
+        "source": "**/*",
+
+        "headers": [
+
+          {"key": "X-Content-Type-Options", "value": "nosniff"},
+
+          {"key": "X-Frame-Options", "value": "ALLOW-FROM https://get.google.com"},
+
+          {"key": "X-UA-Compatible", "value": "ie=edge"},
+
+          {"key": "X-XSS-Protection", "value": "1; mode=block"}
+
+        ]
+
+      },
+
+      {
+
+      "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+
+      "headers": [ {
+
+        "key": "Access-Control-Allow-Origin",
+
+        "value": "*"
+
+      } ]
+
+    }, {
+
+      "source": "**/*.@(jpg|jpeg|gif|png)",
+
+      "headers": [ {
+
+        "key": "Cache-Control",
+
+        "value": "max-age=7200"
+
+      } ]
+
+    }],
+
+    "rewrites": [
+
+      {
+
         "source": "**",
+
         "destination": "/index.html"
+
       }
+
     ]
+
   }
+
 }
