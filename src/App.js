@@ -29,6 +29,7 @@ import ProfileLogs from './components/ProfileLogs';
 import LoginForm from './components/auth/LoginForm'
 import ConfirmForm from './components/auth/ConfirmForm';
 import Privacy from './pages/Privacy';
+import LoanCalculator from './components/LoanCalculator';
 
 function App() {
     return (      
@@ -49,6 +50,7 @@ function App() {
               <Route path="/confirm"><ConfirmForm/></Route>
               <Route path="/privacy" component={Privacy}  />
               <Route path="/buy" component={SearchCar}  />
+              <Route path="/loan-calculator" component={LoanCalculator}  />
               <Route path="/evaluate" component={EvaluateCar}  />
               <PrivateRoute path="/sell" component={PublishCar} />
               <PrivateRoute path="/sell-parts" component={Form} />
