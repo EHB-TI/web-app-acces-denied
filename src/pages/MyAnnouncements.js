@@ -8,7 +8,7 @@ console.log(auth.currentUser.uid)
 
     const fetchCars = async () => {
         let queryAnnouncements = db
-            .collection("announcement").where("uid", "==", auth.currentUser.uid);           
+            .collection("announcements").where("uid", "==", auth.currentUser.uid);           
             
     let array = [];
            

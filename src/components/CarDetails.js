@@ -4,13 +4,24 @@ import { Container,Card, } from 'react-bootstrap';
 import "../layout/CarDetails.css";
 
 function CarDetails(props) {    
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
     const carDetails = async () => {
+    
     let query = await db
-    .collection("announcement").doc(props.match.params.id).get();
-    var data = query.data();
-    setData(data)
-    }
+    .collection("announcements").where("id","==",props.match.params.id);
+
+
+    console.log(query.id);
+
+    await query.get().then(function(querySnapshot) {
+        
+        setData(querySnapshot.docs[0].data());
+  });
+
+}
+  
+    
+    
     
     useEffect(()=> {
         const unsub = carDetails();  
