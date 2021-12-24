@@ -93,7 +93,7 @@ const Nice = () =>(
                 <Row>
                     <Col>
               <div>
-                <label>Brand Name</label>
+                <label >Brand Name</label>
                 <Field
                   
                   name="brandName"

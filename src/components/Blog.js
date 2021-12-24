@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Blog() {
     return (
@@ -19,7 +20,7 @@ function Blog() {
                   <li><a href="#tabs-1">Lorem ipsum dolor sit amet, consectetur adipisicing.</a></li>
                   <li><a href="#tabs-2">Aspernatur excepturi magni, placeat rerum nobis magnam libero! Soluta.</a></li>
                   <li><a href="#tabs-3">Sunt hic recusandae vitae explicabo quidem laudantium corrupti non adipisci nihil.</a></li>
-                  <div className="main-rounded-button"><a href="blog.html">Read More</a></div>
+                  <div className="main-rounded-button"><Link to="/blog">Read More</Link></div>
                 </ul>
               </div>
               <div className="col-lg-8">

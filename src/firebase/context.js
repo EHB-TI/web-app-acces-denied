@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
 
     }
 
-    const signInWithEmailLink = (email, code) => {
+    const signInWithEmailLink = (email, code , name) => {
         return firebase.auth().signInWithEmailLink(email, code).then(result => {
             setCurrentUser(result.currentUser)
             return true

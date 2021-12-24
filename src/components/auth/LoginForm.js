@@ -11,6 +11,7 @@ import {
   Input,
   Button,
 } from '@chakra-ui/react';
+import {ChakraProvider} from '@chakra-ui/react';
 
 
 const LoginForm = () => {
@@ -31,6 +32,7 @@ const LoginForm = () => {
   };
 
   return (
+    <ChakraProvider>
     <GridItem
       colStart={[1, null, null, 2, null, null]}
       colSpan={[3, null, null, 1, null, null]}
@@ -49,7 +51,7 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl>
           <FormLabel htmlFor="email">Email</FormLabel>
-          <Input name="email" placeholder="Email" defaultValue='test'  {...register("email")}/>
+          <Input name="email" placeholder="Email"   {...register("email")}/>
           <Button
             mt={4}
             colorScheme="teal"
@@ -61,6 +63,7 @@ const LoginForm = () => {
         </FormControl>
       </form>
     </GridItem>
+    </ChakraProvider>
   );
 };
 

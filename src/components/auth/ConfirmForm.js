@@ -11,6 +11,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useHistory, useLocation } from 'react-router-dom';
+import {ChakraProvider, theme} from '@chakra-ui/react';
 
 import { useAuth } from '../../firebase/context';
 
@@ -36,6 +37,7 @@ const ConfirmForm = () => {
   };
 
   return (
+    <ChakraProvider>
     <GridItem
       colStart={[1, null, null, 2, null, null]}
       colSpan={[3, null, null, 1, null, null]}
@@ -60,6 +62,7 @@ const ConfirmForm = () => {
         </FormControl>
       </form>
     </GridItem>
+    </ChakraProvider>
   );
 };
 

@@ -3,9 +3,9 @@ import {Navbar,Nav,NavDropdown,Container, Alert, Button} from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom"
 import "../layout/NavBar.css"
 import { useAuth } from "../firebase/context"
-import { GridItem, Box, Flex, Text } from '@chakra-ui/react';
+import {ChakraProvider, theme} from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Grid } from '@chakra-ui/react';
+
 
 function NavBar() 
 {
@@ -23,6 +23,7 @@ function NavBar()
   }
   
    return (
+    
     <Navbar collapseOnSelect expand="xl" className="navbar" variant="dark">
       <Container>
         <Navbar.Brand as={Link} to={"/"}>
@@ -74,15 +75,17 @@ function NavBar()
 
               </Nav>
             }
+                     <ChakraProvider theme={theme}>
                   <ColorModeSwitcher position="absolute" top={3} right={3} />
-
+                  </ChakraProvider>
 
 
             
           </Navbar.Collapse>
       </Container>
       {error && <Alert variant="danger">{error}</Alert>}
-    </Navbar>     
+    </Navbar>   
+    
     );
    }
 
