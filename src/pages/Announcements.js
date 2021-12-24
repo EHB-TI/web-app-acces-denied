@@ -12,7 +12,7 @@ function Announcements(props) {
     let query = db
     .collection("announcement");
             
-            let array = [];
+        let array = [];
             
            await 
            query.get().then(function(querySnapshot) {
@@ -87,9 +87,7 @@ function Announcements(props) {
             </section>
             
         </div>
-           
-
-        
+              
     )
 }
 

@@ -1,67 +1,105 @@
-import { useState } from "react";
+import { React,useEffect,useState } from "react";
 import { useForm } from "react-hook-form";
 import '../../layout/carRecomandationForm.css';
+import { db } from "../../firebase/firebase.js";
 
-export default function App() {
-  const { register, handleSubmit } = useForm();
-  const [result, setResult] = useState("");
-  
-  const onSubmit = (data) => {
-    setResult(JSON.stringify(data));
-    analyzeResult(data);
-  
-  }
-  
-  const analyzeResult = (result) => {
-    if(result["status"]=="Firstcar"){
-      console.log("categorie1");
-    }else if(result["status"]=="Bigfamilly"){
+export default function CarRecomandation() {
 
-      var carform = document.getElementById('carform');
-        carform.style.display = 'block';
-        carform.innerHTML = '';
+	const questions = [
+		{
+			questionText: 'What kind of car are you looking for?',
+			answerOptions: [
+				{ answerText: 'Small cars and town cars'},
+				{ answerText: 'Family cars'},
+				{ answerText: 'Berlines' },
+				{ answerText: 'Trucks and roadster'},
+			],
+		},
+		{
+			questionText: 'What is your budget ?',
+			answerOptions: [
+				{ answerText: 'Less than 2 500€' },
+				{ answerText: 'Less than 5 000€' },
+				{ answerText: 'Less than 10 000€' },
+				{ answerText: 'Neither or more than 10 000€' },
+			],
+		},
+		{
+			questionText: 'Will it be your first car ?',
+			answerOptions: [
+				{ answerText: 'Yes, my first car.' },
+				{ answerText: 'No, my second car' },
+				{ answerText: "No, but I don't know much about cars" },
+				{ answerText: "No, I'm an expert" },
+			],
+		},
+		{
+			questionText: 'Do you have a preference for the fuel ?',
+			answerOptions: [
+				{ answerText: 'Yes, diesel' },
+				{ answerText: 'Yes, gasoline' },
+				{ answerText: 'Yes, electric' },
+				{ answerText: 'No' },
+			],
+		},
+	];
+    // Initialize State using useState()
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [data, setData] = useState([]);
+    let answers = [];
 
-      var results = document.createElement('div');
-            results.innerHTML = '<h1 style="text-align:center">Cars we reccomand for you:<br/></h1>' + '<h3 style="text-align:center">' + "Categ1" + ' for you</h3>';      
-            carform.append(results);
+    // Create onClickHandler
+    const onClickHandler = () => {
+      if(currentQuestion === questions.length - 1){
+        //if(questions[0]== "")
+        console.log("end"); 
+      }else{
+        // Note we can't do currentQuestion++  -> const!
+        // So we create a temp variable called 'nextQuestion' that is equal to the currentQuestion + 1
+        const nextQuestion =  currentQuestion +1;
+        console.log(currentQuestion);
+        // Change the state -> currentQuestion => nextQuestion
+        setCurrentQuestion(nextQuestion)
+        // Note we call setCurrentQuestion to set a new value, to change the state of our currentQuestion.
+      }
     }
-  }
 
-  return (
-    <div id="carform">
-      <h3>Car recomandation</h3>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      
-      <select {...register("status")}>
-        <option value="">Select...</option>
-        <option value="Firstcar">First car</option>
-        <option value="Bigfamilly">Big family</option>
-      </select>
-      <select {...register("priceRange")}>
-        <option value="">Price Range</option>
-        <option value="700_1099">700-1099</option>
-        <option value="1100_1599">1100-1599</option>
-        <option value="1600_2099">1600-2099</option>
-        <option value="2100_3499">2100-3499</option>
-        <option value="3500_4999">3500-4999</option>
-        <option value="5000_7999">5000-7999</option>
-      </select>
-      <select {...register("displacement")}>
-        <option value="">Diplacement Range</option>
-        <option value="small">Small displacement</option>
-        <option value="mid">Midranged displacements</option>
-        <option value="long">Traveling</option>
-      </select>
-      <select {...register("cargoCapacity")}>
-        <option value="">Cargo capacity</option>
-        <option value="small">Small cargo</option>
-        <option value="mid">Mid cagro</option>
-        <option value="large">Large cargo</option>
-      </select>
-      <p>{result}</p>
-      {analyzeResult(result)}
-      <input type="submit" />
-    </form>
+    const answerOption = () => {
+      if(currentQuestion === questions.length - 1){
+        //if(questions[0]== "")
+        console.log(currentQuestion[0]); 
+      }else{
+        // Note we can't do currentQuestion++  -> const!
+        // So we create a temp variable called 'nextQuestion' that is equal to the currentQuestion + 1
+        const nextQuestion =  currentQuestion +1;
+        // Change the state -> currentQuestion => nextQuestion
+        setCurrentQuestion(nextQuestion)
+        // Note we call setCurrentQuestion to set a new value, to change the state of our currentQuestion.
+      }
+    }
+
+	return (
+    <div className='questionBox'>
+		<div className='questions'>
+
+            <div className='question-section'>
+                <div className='question-count'>
+                 {/* Note we can access the currenQuestion and add one(index starting at 0)
+                     To display the currentQuestion of the user */}
+                    <span>Question {currentQuestion + 1}</span>/{questions.length}
+                </div>
+                <div className='question-text'>{questions[currentQuestion].questionText}</div>
+            </div>
+
+            <div className='answer-section'>
+                { 
+                    questions[currentQuestion].answerOptions.map(
+                        answerOption =>( <button onClick={onClickHandler}>{answerOption.answerText}</button> )) 
+                }
+            </div>				
+			
+		</div>
     </div>
-  );
+	);
 }
+
